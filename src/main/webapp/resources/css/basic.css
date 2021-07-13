@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.container {
+	padding: 0px;
+}
+
+.card-body {
+	padding: 5px;
+}
+
+.container, #team-header-above, #team-header-below, #team-footer {
+	width: 720px;
+}
+
+
+#book-list-div {
+	width: 8rem;
+}
+
+#team-header {
+	background-color: white;
+}
+
+body, #team-footer {
+	background-color: rgb(238, 238, 238);
+}
