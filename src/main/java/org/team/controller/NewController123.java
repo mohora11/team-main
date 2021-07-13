@@ -1,5 +1,5 @@
 package org.team.controller;
 
-public class NewControllerkk {
+public class NewController123 {
 
 }
