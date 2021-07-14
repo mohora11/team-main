@@ -19,26 +19,4 @@
 			</ul>
 		</nav>
 	</div>
-	<div id="team-header-below" class="mx-auto mt-2">
-		<ul class="nav nav-pills nav-fill">
-			<li class="nav-item">
-				<a class="nav-link text-dark" href="${appRoot}/main">홈</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-dark" href="${appRoot}/product/webtoon/list">웹툰</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-dark" href="${appRoot}/product/webnovel/list">웹소설</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-dark" href="${appRoot}/product/book/list">책</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-dark" href="#">게시판</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link text-dark" href="#">고객센터</a>
-			</li>
-		</ul>
-	</div>
 </div>

@@ -10,7 +10,7 @@
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 <link href="<c:url value='/resources/css/basic.css'/>" rel="stylesheet" />
 
-<title>main</title>
+<title>webnovel list</title>
 </head>
 <body>
 <pj:navbar />
@@ -20,8 +20,8 @@
 <div id="carousel-product" class="carousel slide" data-ride="carousel">
 	<div class="carousel-inner">
 		<div id="carousel-item" class="carousel-item active" data-interval="3000">
-			<a href="">
-				<img src="https://www.freemockupworld.com/wp-content/uploads/2019/12/Free-Book-Cover-Mockup-PSD.jpg">
+			<a href="${appRoot}/product/webnovel/get?id=">
+				<img src="https://freewebnovel.com/files/article/image/0/373/373s.jpg">
 			</a>
 			<div class="carousel-caption d-none d-md-block">
 				<h5>First slide label</h5>
@@ -30,7 +30,7 @@
 		</div>
 		<div id="carousel-item" class="carousel-item" data-interval="3000">
 			<a href="">
-				<img src="https://freewebnovel.com/files/article/image/0/373/373s.jpg">
+				<img src="https://freewebnovel.com/files/article/image/0/466/466s.jpg">
 			</a>
 			<div class="carousel-caption d-none d-md-block">
 				<h5>Second slide label</h5>
@@ -39,7 +39,7 @@
 		</div>
 		<div id="carousel-item" class="carousel-item" data-interval="3000">
 			<a href="">
-				<img src="https://images.squarespace-cdn.com/content/v1/56453b08e4b0a48587b1d60e/1513115813558-PO6GGTW3GVX29R269Y1E/Mooncakes+Cover-1.jpg?format=500w">
+				<img src="https://freewebnovel.com/files/article/image/0/871/871s.jpg">
 			</a>
 			<div class="carousel-caption d-none d-md-block">
 				<h5>Third slide label</h5>
@@ -61,32 +61,18 @@
 <%-- webnovel list --%>
 <div id="div-white" class="container">
 	<ul class="list-group list-group-horizontal">
-		<li class="list-group-item">전체 목록</li>
+		<li class="list-group-item">전체 웹소설 목록</li>
 	</ul>
 	<form class="form-inline">
-		<c:forEach items="${list}" var="main">
-			<c:choose>
-				<c:when test="${main.product_category eq '1'}">
-					<c:url value="/product/webtoon/get" var="getUrl">
-						<c:param name="id">${main.id}</c:param>
-					</c:url>
-				</c:when>
-				<c:when test="${main.product_category eq '2'}">
-					<c:url value="/product/webnovel/get" var="getUrl">
-						<c:param name="id">${main.id}</c:param>
-					</c:url>
-				</c:when>
-				<c:when test="${main.product_category eq '3'}">
-					<c:url value="/product/book/get" var="getUrl">
-						<c:param name="id">${main.id}</c:param>
-					</c:url>
-				</c:when>
-			</c:choose>
+		<c:forEach items="${list}" var="webnovel">
+			<c:url value="/product/webnovel/get" var="getUrl">
+				<c:param name="id">${webnovel.id}</c:param>
+			</c:url>
 			<a href="${getUrl}">
 				<div id="product-list-div" class="card mx-2 my-2">
 					<img src="https://freewebnovel.com/files/article/image/0/373/373s.jpg" class="card-img-top">
 					<div class="card-body">
-						<p class="card-text text-dark">${main.product_name}</p>
+						<p class="card-text text-dark">${webnovel.product_name}</p>
 					</div>
 				</div>
 			</a>

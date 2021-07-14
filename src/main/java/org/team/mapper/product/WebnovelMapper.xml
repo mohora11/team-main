@@ -2,11 +2,11 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="org.team.mapper.product.BookMapper">
+<mapper namespace="org.team.mapper.product.WebnovelMapper">
 
 	<select id="getList" resultType="org.team.domain.product.ProductVO">
 		SELECT * FROM tbl_product
-		WHERE product_category = 3
+		WHERE product_category = 2
 		ORDER BY id DESC
 	</select>
 	
