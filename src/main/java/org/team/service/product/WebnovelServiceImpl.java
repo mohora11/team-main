@@ -5,15 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.team.domain.product.ProductVO;
-import org.team.mapper.product.BookMapper;
+import org.team.mapper.product.WebnovelMapper;
 
 import lombok.Setter;
 
 @Service
-public class BookServiceImpl implements BookService {
+public class WebnovelServiceImpl implements WebnovelService {
 
 	@Setter(onMethod_ = @Autowired)
-	private BookMapper mapper;
+	private WebnovelMapper mapper;
 	
 	@Override
 	public List<ProductVO> getList() {

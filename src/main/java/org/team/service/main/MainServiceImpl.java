@@ -1,28 +1,23 @@
-package org.team.service.product;
+package org.team.service.main;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.team.domain.product.ProductVO;
-import org.team.mapper.product.BookMapper;
+import org.team.mapper.main.MainMapper;
 
 import lombok.Setter;
 
 @Service
-public class BookServiceImpl implements BookService {
+public class MainServiceImpl implements MainService {
 
 	@Setter(onMethod_ = @Autowired)
-	private BookMapper mapper;
+	private MainMapper mapper;
 	
 	@Override
 	public List<ProductVO> getList() {
 		return mapper.getList();
-	}
-
-	@Override
-	public ProductVO get(Long id) {
-		return mapper.get(id);
 	}
 
 }

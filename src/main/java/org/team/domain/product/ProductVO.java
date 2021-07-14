@@ -8,7 +8,8 @@ import lombok.Data;
 public class ProductVO {
 
 	private Long id;
-	private int product_genre;
+	private int product_category;
+	private String product_genre;
 	private String product_name;
 	private String writer_name;
 	private Date register_date;

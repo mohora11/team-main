@@ -1,12 +1,11 @@
-package org.team.mapper.product;
+package org.team.mapper.main;
 
 import java.util.List;
 
 import org.team.domain.product.ProductVO;
 
-public interface BookMapper {
+public interface MainMapper {
 
 	public List<ProductVO> getList();
-	
-	public ProductVO get(Long id);
+
 }

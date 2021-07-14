@@ -8,22 +8,22 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.team.domain.product.ProductVO;
-import org.team.service.product.BookService;
+import org.team.service.product.WebnovelService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/product/book/*")
+@RequestMapping("/product/webnovel/*")
 @AllArgsConstructor
 @Log4j
-public class BookController {
+public class WebnovelController {
 
-	private BookService service;
+	private WebnovelService service;
 	
 	@GetMapping("/list")
 	public void list(Model model) {
-		log.info("***book list method***");
+		log.info("***webnovel list method***");
 		
 		List<ProductVO> list = service.getList();
 		
@@ -32,10 +32,10 @@ public class BookController {
 	
 	@GetMapping("/get")
 	public void get(@RequestParam Long id, Model model) {
-		log.info("***book get method***");
+		log.info("***webnovel get method***");
 		
 		ProductVO vo = service.get(id);
 		
-		model.addAttribute("book", vo);
+		model.addAttribute("webnovel", vo);
 	}
 }
