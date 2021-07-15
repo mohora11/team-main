@@ -1,0 +1,28 @@
+package org.team.service;
+
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+import org.team.domain.BoardVO;
+import org.team.domain.Criteria;
+
+public interface BoardService {
+	
+	public void register(BoardVO board);
+	
+	public BoardVO get(Long bno);
+	
+	public boolean modify(BoardVO board);
+	
+	public boolean remove(Long bno);
+	
+	public List<BoardVO> getList(Criteria cri);
+
+	public int getTotal(Criteria cri);
+	
+	public void register(BoardVO board, MultipartFile file);
+
+	public boolean modify(BoardVO board, MultipartFile file);
+	
+	
+}
