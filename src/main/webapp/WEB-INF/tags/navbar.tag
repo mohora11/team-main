@@ -29,7 +29,7 @@
 				</li>
 				
 				<li class="nav-item">
-					<a href="${appRoot }/member/signup" class="btn btn-outline-primary">로그인</a>  
+					<a href="${appRoot }/member/signup" class="btn btn-outline-primary">회원가입</a>  
 				</li>
 				
 				
