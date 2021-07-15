@@ -9,8 +9,12 @@
 			<ul class="nav justify-content-end">
 				<li class="nav-item mr-3">
 					<form class="form-inline">
-						<input class="form-control mr-sm-2 justify-content-end" type="search" aria-label="Search">
-						<span><i class="fas fa-search"></i></span>
+						<div class="input-group mr-sm-2">
+							<input type="text" id="navbar-search-input" class="form-control">
+						    <div class="input-group-prepend">
+								<div id="navbar-search-icon" class="input-group-text"><span><i class="fas fa-search"></i></span></div>
+						    </div>
+					  	</div>
 					</form>
 				</li>
 				<li class="nav-item">
@@ -19,25 +23,25 @@
 			</ul>
 		</nav>
 	</div>
-	<div id="team-header-below" class="mx-auto mt-2">
-		<ul class="nav nav-pills nav-fill">
+	<div id="team-header-below" class="mx-auto mt-2 pb-2">
+		<ul class="nav nav-fill">
 			<li class="nav-item">
-				<a class="nav-link text-dark" href="${appRoot}/main">홈</a>
+				<a id="nav-home" class="nav-link text-dark" href="${appRoot}/main">홈</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-dark" href="${appRoot}/product/webtoon/list">웹툰</a>
+				<a id="nav-webtoon" class="nav-link text-dark" href="${appRoot}/product/webtoon/list">웹툰</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-dark" href="${appRoot}/product/webnovel/list">웹소설</a>
+				<a id="nav-webnovel" class="nav-link text-dark" href="${appRoot}/product/webnovel/list">웹소설</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-dark" href="${appRoot}/product/book/list">책</a>
+				<a id="nav-book" class="nav-link text-dark" href="${appRoot}/product/book/list">책</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-dark" href="#">게시판</a>
+				<a id="nav-board" class="nav-link text-dark" href="#">게시판</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link text-dark" href="#">고객센터</a>
+				<a id="nav-qna" class="nav-link text-dark" href="#">고객센터</a>
 			</li>
 		</ul>
 	</div>
