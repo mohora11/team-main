@@ -2,6 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<c:url value="/member/signup" var="signUpUrl">
+	<c:if test="${not empty cri.pageNum }">
+		<c:param name="pageNum" value="${cri.pageNum }"></c:param>
+	</c:if>
+	<c:if test="${not empty cri.amount }">
+		<c:param name="amount" value="${cri.amount }"></c:param>
+	</c:if>
+		<c:param name="keyword" value="${cri.keyword }"></c:param>
+		<c:param name="type" value="${cri.type }"></c:param>
+</c:url>
+
 <div id="team-header" class="d-flex flex-column sticky-top pt-3 mb-3">
 	<div id="team-header-above" class="mx-auto mb-2">
 		<nav class="navbar navbar-light">
@@ -14,8 +25,14 @@
 					</form>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-primary">로그인</a>
+					<a href="${appRoot }/member/login" class="btn btn-outline-primary">로그인</a>  
 				</li>
+				
+				<li class="nav-item">
+					<a href="${appRoot }/member/signup" class="btn btn-outline-primary">로그인</a>  
+				</li>
+				
+				
 			</ul>
 		</nav>
 	</div>
