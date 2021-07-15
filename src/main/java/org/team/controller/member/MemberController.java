@@ -28,12 +28,12 @@ public class MemberController {
 		log.info("***member login method***");
 	}
 	
-	@RequestMapping(value="/signup", method = RequestMethod.GET)
+	@GetMapping("/signup")
 	public void signup() {
 		log.info("***member signup method***");
 	}
 	
-/*	@PostMapping("/signup")
+	@PostMapping("/signup")
 	public String signupPost(MemberVO vo, RedirectAttributes rttr) {
 		log.info(vo);
 		
@@ -44,5 +44,5 @@ public class MemberController {
 		} else {
 			return "redirect:/member/signup?error";
 		}
-	}*/ 
+	} 
 }
