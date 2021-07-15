@@ -14,7 +14,7 @@
 					</form>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-primary">로그인</a>
+					<a href="${appRoot}/member/login" class="btn btn-primary">로그인</a>
 				</li>
 			</ul>
 		</nav>
