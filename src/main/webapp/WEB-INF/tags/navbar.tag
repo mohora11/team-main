@@ -1,6 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div id="team-header" class="d-flex flex-column sticky-top pt-3 mb-3">
 	<div id="team-header-above" class="mx-auto mb-2">
@@ -17,9 +18,16 @@
 					  	</div>
 					</form>
 				</li>
-				<li class="nav-item">
-					<a href="${appRoot}/member/login" class="btn btn-primary">로그인</a>
-				</li>
+				<sec:authorize access="!isAuthenticated()">
+					<li class="nav-item">
+						<a href="${appRoot}/member/login" class="btn btn-primary">로그인</a>
+					</li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<li class="nav-item">
+						<a href="${appRoot}/logout" class="btn btn-primary">로그아웃</a>
+					</li>
+				</sec:authorize>
 			</ul>
 		</nav>
 	</div>
@@ -38,10 +46,10 @@
 				<a id="nav-book" class="nav-link text-dark" href="${appRoot}/product/book/list">책</a>
 			</li>
 			<li class="nav-item">
-				<a id="nav-board" class="nav-link text-dark" href="#">게시판</a>
+				<a id="nav-board" class="nav-link text-dark" href="${appRoot}/board/list">게시판</a>
 			</li>
 			<li class="nav-item">
-				<a id="nav-qna" class="nav-link text-dark" href="#">고객센터</a>
+				<a id="nav-qna" class="nav-link text-dark" href="${appRoot}/qna/list">고객센터</a>
 			</li>
 		</ul>
 	</div>
