@@ -1,8 +1,8 @@
-package org.team.service;
+package org.team.service.board;
 
 import java.util.List;
 
-import org.team.domain.ReplyVO;
+import org.team.domain.board.ReplyVO;
 
 public interface ReplyService {
 	

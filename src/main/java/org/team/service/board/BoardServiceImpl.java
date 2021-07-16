@@ -1,4 +1,4 @@
-package org.team.service;
+package org.team.service.board;
 
 import java.io.InputStream;
 import java.util.List;
@@ -8,12 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.team.domain.BoardVO;
-import org.team.domain.Criteria;
-import org.team.domain.FileVO;
-import org.team.mapper.BoardMapper;
-import org.team.mapper.FileMapper;
-import org.team.mapper.ReplyMapper;
+import org.team.domain.board.BoardVO;
+import org.team.domain.board.BoardCriteria;
+import org.team.domain.board.FileVO;
+import org.team.mapper.board.BoardMapper;
+import org.team.mapper.board.FileMapper;
+import org.team.mapper.board.ReplyMapper;
 
 import lombok.Setter;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
@@ -161,12 +161,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getList(Criteria cri) {
+	public List<BoardVO> getList(BoardCriteria cri) {
 		return mapper.getListWithPaging(cri);
 	}
 	
 	@Override
-	public int getTotal(Criteria cri) {
+	public int getTotal(BoardCriteria cri) {
 		return mapper.getTotalCount(cri);
 	}
 	

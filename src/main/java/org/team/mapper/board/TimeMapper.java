@@ -1,4 +1,4 @@
-package org.team.mapper;
+package org.team.mapper.board;
 
 import org.apache.ibatis.annotations.Select;
 

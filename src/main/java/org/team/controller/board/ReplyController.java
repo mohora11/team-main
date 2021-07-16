@@ -1,4 +1,4 @@
-package org.team.controller;
+package org.team.controller.board;
 
 import java.util.List;
 
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import org.team.domain.ReplyVO;
-import org.team.service.ReplyService;
+import org.team.domain.board.ReplyVO;
+import org.team.service.board.ReplyService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;

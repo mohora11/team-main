@@ -1,9 +1,9 @@
-package org.team.mapper;
+package org.team.mapper.board;
 
 import java.util.List;
 
-import org.team.domain.MemberVO;
-import org.team.domain.ReplyVO;
+import org.team.domain.board.ReplyVO;
+import org.team.domain.member.MemberVO;
 
 public interface ReplyMapper {
 	

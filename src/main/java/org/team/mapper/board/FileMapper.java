@@ -1,7 +1,7 @@
-package org.team.mapper;
+package org.team.mapper.board;
 
-import org.team.domain.FileVO;
-import org.team.domain.MemberVO;
+import org.team.domain.board.FileVO;
+import org.team.domain.member.MemberVO;
 
 public interface FileMapper {
 	

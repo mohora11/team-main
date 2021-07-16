@@ -2,7 +2,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="bd" tagdir="/WEB-INF/tags/board"%>
+<%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %>
+
+
+<c:url value="/board/register" var="registerUrl">
+	<c:if test="${not empty cri }">
+		<c:param name="pageNum" value="${cri.pageNum }"></c:param>
+		<c:param name="amount" value="${cri.amount }"></c:param>
+		<c:param name="keyword" value="${cri.keyword }"></c:param>
+		<c:param name="type" value="${cri.type }"></c:param>
+	</c:if>
+</c:url>
 
 <!DOCTYPE html>
 <html>
@@ -12,35 +22,16 @@
 
 <title>Insert title here</title>
 
-<script>
-	$(document).ready(function() {
-		$("#list-pagenation1 a").click(function(e) {
-			// 기본 액션 중지(hyperlink 역할 안함)
-			e.preventDefault();
-
-			console.log("a요소 클릭됨")
-
-			var actionForm = $("#actionForm");
-
-			// form의 pageNum input의 값(a) 요소의 href값으로 변경
-			actionForm.find("[name=pageNum]").val($(this).attr("href"));
-
-			// submit
-			actionForm.submit();
-		});
-	});
-</script>
-
 </head>
 <body>
-	<bd:navbar />
+<pj:navbar />
+	
 	<div class="container">
 
-		<h1>글 목록</h1>
+		<h4>자유게시판</h4>
 		<table class="table table-striped">
 			<thead>
 				<tr>
-					<th>#</th>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
@@ -50,7 +41,6 @@
 			<tbody>
 				<c:forEach items="${list }" var="board">
 					<tr>
-						<td>${board.bno }</td>
 						<td><c:url value="/board/get" var="getUrl">
 								<c:param name="bno" value="${board.bno }" />
 								<c:param name="pageNum" value="${pageMaker.cri.pageNum }" />
@@ -88,9 +78,7 @@
 				</c:if>
 
 				<c:forEach begin="${pageMaker.startPage }" end="${pageMaker.endPage }" var="num">
-					<!--href value
-    				href="${appRoot }/board/list?pageNum=${pageMaker.cri.pageNum}&amount=$pageMaker.cri.amount}">
-    	 			-->
+					
 					<li class="page-item ${num == cri.pageNum ? 'active' : '' }"><a class="page-link" 
 					href="${num }">${num }</a></li>
 				</c:forEach>
@@ -103,7 +91,7 @@
 			</ul>
 		</nav>
 	<!--페이지 링크용 -->
-		<div style="display: none">
+		<div style="display:none">
 			<form id="actionForm" action="${appRoot }/board/list" method="get">
 				<input name="pageNum" value="${cri.pageNum }" /> 
 				<input name="amount" value="${cri.amount }" />
@@ -115,20 +103,6 @@
 	</div>
 
 	<c:if test="${not empty result }">
-		<script>
-			$(document).ready(function() {
-				if (history.state == null) {
-					console.log("어서와 처음이지!!!");
-
-					$("#board-modal1").modal('show');
-					history.replaceState({}, null);
-
-				} else {
-
-					console.log("너 전에 왔었어!!!");
-				}
-			});
-		</script>
 
 		<div id="board-modal1" class="modal" tabindex="-1">
 			<div class="modal-dialog">
@@ -151,5 +125,18 @@
 			</div>
 		</div>
 	</c:if>
+	<div class="container">
+		
+				<a class="nav-link" href="${registerUrl}">
+				<button>
+				글쓰기
+				</button>
+				</a>
+			
+		
+	</div>
+
+
+	<pj:footer />
 </body>
 </html>

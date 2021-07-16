@@ -1,4 +1,4 @@
-package org.team.domain;
+package org.team.domain.board;
 
 import java.util.Date;
 

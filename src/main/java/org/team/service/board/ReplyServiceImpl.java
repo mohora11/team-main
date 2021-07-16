@@ -1,11 +1,11 @@
-package org.team.service;
+package org.team.service.board;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.team.domain.ReplyVO;
-import org.team.mapper.ReplyMapper;
+import org.team.domain.board.ReplyVO;
+import org.team.mapper.board.ReplyMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
