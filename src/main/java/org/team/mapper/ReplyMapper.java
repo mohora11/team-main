@@ -2,7 +2,7 @@ package org.team.mapper;
 
 import java.util.List;
 
-import org.team.domain.MemberVO;
+
 import org.team.domain.ReplyVO;
 
 public interface ReplyMapper {
@@ -23,7 +23,4 @@ public interface ReplyMapper {
 	
 	public int deleteByBno(Long bno);
 
-	public void removeByUserid(MemberVO vo);
-
-	public void removeByBnoByUserid(MemberVO vo);
 }

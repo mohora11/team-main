@@ -7,7 +7,7 @@ public class PageDTO {
 
 //	private int pageNum;
 // 	private int amount;
-	private Criteria cri;
+	private BoardCriteria cri;
 	
 	private int startPage; // 현재 페이지 기준 시작 페이지
 	private int endPage; // 현재 페이지 기준 마지막 페이지
@@ -17,7 +17,7 @@ public class PageDTO {
 	
 	private int total; // 총게시물 숫자 가령 16페이지 에서 끝나면 endpage가 20이 출력이안됌
 	
-	public PageDTO(Criteria cri, int total) {
+	public PageDTO(BoardCriteria cri, int total) {
 		this.cri = cri;
 		
 		int current = cri.getPageNum();

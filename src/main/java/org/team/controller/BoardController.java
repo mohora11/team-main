@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.team.domain.BoardVO;
-import org.team.domain.Criteria;
+import org.team.domain.BoardCriteria;
 import org.team.domain.PageDTO;
 import org.team.service.BoardService;
 
@@ -36,7 +36,7 @@ public class BoardController {
 	 allargs 때문에 필요없음 */
 	
 	@GetMapping("/list")
-	public void list(@ModelAttribute("cri") Criteria cri, Model model) {
+	public void list(@ModelAttribute("cri") BoardCriteria cri, Model model) {
 		log.info("board/list method......");
 		int total = service.getTotal(cri);
 		
@@ -62,7 +62,7 @@ public class BoardController {
 		
 		// redirect목적지로 정보 전달
 		rttr.addFlashAttribute("result", board.getBno());
-		rttr.addFlashAttribute("messageTitle", "등록 성공.");
+		rttr.addFlashAttribute("messagTitle", "등록 성공.");
 		rttr.addFlashAttribute("messageBody", board.getBno() + "번 게시물 등록 되었습니다.");
 		
 		// /board/list redirect
@@ -78,7 +78,7 @@ public class BoardController {
 	
 	@GetMapping({"/get", "/modify"})
 	public void get(@RequestParam("bno") Long bno, 
-			@ModelAttribute("cri") Criteria cri, 
+			@ModelAttribute("cri") BoardCriteria cri, 
 			Model model) {
 		log.info("board/get method");
 		
@@ -94,7 +94,7 @@ public class BoardController {
 	@PostMapping("/modify")
 	@PreAuthorize("principal.username == #board.writer")// 720p
 //	@PreAuthorize("authication.name == #board.writer")// spring.io
-	public String modify(BoardVO board, Criteria cri,
+	public String modify(BoardVO board, BoardCriteria cri,
 			@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
 		// request parameter 수집 (알아서 됨)
 		log.info("modify:" + board);
@@ -121,7 +121,7 @@ public class BoardController {
 	
 	@PostMapping("/remove")
 	@PreAuthorize("principal.username == #writer")  // 720p
-	public String remove(Long bno, Criteria cri, RedirectAttributes rttr, String writer) {
+	public String remove(Long bno, BoardCriteria cri, RedirectAttributes rttr, String writer) {
 		// parameter 수집
 		
 		// service
@@ -143,7 +143,7 @@ public class BoardController {
 	
 	@GetMapping("/register")
 	@PreAuthorize("isAuthenticated()") // 673p
-	public void register(@ModelAttribute("cri") Criteria cri) {
+	public void register(@ModelAttribute("cri") BoardCriteria cri) {
 		// forward함 WEB-INF/views/board/register.jsp
 	}
 	

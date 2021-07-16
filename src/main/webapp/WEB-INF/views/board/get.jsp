@@ -1,6 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="bd" tagdir="/WEB-INF/tags/board" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html>
@@ -19,6 +20,7 @@ var userid = "${pinfo.member.userid}";
 
 </head>
 <body>
+<bd:navbar></bd:navbar>
 
 <div class="container">
 <div id="alert1" class="alert alert-primary fade" role="alert">

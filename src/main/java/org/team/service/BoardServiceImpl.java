@@ -1,6 +1,8 @@
 package org.team.service;
 
+import java.io.File;
 import java.io.InputStream;
+import java.nio.file.Path;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.team.domain.BoardVO;
-import org.team.domain.Criteria;
+import org.team.domain.BoardCriteria;
 import org.team.domain.FileVO;
 import org.team.mapper.BoardMapper;
 import org.team.mapper.FileMapper;
@@ -18,6 +20,7 @@ import org.team.mapper.ReplyMapper;
 import lombok.Setter;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.core.sync.RequestBody;
+import software.amazon.awssdk.profiles.ProfileFile;
 import software.amazon.awssdk.services.s3.S3Client;
 import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
@@ -41,11 +44,26 @@ public class BoardServiceImpl implements BoardService {
 	
 	
 	public BoardServiceImpl() { // 이렇게 해야 업로드할때 삭제할때 둘다 쓸 수 있음 
-		this.bucketName = "choongang-mohora11";
+		this.bucketName = "choongang-eemin90";
 		this.profileName = "spring1";
-//		this.s3 = S3Client.builder()
-//				.credentialsProvider(ProfileCredentialsProvider.create(profileName))
-//				.build();
+		
+//		create
+//			/home/tomcat/.aws/credentials
+		
+		Path contentLocation = new File(System.getProperty("user.home") + "/.aws/credentials").toPath();
+		ProfileFile pf = ProfileFile.builder()
+				.content(contentLocation)
+				.type(ProfileFile.Type.CREDENTIALS)
+				.build();
+		ProfileCredentialsProvider pcp = ProfileCredentialsProvider.builder()
+				.profileFile(pf)
+				.profileName(profileName)
+				.build();
+		
+		this.s3 = S3Client.builder()
+				.credentialsProvider(pcp)
+				.build();
+		
 	}
 	
 	
@@ -148,7 +166,7 @@ public class BoardServiceImpl implements BoardService {
 
 	private void removeFile(BoardVO vo) {
 //		String bucketName = "";
-		String key = vo.getBno() + "/" + vo.getFileName();
+		String key = vo.getBno() + "/" + vo.getFileName();;
 		
 		DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
 				.bucket(bucketName)
@@ -161,12 +179,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getList(Criteria cri) {
+	public List<BoardVO> getList(BoardCriteria cri) {
 		return mapper.getListWithPaging(cri);
 	}
 	
 	@Override
-	public int getTotal(Criteria cri) {
+	public int getTotal(BoardCriteria cri) {
 		return mapper.getTotalCount(cri);
 	}
 	

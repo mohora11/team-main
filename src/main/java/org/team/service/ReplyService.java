@@ -15,5 +15,4 @@ public interface ReplyService {
 	public int remove(Long rno);
 	
 	public List<ReplyVO> getList(Long bno);
-
 }

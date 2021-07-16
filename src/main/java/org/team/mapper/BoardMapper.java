@@ -4,15 +4,15 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Select;
 import org.team.domain.BoardVO;
-import org.team.domain.Criteria;
-import org.team.domain.MemberVO;
+import org.team.domain.BoardCriteria;
+
 
 public interface BoardMapper {
 	
 //	@Select("SELECT * FROM tbl_board")
 	public List<BoardVO> getList();
 	
-	public List<BoardVO> getListWithPaging(Criteria cri);
+	public List<org.team.domain.BoardVO> getListWithPaging(BoardCriteria cri);
 	
 	// INSERT INTO ble_board (title, content, writer)
 	// VALUES (#{title}, #{content}, #{writer}) mybatis에서 사용하는 쿼리
@@ -36,8 +36,8 @@ public interface BoardMapper {
 	
 	public int update(BoardVO board);
 
-	public int getTotalCount(Criteria cri);
+	public int getTotalCount(BoardCriteria cri);
 
-	public void removeByUserid(MemberVO vo);
+	
 
 }

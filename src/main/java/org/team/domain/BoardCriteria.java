@@ -8,11 +8,12 @@ import lombok.ToString;
 @Setter
 @ToString
 public class BoardCriteria {
-
+	
 	private int pageNum;
 	private int amount;
 	private String type;
 	private String keyword;
+	
 	
 	public BoardCriteria() {
 		this(1, 10);
@@ -24,7 +25,7 @@ public class BoardCriteria {
 	}
 	
 	public int getFrom() {
-		return amount * (pageNum -1);
+		return amount * (pageNum - 1);
 	}
 	
 	public String[] getTypeArr() {
@@ -34,6 +35,7 @@ public class BoardCriteria {
 		} else {
 			String[] types = type.split("");
 			return types;
-		}
+		}	
 	}
+		
 }
