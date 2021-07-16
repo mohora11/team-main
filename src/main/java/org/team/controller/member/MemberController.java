@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.team.domain.product.member.MemberVO;
+import org.team.domain.member.MemberVO;
 import org.team.service.member.MemberService;
 
 import lombok.AllArgsConstructor;

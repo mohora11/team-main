@@ -1,6 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <c:url value="/member/signup" var="signUpUrl">
 	<c:if test="${not empty cri.pageNum }">
@@ -32,6 +33,12 @@
 					<a href="${appRoot }/member/signup" class="btn btn-outline-primary">회원가입</a>  
 				</li>
 				
+					  <sec:authorize access="!isAuthenticated()">
+	 			 	<li class="nav-item">
+	  				<a class="nav-link" href="${signUpUrl }">회원가입</a>
+	 			 	</li>
+					  </sec:authorize>
+						
 				
 			</ul>
 		</nav>

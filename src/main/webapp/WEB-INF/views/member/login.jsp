@@ -17,9 +17,9 @@
 
   <h1>로그인</h1>
    
-   <form action="${appRoot}/member/login" method="get">
+   <form action="${appRoot}/login" method="post">
 				<div class="form-group">
-					<label for="input1">이름</label>				
+					<label for="input1">아이디</label>				
 					<input id="input1" class="form-control" name="username" />
 				</div>
 				<div class="form-group">

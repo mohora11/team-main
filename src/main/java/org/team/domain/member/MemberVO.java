@@ -1,4 +1,4 @@
-package org.team.domain.product.member;
+package org.team.domain.member;
 
 import java.util.Date;
 import java.util.List;
@@ -14,4 +14,5 @@ public class MemberVO {
 	private Date updateDate;
 	private boolean enabled;
 	
+	private List<AuthVO> authList;
 }

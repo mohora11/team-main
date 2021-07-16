@@ -1,4 +1,4 @@
-package org.team.domain.product.member;
+package org.team.domain.member;
 
 import lombok.Getter;
 import lombok.Setter;
