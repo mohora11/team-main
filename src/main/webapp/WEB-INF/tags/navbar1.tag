@@ -9,12 +9,16 @@
 			<ul class="nav justify-content-end">
 				<li class="nav-item mr-3">
 					<form class="form-inline">
-						<input class="form-control mr-sm-2 justify-content-end" type="search" aria-label="Search">
-						<span><i class="fas fa-search"></i></span>
+						<div class="input-group mr-sm-2">
+							<input type="text" id="navbar-search-input" class="form-control">
+						    <div class="input-group-prepend">
+								<div id="navbar-search-icon" class="input-group-text"><span><i class="fas fa-search"></i></span></div>
+						    </div>
+					  	</div>
 					</form>
 				</li>
 				<li class="nav-item">
-					<a class="btn btn-primary">로그인</a>
+					<a href="${appRoot}/member/login" class="btn btn-primary">로그인</a>
 				</li>
 			</ul>
 		</nav>

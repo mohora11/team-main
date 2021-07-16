@@ -8,11 +8,19 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
 
+<%-- fonts --%>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+<style>font-family: 'Noto Sans KR', sans-serif;</style>
+
 <!-- 
 <link href="${pageContext.request.contextPath }/res/css/all.css" rel="stylesheet">
  -->
 
-<script defer src="${pageContext.request.contextPath }/resources/js/all.js"></script>
+<script defer src="${pageContext.request.contextPath}/resources/js/all.js"></script>
+<script defer src="${appRoot}/resources/js/basic.js"></script>
+<link href="<c:url value='/resources/css/basic.css'/>" rel="stylesheet" />
 
 <%--
 security info
