@@ -5,16 +5,34 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
+
+	<bean id="customUserDetailsService" class="org.team.security.CustomUserDetailsService"></bean>
+	
 	<security:http>
-		<security:http-basic/>
+		<!--
+		<security:intercept-url pattern="/member/login" access="permitAll" />
+		<security:intercept-url pattern="/product/webtoon/list" access="hasRole('ROLE_USER')"/>
+		-->
+		<security:form-login login-page="/member/login" default-target-url="/main"/>
+		<security:logout/>
+		<security:csrf disabled="true"/>
+		<security:remember-me data-source-ref="dataSource"/>
 	</security:http>
 	
 	<security:authentication-manager>
-		<security:authentication-provider>
-			<security:user-service>
-				<security:user name="member" password="{noop}member" authorities="ROME_MEMBER" />
-			</security:user-service>
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
 
+<!--
+	<security:authentication-manager>
+ 		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="member" password="{noop}member" authorities="ROLE_MEMBER" />
+			</security:user-service>
+		</security:authentication-provider> 
+	</security:authentication-manager>
+ -->
 </beans>
