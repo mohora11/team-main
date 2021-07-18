@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.team.domain.product.CoverVO;
 import org.team.domain.product.FileVO;
 import org.team.domain.product.ProductVO;
 import org.team.mapper.product.BookMapper;
@@ -54,7 +55,7 @@ public class BookServiceImpl implements BookService {
 		mapper.insert(product);
 		
 		if ((file1 != null && file1.getSize() > 0) && (file2 != null && file2.getSize() > 0)) {
-			FileVO vo1 = new FileVO();
+			CoverVO vo1 = new CoverVO();
 			vo1.setProduct_id(product.getId());
 			vo1.setFile_name(file1.getOriginalFilename());
 			
@@ -62,10 +63,10 @@ public class BookServiceImpl implements BookService {
 			vo2.setProduct_id(product.getId());
 			vo2.setFile_name(file2.getOriginalFilename());
 			
-			fileMapper.insert(vo1);
+			fileMapper.insertCover(vo1);
 			uploadCover(product, file1);
 			
-			fileMapper.insert(vo2);
+			fileMapper.insertFile(vo2);
 			uploadFile(product, file2);
 		}
 	}

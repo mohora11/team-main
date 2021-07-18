@@ -24,6 +24,7 @@
 	writer_name = ${book.writer_name}<br>
 	register_date = <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${book.register_date}" /><br>
 	update_date = <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${book.update_date}" /><br>
+	${book.file_name}<br>
 </div>
 
 <div class="container">
@@ -31,7 +32,7 @@
 		<div>
 			<form class="form-inline">
 				<div id="div-get">
-					<img id="img-get" src="https://www.freemockupworld.com/wp-content/uploads/2019/12/Free-Book-Cover-Mockup-PSD.jpg">
+					<img id="img-get" src="${imgRoot}book/${book.id}/cover/${book.file_name}">
 				</div>
 				<div id="div-get-detail" class="ml-3">
 					<div id="div-get-detail-pname">

@@ -15,6 +15,5 @@ public class ProductVO {
 	private Date register_date;
 	private Date update_date;
 	
-	private String file_name1;
-	private String file_name2;
+	private String file_name;
 }
