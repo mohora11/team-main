@@ -131,8 +131,9 @@ body, #team-footer {
 	color: rgb(162, 164, 162);
 }
 
-#div-get-detail-btn {
-	margin-left: 350px;
+#div-get-detail-bottom {
+	display: flex;
+	justify-content: space-between;
 }
 
 
