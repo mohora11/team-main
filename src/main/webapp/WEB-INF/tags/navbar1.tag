@@ -1,6 +1,7 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
 <div id="team-header" class="d-flex flex-column sticky-top pt-3 mb-3">
 	<div id="team-header-above" class="mx-auto mb-2">
@@ -17,9 +18,23 @@
 					  	</div>
 					</form>
 				</li>
-				<li class="nav-item">
-					<a href="${appRoot}/member/login" class="btn btn-primary">로그인</a>
-				</li>
+				<sec:authorize access="!isAuthenticated()">
+					<li class="nav-item">
+						<a href="${appRoot}/member/login" class="btn btn-primary">로그인</a>
+					</li>
+				</sec:authorize>
+				<sec:authorize access="isAuthenticated()">
+					<li class="nav-item">
+						<div class="dropdown">
+							<span id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="dropdownMenuIcon" class="far fa-user"></i></span>
+							
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+								<a class="dropdown-item" href="${appRoot}/member/modify">내 정보</a>
+								<a class="dropdown-item" href="${appRoot}/logout">로그아웃</a>
+							</div>
+						</div>
+					</li>
+				</sec:authorize>
 			</ul>
 		</nav>
 	</div>

@@ -25,7 +25,14 @@
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
 					<li class="nav-item">
-						<a href="${appRoot}/logout" class="btn btn-primary">로그아웃</a>
+						<div class="dropdown">
+							<span id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="dropdownMenuIcon" class="far fa-user"></i></span>
+							
+							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+								<a class="dropdown-item" href="${appRoot}/member/modify">내 정보</a>
+								<a class="dropdown-item" href="${appRoot}/logout">로그아웃</a>
+							</div>
+						</div>
 					</li>
 				</sec:authorize>
 			</ul>
