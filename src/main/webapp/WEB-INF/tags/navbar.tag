@@ -19,8 +19,8 @@
 					</form>
 				</li>
 				<sec:authorize access="!isAuthenticated()">
-					<li class="nav-item">
-						<a href="${appRoot}/member/login" class="btn btn-primary">로그인</a>
+					<li id="login-btn" class="nav-item">
+						<a href="${appRoot}/member/login" id="login-btn-link">로그인</a>
 					</li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
@@ -29,7 +29,12 @@
 							<span id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="dropdownMenuIcon" class="far fa-user"></i></span>
 							
 							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+								<sec:authorize access="hasRole('ROLE_ADMIN')">
+									<a class="dropdown-item" href="${appRoot}/product/register">작품 등록</a>
+									<div class="dropdown-divider"></div>
+								</sec:authorize>
 								<a class="dropdown-item" href="${appRoot}/member/modify">내 정보</a>
+								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="${appRoot}/logout">로그아웃</a>
 							</div>
 						</div>

@@ -15,4 +15,9 @@
 		WHERE id = #{id}
 	</select>
 	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO tbl_product (product_category, product_genre, product_name, writer_name)
+		VALUES (#{product_category}, #{product_genre}, #{product_name}, #{writer_name})
+	</insert>
+	
 </mapper>

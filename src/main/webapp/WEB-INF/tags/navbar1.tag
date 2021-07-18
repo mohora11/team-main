@@ -19,8 +19,8 @@
 					</form>
 				</li>
 				<sec:authorize access="!isAuthenticated()">
-					<li class="nav-item">
-						<a href="${appRoot}/member/login" class="btn btn-primary">로그인</a>
+					<li id="login-btn" class="nav-item">
+						<a href="${appRoot}/member/login" id="login-btn-link">로그인</a>
 					</li>
 				</sec:authorize>
 				<sec:authorize access="isAuthenticated()">
