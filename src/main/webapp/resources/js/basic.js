@@ -41,4 +41,36 @@
 			break;
  	}
  	
+ 	// contextPath 구하기
+ 	function getContextPath(){
+	    var hostIndex = location.href.indexOf( location.host ) + location.host.length;
+	    var contextPath = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
+	    return contextPath;
+	}
+ 	
+ 	// ADMIN 작품 등록
+ 	$('#register-btn').click(function(e) {
+ 		var category = $('#register-input1').val();
+ 		e.preventDefault();
+ 		
+ 		if (category == '1') {
+			console.log(category);
+				$("#register-form")
+				.attr("action", getContextPath() + "/product/webtoon/register")
+				.submit();
+		} else if (category == '2') {
+			console.log(category);
+				$("#register-form")
+				.attr("action", getContextPath() + "/product/webnovel/register")
+				.submit();
+		} else if (category == '3') {
+			console.log(category);
+				$("#register-form")
+				.attr("action", getContextPath() + "/product/book/register")
+				.submit();
+		} else {
+			alert('카테고리를 선택해주세요!');
+		}
+ 	});
+ 	
  });

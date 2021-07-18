@@ -2,6 +2,7 @@ package org.team.controller.main;
 
 import java.util.List;
 
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,12 @@ public class MainController {
 		List<ProductVO> list = service.getList();
 		
 		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("/product/register")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public void register() {
+		
 	}
 	
 }

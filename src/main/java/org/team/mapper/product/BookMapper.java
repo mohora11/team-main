@@ -9,4 +9,6 @@ public interface BookMapper {
 	public List<ProductVO> getList();
 	
 	public ProductVO get(Long id);
+
+	public int insert(ProductVO product);
 }
