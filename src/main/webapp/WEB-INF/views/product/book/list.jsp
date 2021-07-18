@@ -69,7 +69,7 @@
 			</c:url>
 			<a href="${getUrl}">
 				<div id="product-list-div" class="card mx-2 my-2">
-					<img src="https://www.freemockupworld.com/wp-content/uploads/2019/12/Free-Book-Cover-Mockup-PSD.jpg" class="card-img-top">
+					<img src="${imgRoot}book/${book.id}/cover/${book.file_name}" class="card-img-top">
 					<div class="card-body">
 						<p class="card-text text-dark">${book.product_name}</p>
 					</div>
