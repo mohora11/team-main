@@ -41,12 +41,15 @@
 					<div id="div-get-detail-likecomment">
 						찜 수, 댓글 수 표시
 					</div>
-					<div class="form-inline">
+					<div id="div-get-detail-bottom" class="form-inline">
 						<div id="div-get-detail-wname">
 							${book.writer_name}
 						</div>
 						<div id="div-get-detail-btn">
-							책 보기 버튼 위치
+							<sec:authorize access="hasRole('ROLE_ADMIN')">
+								<button class="btn btn-danger">삭제</button>
+							</sec:authorize>
+							<button class="btn btn-primary">작품 보기</button>
 						</div>
 					</div>
 				</div>
