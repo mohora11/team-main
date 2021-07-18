@@ -3,16 +3,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="nv" tagdir="/WEB-INF/tags/board" %>
 
-
-<c:url value="/board/register" var="registerUrl">
-	<c:if test="${not empty cri }">
-		<c:param name="pageNum" value="${cri.pageNum }"></c:param>
-		<c:param name="amount" value="${cri.amount }"></c:param>
-		<c:param name="keyword" value="${cri.keyword }"></c:param>
-		<c:param name="type" value="${cri.type }"></c:param>
-	</c:if>
-</c:url>
 
 <!DOCTYPE html>
 <html>
@@ -21,6 +13,20 @@
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp"%>
 
 <title>Insert title here</title>
+
+<script>
+	$(document).ready(function() {
+		$("#list-pagenation1 a").click(function(e) {
+			e.preventDefault();
+
+			var actionForm = $("#actionForm");
+
+			actionForm.find("[name=pageNum]").val($(this).attr("href"));
+
+			actionForm.submit();
+		});
+	});
+</script>
 
 </head>
 <body>
@@ -103,6 +109,20 @@
 	</div>
 
 	<c:if test="${not empty result }">
+		<script>
+			$(document).ready(function() {
+				if (history.state == null) {
+					console.log("어서와 처음이지!!!");
+
+					$("#board-modal1").modal('show');
+					history.replaceState({}, null);
+
+				} else {
+
+					console.log("너 전에 왔었어!!!");
+				}
+			});
+		</script>
 
 		<div id="board-modal1" class="modal" tabindex="-1">
 			<div class="modal-dialog">
@@ -125,18 +145,9 @@
 			</div>
 		</div>
 	</c:if>
-	<div class="container">
-		
-				<a class="nav-link" href="${registerUrl}">
-				<button>
-				글쓰기
-				</button>
-				</a>
-			
-		
-	</div>
 
 
+	<nv:search /> 
 	<pj:footer />
 </body>
 </html>
