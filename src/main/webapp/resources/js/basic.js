@@ -47,22 +47,27 @@
 	    var contextPath = location.href.substring( hostIndex, location.href.indexOf('/', hostIndex + 1) );
 	    return contextPath;
 	}
+	
+	// 뒤로가기 버튼
+	$('#back-btn').click(function() {
+		history.back();
+	});
  	
  	// ADMIN 작품 등록
- 	$('#register-btn').click(function(e) {
- 		var category = $('#register-input1').val();
+ 	$('#product-register-btn').click(function(e) {
+ 		var category = $('#product-register-input1').val();
  		e.preventDefault();
  		
  		if (category == '1') {
-			$("#register-form")
+			$("#product-register-form")
 			.attr("action", getContextPath() + "/product/webtoon/register")
 			.submit();
 		} else if (category == '2') {
-			$("#register-form")
+			$("#product-register-form")
 			.attr("action", getContextPath() + "/product/webnovel/register")
 			.submit();
 		} else if (category == '3') {
-			$("#register-form")
+			$("#product-register-form")
 			.attr("action", getContextPath() + "/product/book/register")
 			.submit();
 		} else {
@@ -71,11 +76,20 @@
  	});
  	
  	// ADMIN 책 삭제
- 	$('#book-remove-btn').click(function(e) {
+ 	$('#book-remove-btn').click(function(){
+		if (confirm("삭제 하시겠습니까?")) {
+			$('#book-modify-form')
+			.attr('action', getContextPath() + "/product/book/remove")
+			.submit();
+		}
+	});
+ 	
+ 	// 책 보기
+ 	$('#book-detail-btn').click(function(e) {
  		e.preventDefault;
  		
  		$("#book-get-form")
-		.attr("action", getContextPath() + "/product/book/remove")
+		.attr("action", getContextPath() + "/product/book/detail")
 		.submit();
  	});
  	

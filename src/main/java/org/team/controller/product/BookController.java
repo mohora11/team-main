@@ -43,6 +43,16 @@ public class BookController {
 		model.addAttribute("book", vo);
 	}
 	
+	@GetMapping("/modify")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public void getModify(@RequestParam Long id, Model model) {
+		log.info("***book get/modify method***");
+		
+		ProductVO vo = service.get(id);
+		
+		model.addAttribute("book", vo);
+	}
+	
 	@PostMapping("/register")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String register(ProductVO product, @RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2, RedirectAttributes rttr) {
@@ -59,4 +69,19 @@ public class BookController {
 		
 		return "redirect:/product/book/list";
 	}
+	
+	@PostMapping("/modify")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public String modify(ProductVO product, @RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2, RedirectAttributes rttr) {
+		log.info("***book modify method***");
+		
+		boolean success = service.modify(product, file1, file2);
+		
+		if (success) {
+			rttr.addFlashAttribute("modify", product.getProduct_name());
+		}
+		
+		return null;
+	}
+	
 }
