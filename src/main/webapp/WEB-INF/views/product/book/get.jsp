@@ -47,7 +47,9 @@
 						</div>
 						<div id="div-get-detail-btn">
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<button class="btn btn-danger">삭제</button>
+								<button id="book-modify-btn" class="btn btn-secondary">수정</button>
+								<button id="book-delete-btn" class="btn btn-danger">삭제</button>
+								<span hidden></span>
 							</sec:authorize>
 							<button class="btn btn-primary">작품 보기</button>
 						</div>

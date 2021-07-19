@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.team.domain.product.CoverVO;
-import org.team.domain.product.FileVO;
+import org.team.domain.product.ProductFileVO;
 import org.team.domain.product.ProductVO;
 import org.team.mapper.product.BookMapper;
 import org.team.mapper.product.ProductFileMapper;
@@ -59,7 +59,7 @@ public class BookServiceImpl implements BookService {
 			vo1.setProduct_id(product.getId());
 			vo1.setFile_name(file1.getOriginalFilename());
 			
-			FileVO vo2 = new FileVO();
+			ProductFileVO vo2 = new ProductFileVO();
 			vo2.setProduct_id(product.getId());
 			vo2.setFile_name(file2.getOriginalFilename());
 			
