@@ -54,28 +54,29 @@
  		e.preventDefault();
  		
  		if (category == '1') {
-			console.log(category);
-				$("#register-form")
-				.attr("action", getContextPath() + "/product/webtoon/register")
-				.submit();
+			$("#register-form")
+			.attr("action", getContextPath() + "/product/webtoon/register")
+			.submit();
 		} else if (category == '2') {
-			console.log(category);
-				$("#register-form")
-				.attr("action", getContextPath() + "/product/webnovel/register")
-				.submit();
+			$("#register-form")
+			.attr("action", getContextPath() + "/product/webnovel/register")
+			.submit();
 		} else if (category == '3') {
-			console.log(category);
-				$("#register-form")
-				.attr("action", getContextPath() + "/product/book/register")
-				.submit();
+			$("#register-form")
+			.attr("action", getContextPath() + "/product/book/register")
+			.submit();
 		} else {
 			alert('카테고리를 선택해주세요!');
 		}
  	});
  	
  	// ADMIN 책 삭제
- 	$('#book-delete-btn').click(function() {
+ 	$('#book-remove-btn').click(function(e) {
+ 		e.preventDefault;
  		
+ 		$("#book-get-form")
+		.attr("action", getContextPath() + "/product/book/remove")
+		.submit();
  	});
  	
  });

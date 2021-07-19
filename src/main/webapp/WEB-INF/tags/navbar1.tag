@@ -33,7 +33,7 @@
 									<a class="dropdown-item" href="${appRoot}/product/register">작품 등록</a>
 									<div class="dropdown-divider"></div>
 								</sec:authorize>
-								<a class="dropdown-item" href="${appRoot}/member/modify">내 정보</a>
+								<a class="dropdown-item" href="${appRoot}/member/info">내 정보</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="${appRoot}/logout">로그아웃</a>
 							</div>
