@@ -73,4 +73,9 @@
 		}
  	});
  	
+ 	// ADMIN 책 삭제
+ 	$('#book-delete-btn').click(function() {
+ 		
+ 	});
+ 	
  });

@@ -3,7 +3,7 @@ package org.team.domain.product;
 import lombok.Data;
 
 @Data
-public class FileVO {
+public class ProductFileVO {
 
 	private Long id;
 	private Long product_id;
