@@ -42,11 +42,11 @@ body, #team-footer {
 }
 
 /* navbar.tag */
-#login-btn {
+#login-btn, #charge-btn {
 	margin-top: 7px;
 }
 
-#login-btn-link {
+#login-btn-link, #charge-btn-link {
 	color: rgb(160, 160, 160);
 }
 
