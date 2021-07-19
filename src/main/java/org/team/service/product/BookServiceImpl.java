@@ -10,7 +10,7 @@ import org.team.domain.product.CoverVO;
 import org.team.domain.product.FileVO;
 import org.team.domain.product.ProductVO;
 import org.team.mapper.product.BookMapper;
-import org.team.mapper.product.FileMapper;
+import org.team.mapper.product.ProductFileMapper;
 
 import lombok.Setter;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
@@ -38,7 +38,7 @@ public class BookServiceImpl implements BookService {
 	private BookMapper mapper;
 	
 	@Setter(onMethod_ = @Autowired)
-	private FileMapper fileMapper;
+	private ProductFileMapper fileMapper;
 	
 	@Override
 	public List<ProductVO> getList() {

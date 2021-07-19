@@ -3,7 +3,7 @@ package org.team.mapper.product;
 import org.team.domain.product.CoverVO;
 import org.team.domain.product.FileVO;
 
-public interface FileMapper {
+public interface ProductFileMapper {
 
 	public int insertCover(CoverVO vo);
 
