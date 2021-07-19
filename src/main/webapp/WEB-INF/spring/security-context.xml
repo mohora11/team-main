@@ -15,7 +15,7 @@
 		<security:intercept-url pattern="/product/webtoon/list" access="hasRole('ROLE_USER')"/>
 		-->
 		<security:form-login login-page="/member/login" default-target-url="/main"/>
-		<security:logout/>
+		<security:logout logout-success-url="/main" />
 		<security:csrf disabled="true"/>
 		<security:remember-me data-source-ref="dataSource"/>
 	</security:http>

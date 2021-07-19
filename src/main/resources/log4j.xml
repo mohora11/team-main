@@ -36,6 +36,6 @@
 	<root>
 		<priority value="warn" />
 		<appender-ref ref="console" />
-	</root>마이크로 말 해도 될까요?
+	</root>
 	
 </log4j:configuration>

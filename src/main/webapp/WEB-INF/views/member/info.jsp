@@ -8,7 +8,7 @@
 <head>
 
 <%@ include file= "/WEB-INF/subModules/bootstrapHeader.jsp" %>
-<title>Insert title here</title>
+
 <script>
 $(function() {
 	var oldPasswordModal = $("#old-password-modal");
@@ -92,7 +92,7 @@ $(function() {
 <title>Insert title here</title>
 </head>
 <body>
-<pj:navbar/>
+<bd:navbar></bd:navbar>
 <div class="container">
 	<c:if test="${param.status == 'success' }">
 		<div id="alert1" class="alert alert-primary" role="alert">
@@ -168,31 +168,15 @@ $(function() {
 				</div>
 			</div>
 			<div class="modal-footer">
+				
+				<button type="button" id="old-password-modal-btn" class="btn btn-danger">확인</button>
+				
 				<button type="button" class="btn btn-secondary" data-dismiss="modal">
 					닫기
 				</button>
-				<button type="button" id="old-password-modal-btn" class="btn btn-danger">확인</button>
 			</div>
 		</div>
 	</div>
 </div>
 </body>
-</html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
