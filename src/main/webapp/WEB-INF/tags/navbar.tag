@@ -3,6 +3,29 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<c:url value="/member/info" var="memberInfoUrl">
+	<c:if test="${not empty cri.pageNum }">
+		<c:param name="pageNum" value="${cri.pageNum }"></c:param>
+	</c:if>
+	<c:if test="${not empty cri.amount }">
+		<c:param name="amount" value="${cri.amount }"></c:param>
+	</c:if>
+		<c:param name="keyword" value="${cri.keyword }"></c:param>
+		<c:param name="type" value="${cri.type }"></c:param>
+</c:url>
+
+<c:url value="/member/signup" var="signUpUrl">
+	<c:if test="${not empty cri.pageNum }">
+		<c:param name="pageNum" value="${cri.pageNum }"></c:param>
+	</c:if>
+	<c:if test="${not empty cri.amount }">
+		<c:param name="amount" value="${cri.amount }"></c:param>
+	</c:if>
+		<c:param name="keyword" value="${cri.keyword }"></c:param>
+		<c:param name="type" value="${cri.type }"></c:param>
+</c:url>
+
+
 <div id="team-header" class="d-flex flex-column sticky-top pt-3 mb-3">
 	<div id="team-header-above" class="mx-auto mb-2">
 		<nav class="navbar navbar-light">
@@ -23,6 +46,24 @@
 						<a href="${appRoot}/member/login" id="login-btn-link">로그인</a>
 					</li>
 				</sec:authorize>
+			
+	  <sec:authorize access="isAuthenticated()">
+	  <form action="${appRoot }/logout" method="post">
+	  	<input type="submit" class="btn btn-outline-secondary" value="로그아웃">
+	  </form>
+  </sec:authorize>		
+			
+	  <sec:authorize access="!isAuthenticated()">
+	  	<li class="nav-item">
+	  		<a class="nav-link" href="${signUpUrl }">회원가입</a>
+	  	</li>
+	  </sec:authorize>
+					  <sec:authorize access="isAuthenticated()"> 
+	  	<li>
+	  		<a class="nav-link" href="${memberInfoUrl }">회원정보 </a>
+	  	</li>
+	  </sec:authorize>
+				
 				<sec:authorize access="isAuthenticated()">
 					<li class="nav-item">
 						<div class="dropdown">
