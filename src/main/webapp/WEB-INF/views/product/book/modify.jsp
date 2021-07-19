@@ -28,15 +28,15 @@
 				</div>
 				<div class="form-group">
 					<label for="book-modify-input2">장르</label>
-					<input id="book-modify-input2" name="product_genre" class="form-control" required />
+					<input id="book-modify-input2" name="product_genre" class="form-control" value="${book.product_genre}" required />
 				</div>
 				<div class="form-group">
 					<label for="book-modify-input3">제목</label>
-					<input id="book-modify-input3" name="product_name" class="form-control" required />
+					<input id="book-modify-input3" name="product_name" class="form-control" value="${book.product_name}" required />
 				</div>
 				<div class="form-group">
 					<label for="book-modify-input4">작가</label>
-					<input id="book-modify-input4" name="writer_name" class="form-control" required />
+					<input id="book-modify-input4" name="writer_name" class="form-control" value="${book.writer_name}" required />
 				</div>
  				<div class="form-group">
 					<label for="book-modify-input5">작품 커버</label>

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.team.domain.product.CoverVO;
 import org.team.domain.product.ProductFileVO;
@@ -154,6 +155,27 @@ public class BookServiceImpl implements BookService {
 				.build();
 		
 		s3.deleteObject(deleteObjectRequest);
+	}
+
+	@Override
+	@Transactional
+	public boolean remove(Long id) {
+		// 댓글 삭제
+		
+		// AWS에서 삭제
+		ProductVO product1 = mapper.readCover(id);
+		ProductVO product2 = mapper.readFile(id);
+		removeCover(product1);
+		removeFile(product2);
+		
+		// DB에서 삭제
+		fileMapper.removeCoverById(id);
+		fileMapper.removeFileById(id);
+		
+		// 책 삭제
+		int cnt = mapper.remove(id);
+		
+		return cnt == 1;
 	}
 
 }

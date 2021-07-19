@@ -86,4 +86,9 @@
 		WHERE id = #{id}
 	</update>
 	
+	<delete id="remove">
+		DELETE FROM tbl_product
+		WHERE id = #{id}
+	</delete>
+	
 </mapper>
