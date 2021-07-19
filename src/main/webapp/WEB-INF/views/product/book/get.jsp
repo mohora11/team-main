@@ -55,7 +55,7 @@
 								<input name="product_name" value="${book.product_name}" hidden />
 								<input name="writer_name" value="${book.writer_name}" hidden />
 							</sec:authorize>
-							<button class="btn btn-primary">작품 보기</button>
+							<button id="book-remove-btn" class="btn btn-primary">작품 보기</button>
 						</div>
 					</div>
 				</div>

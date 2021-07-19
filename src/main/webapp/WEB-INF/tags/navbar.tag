@@ -42,6 +42,9 @@
 					</form>
 				</li>
 				<sec:authorize access="!isAuthenticated()">
+					<li id="charge-btn" class="nav-item">
+						<a href="${appRoot}/member/login" id="charge-btn-link">캐시충전</a>
+					</li>
 					<li id="login-btn" class="nav-item">
 						<a href="${appRoot}/member/login" id="login-btn-link">로그인</a>
 					</li>
@@ -75,6 +78,7 @@
 									<div class="dropdown-divider"></div>
 								</sec:authorize>
 								<a class="dropdown-item" href="${appRoot}/member/info">내 정보</a>
+								<a class="dropdown-item" href="${appRoot}/member/info">캐시충전</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="${appRoot}/logout">로그아웃</a>
 							</div>
