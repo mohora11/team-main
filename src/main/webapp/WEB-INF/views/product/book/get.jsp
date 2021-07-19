@@ -30,7 +30,7 @@
 <div class="container">
 	<div id="div-white" class="container mb-3 p-3">
 		<div>
-			<form action="${appRoot}/product/book/modify" method="post" id="book-get-form" class="form-inline">
+			<form action="${appRoot}/product/book/detail" method="get" id="book-get-form" class="form-inline">
 				<div id="div-get">
 					<img id="img-get" src="${imgRoot}book/${book.id}/cover/${book.file_name}">
 				</div>
@@ -47,15 +47,12 @@
 						</div>
 						<div id="div-get-detail-btn">
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<button id="book-modify-btn" class="btn btn-secondary">수정</button>
-								<button id="book-remove-btn" class="btn btn-danger">삭제</button>
-								<input name="id" value="${book.id}" hidden />
-								<input name="product_category" value="${book.product_category}" hidden />
-								<input name="product_genre" value="${book.product_genre}" hidden />
-								<input name="product_name" value="${book.product_name}" hidden />
-								<input name="writer_name" value="${book.writer_name}" hidden />
+								<c:url value="/product/book/modify" var="modifyUrl">
+									<c:param name="id" value="${book.id}" />
+								</c:url>
+								<a class="btn btn-secondary" href="${modifyUrl}">수정/삭제</a>
 							</sec:authorize>
-							<button id="book-remove-btn" class="btn btn-primary">작품 보기</button>
+							<button id="book-detail-btn" class="btn btn-primary">작품 보기</button>
 						</div>
 					</div>
 				</div>

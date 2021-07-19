@@ -9,4 +9,8 @@ public interface ProductFileMapper {
 
 	public int insertFile(ProductFileVO vo);
 
+	public void removeCoverById(Long id);
+
+	public void removeFileById(Long id);
+
 }

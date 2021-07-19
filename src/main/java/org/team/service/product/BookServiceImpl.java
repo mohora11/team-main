@@ -16,6 +16,7 @@ import lombok.Setter;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
@@ -101,6 +102,58 @@ public class BookServiceImpl implements BookService {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+	}
+
+	@Override
+	public boolean modify(ProductVO product, MultipartFile file1, MultipartFile file2) {
+		if ((file1 != null && file1.getSize() > 0) && (file2 != null && file2.getSize() > 0)) {
+			// aws에서 파일 삭제 후 재업로드
+			ProductVO oldProduct1 = mapper.readCover(product.getId());
+			ProductVO oldProduct2 = mapper.readFile(product.getId());
+			removeCover(oldProduct1);
+			removeFile(oldProduct2);
+			uploadCover(product, file1);
+			uploadFile(product, file2);
+			
+			// DB에서 삭제 후 다시 insert
+			fileMapper.removeCoverById(product.getId());
+			fileMapper.removeFileById(product.getId());
+			
+			CoverVO vo1 = new CoverVO();
+			vo1.setProduct_id(product.getId());
+			vo1.setFile_name(file1.getOriginalFilename());
+			
+			ProductFileVO vo2 = new ProductFileVO();
+			vo2.setProduct_id(product.getId());
+			vo2.setFile_name(file2.getOriginalFilename());
+			
+			fileMapper.insertCover(vo1);
+			fileMapper.insertFile(vo2);
+		} 
+		
+		return mapper.update(product) == 1;
+	}
+
+	private void removeCover(ProductVO product) {
+		String key = "book/" + product.getId() + "/cover/" + product.getFile_name();
+		
+		DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
+				.bucket(bucketName)
+				.key(key)
+				.build();
+		
+		s3.deleteObject(deleteObjectRequest);
+	}
+	
+	private void removeFile(ProductVO product) {
+		String key = "book/" + product.getId() + "/file/" + product.getFile_name();
+		
+		DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
+				.bucket(bucketName)
+				.key(key)
+				.build();
+		
+		s3.deleteObject(deleteObjectRequest);
 	}
 
 }

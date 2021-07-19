@@ -13,4 +13,6 @@ public interface BookService {
 
 	public void register(ProductVO product, MultipartFile file1, MultipartFile file2);
 
+	public boolean modify(ProductVO product, MultipartFile file1, MultipartFile file2);
+
 }
