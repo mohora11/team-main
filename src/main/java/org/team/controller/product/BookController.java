@@ -58,14 +58,9 @@ public class BookController {
 	public String register(ProductVO product, @RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2, RedirectAttributes rttr) {
 		log.info("***book register method***");
 		
-		log.info(product.getProduct_category());
-		log.info(product.getProduct_genre());
-		log.info(product.getProduct_name());
-		log.info(product.getWriter_name());
-		
 		service.register(product, file1, file2);
 		
-		rttr.addFlashAttribute("result", product.getId());
+		rttr.addFlashAttribute("bookRegister", product.getProduct_name());
 		
 		return "redirect:/product/book/list";
 	}
@@ -75,13 +70,31 @@ public class BookController {
 	public String modify(ProductVO product, @RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2, RedirectAttributes rttr) {
 		log.info("***book modify method***");
 		
+		ProductVO vo = service.get(product.getId());
+		
 		boolean success = service.modify(product, file1, file2);
 		
 		if (success) {
-			rttr.addFlashAttribute("modify", product.getProduct_name());
+			rttr.addFlashAttribute("bookBeforeModify", vo);
 		}
 		
-		return null;
+		return "redirect:/product/book/list";
+	}
+	
+	@PostMapping("/remove")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public String remove(@RequestParam Long id, RedirectAttributes rttr) {
+		log.info("***book remove method***");
+		
+		ProductVO vo = service.get(id);
+		
+		boolean success = service.remove(id);
+		
+		if (success) {
+			rttr.addFlashAttribute("bookRemove", vo.getProduct_name());
+		}
+		
+		return "redirect:/product/book/list";
 	}
 	
 }

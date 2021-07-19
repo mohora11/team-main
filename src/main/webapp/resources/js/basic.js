@@ -48,6 +48,12 @@
 	    return contextPath;
 	}
 	
+	// 상태 modal
+	if (history.state == null) {
+		$('#stateModal').modal('show');
+		history.replaceState({}, null);
+	}
+	
 	// 뒤로가기 버튼
 	$('#back-btn').click(function() {
 		history.back();

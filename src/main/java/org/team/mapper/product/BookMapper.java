@@ -17,4 +17,6 @@ public interface BookMapper {
 	public ProductVO readFile(Long id);
 
 	public int update(ProductVO product);
+
+	public int remove(Long id);
 }

@@ -15,4 +15,6 @@ public interface BookService {
 
 	public boolean modify(ProductVO product, MultipartFile file1, MultipartFile file2);
 
+	public boolean remove(Long id);
+
 }
