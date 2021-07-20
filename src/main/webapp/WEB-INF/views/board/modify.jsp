@@ -1,7 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="bd" tagdir="/WEB-INF/tags/board" %>
+<%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html>
 <html>
@@ -25,7 +25,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-<bd:navbar></bd:navbar>
+<pj:navbar></pj:navbar>
 <div class="container">
 	<h1>글 수정/삭제</h1>
 	

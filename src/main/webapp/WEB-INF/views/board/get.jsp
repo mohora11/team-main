@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +20,7 @@ var userid = "${pinfo.member.userid}";
 
 </head>
 <body>
+<pj:navbar></pj:navbar>
 
 <div class="container">
 <div id="alert1" class="alert alert-primary fade" role="alert">
@@ -41,7 +43,7 @@ var userid = "${pinfo.member.userid}";
 				<c:if test="${not empty board.fileName }"> 
 					<div>
 						<img class="img-fluid" 
-						src="${imgRoot}${board.bno }/${board.fileName}">
+						src="https://choongang-mohora11.s3.ap-northeast-2.amazonaws.com/${board.bno }/${board.fileName}">
 					</div>
 				</c:if> 
 				<div class="form-group">
