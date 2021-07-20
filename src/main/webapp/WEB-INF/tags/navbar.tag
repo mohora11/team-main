@@ -31,7 +31,7 @@
 		<nav class="navbar navbar-light">
 			<a class="navbar-brand" href="${appRoot}/main">Project 로고 위치</a>
 			<ul class="nav justify-content-end">
-				<li class="nav-item mr-3">
+				<li id="navbar-search" class="nav-item mr-3">
 					<form class="form-inline">
 						<div class="input-group mr-sm-2">
 							<input type="text" id="navbar-search-input" class="form-control">
