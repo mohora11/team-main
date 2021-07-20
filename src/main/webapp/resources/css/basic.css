@@ -46,6 +46,10 @@ body, #team-footer {
 }
 
 /* navbar.tag */
+#navbar-search {
+	margin-top: 3px;
+}
+
 #login-btn, #charge-btn {
 	margin-top: 7px;
 }
@@ -83,12 +87,15 @@ body, #team-footer {
 #navbar-search-input {
 	border-radius: 25px 0 0 25px;
 	border-right: none;
+	width: 150px;
+	height: 33px;
 }
 
 #navbar-search-icon {
 	border-radius: 0 25px 25px 0;
 	border-left: none;
 	background-color: white;
+	height: 33px;
 }
 
 #dropdownMenuIcon {
