@@ -3,7 +3,7 @@
 
 <c:choose>
 	<c:when test="${not empty bookRegister}">
-		<div class="modal fade" id="stateModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="stateModalLabel" aria-hidden="true">
+		<div class="modal fade" id="stateModal" tabindex="-1" aria-labelledby="stateModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -21,7 +21,7 @@
 		</div>
 	</c:when>
 	<c:when test="${not empty bookBeforeModify}">
-		<div class="modal fade" id="stateModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="stateModalLabel" aria-hidden="true">
+		<div class="modal fade" id="stateModal" tabindex="-1" aria-labelledby="stateModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -39,7 +39,7 @@
 		</div>
 		</c:when>
 	<c:when test="${not empty bookRemove}">
-		<div class="modal fade" id="stateModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="stateModalLabel" aria-hidden="true">
+		<div class="modal fade" id="stateModal" tabindex="-1" aria-labelledby="stateModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
