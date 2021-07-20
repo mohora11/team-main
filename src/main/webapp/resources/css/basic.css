@@ -29,6 +29,10 @@ a:hover {
 	font-weight: bold;
 }
 
+#team-header {
+	border-bottom: 1px solid rgb(206, 212, 218);
+}
+
 #team-header, #div-white {
 	background-color: white;
 }
@@ -50,9 +54,20 @@ body, #team-footer {
 	color: rgb(160, 160, 160);
 }
 
-.nav-link.active {
+#nav-home-underline.active,
+#nav-webtoon-underline.active,
+#nav-webnovel-underline.active,
+#nav-book-underline.active,
+#nav-board-underline.active,
+#nav-qna-underline.active {
 	background-color: white;
 	border-bottom: 2px solid #007bff;
+	position: relative;
+	top: -10px;
+}
+
+.nav-item {
+	height: 41px;
 }
 
 .nav-item > a.nav-link, #login-btn {
