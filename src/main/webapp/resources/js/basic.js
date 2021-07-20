@@ -11,32 +11,32 @@
  	switch (splitUrl) {
  		case 'team/main':
  			$(function() {
-				$('#nav-home').addClass('active');
+				$('#nav-home-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
  		case 'team/product/webtoon/list':
  			$(function() {
-				$('#nav-webtoon').addClass('active');
+				$('#nav-webtoon-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
  		case 'team/product/webnovel/list':
  			$(function() {
-				$('#nav-webnovel').addClass('active');
+				$('#nav-webnovel-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
  		case 'team/product/book/list':
  			$(function() {
-				$('#nav-book').addClass('active');
+				$('#nav-book-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
  		case 'team/board/list':
  			$(function() {
-				$('#nav-board').addClass('active');
+				$('#nav-board-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
  		case 'team/qna/list':
  			$(function() {
-				$('#nav-qna').addClass('active');
+				$('#nav-qna-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
  	}
