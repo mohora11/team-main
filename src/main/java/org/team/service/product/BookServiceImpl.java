@@ -12,6 +12,7 @@ import org.team.domain.product.ProductFileVO;
 import org.team.domain.product.ProductVO;
 import org.team.mapper.product.BookMapper;
 import org.team.mapper.product.ProductFileMapper;
+import org.team.mapper.product.ProductReplyMapper;
 
 import lombok.Setter;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
@@ -41,6 +42,9 @@ public class BookServiceImpl implements BookService {
 	
 	@Setter(onMethod_ = @Autowired)
 	private ProductFileMapper fileMapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ProductReplyMapper replyMapper;
 	
 	@Override
 	public List<ProductVO> getList() {
@@ -161,6 +165,7 @@ public class BookServiceImpl implements BookService {
 	@Transactional
 	public boolean remove(Long id) {
 		// 댓글 삭제
+		replyMapper.deleteByPid(id);
 		
 		// AWS에서 삭제
 		ProductVO product1 = mapper.readCover(id);
