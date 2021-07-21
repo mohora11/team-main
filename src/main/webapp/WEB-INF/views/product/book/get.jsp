@@ -15,7 +15,7 @@ var appRoot = "${appRoot}";
 var pid = "${book.id}";
 var userid = "${pinfo.member.userid}";
 </script>
-<script src="${appRoot}/resources/js/bookReply.js"></script>
+<script src="${appRoot}/resources/js/productReply.js"></script>
 
 <title>book get</title>
 </head>

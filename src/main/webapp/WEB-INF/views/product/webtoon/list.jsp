@@ -69,7 +69,7 @@
 			</c:url>
 			<a href="${getUrl}">
 				<div id="product-list-div" class="card mx-2 my-2">
-					<img src="https://images.squarespace-cdn.com/content/v1/56453b08e4b0a48587b1d60e/1513115813558-PO6GGTW3GVX29R269Y1E/Mooncakes+Cover-1.jpg?format=500w" class="card-img-top">
+					<img src="${imgRoot}webtoon/${webtoon.id}/cover/${webtoon.file_name}" class="card-img-top">
 					<div class="card-body">
 						<p class="card-text text-dark">${webtoon.product_name}</p>
 					</div>
@@ -78,6 +78,9 @@
 		</c:forEach>
 	</form>
 </div>
+
+<!-- Modal -->
+<%@ include file="/WEB-INF/subModules/webtoonModal.jsp" %>
 
 <pj:footer />
 </body>

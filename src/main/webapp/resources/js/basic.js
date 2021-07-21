@@ -81,7 +81,25 @@
 		}
  	});
  	
- 	// ADMIN 책 삭제
+ 	// ADMIN 웹툰 삭제
+ 	$('#webtoon-remove-btn').click(function(){
+		if (confirm("삭제 하시겠습니까?")) {
+			$('#webtoon-modify-form')
+			.attr('action', getContextPath() + "/product/webtoon/remove")
+			.submit();
+		}
+	});
+	
+	// ADMIN 웹소설 삭제
+ 	$('#webnovel-remove-btn').click(function(){
+		if (confirm("삭제 하시겠습니까?")) {
+			$('#webnovel-modify-form')
+			.attr('action', getContextPath() + "/product/webnovel/remove")
+			.submit();
+		}
+	});
+	
+	// ADMIN 책 삭제
  	$('#book-remove-btn').click(function(){
 		if (confirm("삭제 하시겠습니까?")) {
 			$('#book-modify-form')
@@ -89,6 +107,24 @@
 			.submit();
 		}
 	});
+ 	
+ 	// 웹툰 보기
+ 	$('#webtoon-detail-btn').click(function(e) {
+ 		e.preventDefault;
+ 		
+ 		$("#webtoon-get-form")
+		.attr("action", getContextPath() + "/product/webtoon/detail")
+		.submit();
+ 	});
+ 	
+ 	// 웹소설 보기
+ 	$('#webnovel-detail-btn').click(function(e) {
+ 		e.preventDefault;
+ 		
+ 		$("#webnovel-get-form")
+		.attr("action", getContextPath() + "/product/webnovel/detail")
+		.submit();
+ 	});
  	
  	// 책 보기
  	$('#book-detail-btn').click(function(e) {
