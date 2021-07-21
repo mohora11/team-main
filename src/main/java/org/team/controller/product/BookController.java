@@ -43,6 +43,16 @@ public class BookController {
 		model.addAttribute("book", vo);
 	}
 	
+	@GetMapping("/detail")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+	public void detail(@RequestParam Long id, Model model) {
+		log.info("***book detail method***");
+		
+		ProductVO vo = service.getFile(id);
+		
+		model.addAttribute("book", vo);
+	}
+	
 	@GetMapping("/modify")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void getModify(@RequestParam Long id, Model model) {

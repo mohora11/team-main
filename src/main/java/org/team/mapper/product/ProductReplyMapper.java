@@ -18,4 +18,16 @@ public interface ProductReplyMapper {
 
 	public void deleteByPid(Long id);
 
+	public void deleteDetailByPid(Long id);
+
+	public int insertDetail(ProductReplyVO vo);
+
+	public List<ProductReplyVO> getListDetail(Long product_id);
+
+	public ProductReplyVO readDetail(Long id);
+
+	public int updateDetail(ProductReplyVO vo);
+
+	public int deleteDetail(Long id);
+
 }

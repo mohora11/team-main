@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %>
 
 <!DOCTYPE html>
@@ -9,7 +8,6 @@
 <head>
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
-<link href="<c:url value='/resources/css/basic.css'/>" rel="stylesheet" />
 <script>
 var appRoot = "${appRoot}";
 var pid = "${book.id}";
@@ -22,6 +20,13 @@ var userid = "${pinfo.member.userid}";
 <body>
 <pj:navbar1 />
 <div class="container">
+	<c:url value="/product/book/modify" var="modifyUrl">
+		<c:param name="id" value="${book.id}" />
+	</c:url>
+	<c:url value="/product/book/detail" var="detailUrl">
+		<c:param name="id" value="${book.id}" />
+	</c:url>
+	
 	<%-- 상품 상세 --%>
 	<div id="div-white" class="container mb-3 p-3">
 		<div>
@@ -42,12 +47,9 @@ var userid = "${pinfo.member.userid}";
 						</div>
 						<div id="div-get-detail-btn">
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<c:url value="/product/book/modify" var="modifyUrl">
-									<c:param name="id" value="${book.id}" />
-								</c:url>
 								<a class="btn btn-secondary" href="${modifyUrl}">수정/삭제</a>
 							</sec:authorize>
-							<button id="book-detail-btn" class="btn btn-primary">작품 보기</button>
+							<a class="btn btn-primary" href="${detailUrl}">작품보기</a>
 						</div>
 					</div>
 				</div>

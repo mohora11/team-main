@@ -55,6 +55,11 @@ public class WebtoonServiceImpl implements WebtoonService {
 	public ProductVO get(Long id) {
 		return mapper.get(id);
 	}
+	
+	@Override
+	public ProductVO getFile(Long id) {
+		return mapper.readFile(id);
+	}
 
 	@Override
 	public void register(ProductVO product, MultipartFile file1, MultipartFile file2) {
@@ -165,6 +170,7 @@ public class WebtoonServiceImpl implements WebtoonService {
 	@Transactional
 	public boolean remove(Long id) {
 		// 댓글 삭제
+		replyMapper.deleteDetailByPid(id);
 		replyMapper.deleteByPid(id);
 		
 		// AWS에서 삭제

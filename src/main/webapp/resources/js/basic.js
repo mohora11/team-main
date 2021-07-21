@@ -41,6 +41,16 @@
 			break;
  	}
  	
+ 	// 현재 각 상품 detail 페이지인 경우만 navbar1에서 product_name 표시
+ 	var splitUrl1 = splitUrl.split('?');
+ 	var splitUrl2 = splitUrl1[0];
+ 	
+ 	if ((splitUrl2 == 'team/product/webtoon/get') || (splitUrl2 == 'team/product/webnovel/get') || (splitUrl2 == 'team/product/book/get')) {
+ 		$('#navbar-product').attr('hidden', 'hidden');
+ 	} else {
+ 		$('#navbar-product').removeAttr('hidden');
+ 	}
+ 	
  	// contextPath 구하기
  	function getContextPath(){
 	    var hostIndex = location.href.indexOf( location.host ) + location.host.length;
@@ -107,32 +117,5 @@
 			.submit();
 		}
 	});
- 	
- 	// 웹툰 보기
- 	$('#webtoon-detail-btn').click(function(e) {
- 		e.preventDefault;
- 		
- 		$("#webtoon-get-form")
-		.attr("action", getContextPath() + "/product/webtoon/detail")
-		.submit();
- 	});
- 	
- 	// 웹소설 보기
- 	$('#webnovel-detail-btn').click(function(e) {
- 		e.preventDefault;
- 		
- 		$("#webnovel-get-form")
-		.attr("action", getContextPath() + "/product/webnovel/detail")
-		.submit();
- 	});
- 	
- 	// 책 보기
- 	$('#book-detail-btn').click(function(e) {
- 		e.preventDefault;
- 		
- 		$("#book-get-form")
-		.attr("action", getContextPath() + "/product/book/detail")
-		.submit();
- 	});
- 	
+	
  });

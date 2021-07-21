@@ -43,6 +43,16 @@ public class WebnovelController {
 		model.addAttribute("webnovel", vo);
 	}
 	
+	@GetMapping("/detail")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+	public void detail(@RequestParam Long id, Model model) {
+		log.info("***book detail method***");
+		
+		ProductVO vo = service.getFile(id);
+		
+		model.addAttribute("webnovel", vo);
+	}
+	
 	@GetMapping("/modify")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void getModify(@RequestParam Long id, Model model) {
