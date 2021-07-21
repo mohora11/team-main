@@ -69,26 +69,42 @@
 					<c:url value="/product/webtoon/get" var="getUrl">
 						<c:param name="id">${main.id}</c:param>
 					</c:url>
+					<a href="${getUrl}">
+						<div id="product-list-div" class="card mx-2 my-2">
+							<img src="${imgRoot}webtoon/${main.id}/cover/${main.file_name}" class="card-img-top">
+							<div class="card-body">
+								<p class="card-text text-dark">${main.product_name}</p>
+							</div>
+						</div>
+					</a>
 				</c:when>
 				<c:when test="${main.product_category eq '2'}">
 					<c:url value="/product/webnovel/get" var="getUrl">
 						<c:param name="id">${main.id}</c:param>
 					</c:url>
+					<a href="${getUrl}">
+						<div id="product-list-div" class="card mx-2 my-2">
+							<img src="${imgRoot}webnovel/${main.id}/cover/${main.file_name}" class="card-img-top">
+							<div class="card-body">
+								<p class="card-text text-dark">${main.product_name}</p>
+							</div>
+						</div>
+					</a>
 				</c:when>
 				<c:when test="${main.product_category eq '3'}">
 					<c:url value="/product/book/get" var="getUrl">
 						<c:param name="id">${main.id}</c:param>
 					</c:url>
+					<a href="${getUrl}">
+						<div id="product-list-div" class="card mx-2 my-2">
+							<img src="${imgRoot}book/${main.id}/cover/${main.file_name}" class="card-img-top">
+							<div class="card-body">
+								<p class="card-text text-dark">${main.product_name}</p>
+							</div>
+						</div>
+					</a>
 				</c:when>
 			</c:choose>
-			<a href="${getUrl}">
-				<div id="product-list-div" class="card mx-2 my-2">
-					<img src="https://freewebnovel.com/files/article/image/0/373/373s.jpg" class="card-img-top">
-					<div class="card-body">
-						<p class="card-text text-dark">${main.product_name}</p>
-					</div>
-				</div>
-			</a>
 		</c:forEach>
 	</form>
 </div>

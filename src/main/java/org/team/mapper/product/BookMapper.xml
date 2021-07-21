@@ -18,6 +18,8 @@
 		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
 		
 		WHERE product_category = 3
+		
+		ORDER BY id DESC
 	</select>
 	
 	<select id="get" resultType="org.team.domain.product.ProductVO">
