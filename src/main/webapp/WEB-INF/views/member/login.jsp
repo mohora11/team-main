@@ -36,7 +36,5 @@
 				<input class="btn btn-primary" type="submit" value="로그인">
 			</form>
 		</div>
-	</div>	
-</div>
 </body>
 </html>
