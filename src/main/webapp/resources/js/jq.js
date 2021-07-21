@@ -1,12 +1,12 @@
 $(function(){
     $('#apibtn').click(function(){
         $.ajax({
-            url:'/cls/jq/kakaopay.cls' ,
+            url:'/team/jq/kakaopay.cls' ,
             dataType:'json' ,
             success: function(data){
-                alert(data.tid);
+                alert();	
                 var box = data.next_redirect_pc_url;
-                window.open(box);	
+                window.open(box);
             } ,
             error: function(error){
                 alert(error);

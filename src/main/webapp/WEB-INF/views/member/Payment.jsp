@@ -15,19 +15,10 @@
 </head>
 <body>
 <pj:navbar />
+  <%--  <form action="${appRoot}/pay" method="post"> --%>
    
-<div class="container">
+   <h1>충전페이지</h1>
 
-  <h1>로그인</h1>
-   
-
-   <form action="${appRoot}/pay" method="post">
-					<div class="form-group">
-					<label for="input1">캐쉬충전</label>				
-					<input id="input1" class="form-control" name="username" />
-				</div>
-			</form>
-		</div>
    
    
 <!-- 		<div class="card-body bg-white mt-0 shadow">
@@ -43,6 +34,5 @@
                 <label class="box-radio-input"><input type="radio" name="cp_item" value="50000"><span>50,000원</span></label>
                 <p  style="color: #ac2925; margin-top: 30px">최소 충전금액은 5,000원이며 <br/>최대 충전금액은 50,000원 입니다.</p>
                 <button type="button" class="btn btn-lg btn-block  btn-custom" id="charge_kakao">충 전 하 기</button> -->
-
 </body>
 </html>
