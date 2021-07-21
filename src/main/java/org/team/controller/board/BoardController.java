@@ -61,12 +61,6 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-//	@GetMapping("/get")
-//	public void get(@RequestParam("bno") Long bno, Model model) {
-//		
-//		log.info("/get");
-//		model.addAttribute("board", service.get(bno));
-//	}
 	
 	@GetMapping({"/get", "/modify"})
 	public void get(@RequestParam("bno") Long bno, 
@@ -80,7 +74,6 @@ public class BoardController {
 		// 결과를 모델에 넣음
 		model.addAttribute("board", vo);
 		
-		// forword
 	}
 	
 	@PostMapping("/modify")

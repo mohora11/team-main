@@ -13,23 +13,12 @@ public interface BoardMapper {
 	
 	public List<BoardVO> getListWithPaging(BoardCriteria cri);
 	
-	// INSERT INTO ble_board (title, content, writer)
-	// VALUES (#{title}, #{content}, #{writer}) mybatis에서 사용하는 쿼리
-	public int insert(BoardVO board);
-	/*
-	  	String sql = "INSERT INTO tbl_board (title, content, writer) VALUES (?, ?, ?) ";
-	  	...
-	  	pstmt.setString(1, board.getTitle());
-	  	pstmt.setString(2, board.getContent());
-	  	pstmt.setString(3, board.getWriter());
-	  	
-	  	pstmt.executeUpdate();
-	  
-	 */
+
+	public int insert(BoardVO board);	
 	
 	public int insertSelectKey(BoardVO board);
 	
-	public BoardVO read(long bno); //하나만 뽑아서 보는것
+	public BoardVO read(long bno); 
 	
 	public int delete(long bno);
 	

@@ -18,6 +18,7 @@ public class BoardVO {
 	private Date updateDate; 
 	
 	private int replyCnt;
+	private int boardCnt;
 	
 	private String fileName;
 //	private MultipartFile file;
