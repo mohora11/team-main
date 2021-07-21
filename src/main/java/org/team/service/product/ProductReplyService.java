@@ -16,4 +16,14 @@ public interface ProductReplyService {
 
 	public int remove(Long id);
 
+	public int registerDetail(ProductReplyVO vo);
+
+	public List<ProductReplyVO> getListDetail(Long product_id);
+
+	public ProductReplyVO getDetail(Long id);
+
+	public int modifyDetail(ProductReplyVO vo);
+
+	public int removeDetail(Long id);
+
 }

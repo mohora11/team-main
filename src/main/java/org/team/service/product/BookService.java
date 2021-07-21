@@ -10,6 +10,8 @@ public interface BookService {
 	public List<ProductVO> getList();
 	
 	public ProductVO get(Long id);
+	
+	public ProductVO getFile(Long id);
 
 	public void register(ProductVO product, MultipartFile file1, MultipartFile file2);
 

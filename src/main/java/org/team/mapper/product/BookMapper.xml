@@ -69,7 +69,8 @@
 		    p.writer_name writer_name,
 		    p.register_date register_date,
 		    p.update_date update_date,
-		    f.file_name file_name
+		    f.file_name file_name,
+		    (SELECT COUNT(r.product_id) FROM tbl_product_detail_reply r JOIN tbl_product p ON p.id = r.product_id WHERE p.id = #{id}) reply_cnt
 		
 		FROM tbl_product p JOIN tbl_product_file f ON p.id = f.product_id
 		

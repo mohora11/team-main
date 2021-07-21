@@ -9,6 +9,11 @@
 		VALUES (#{product_id}, #{replyer}, #{reply})
 	</insert>
 	
+	<insert id="insertDetail" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO tbl_product_detail_reply (product_id, replyer, reply)
+		VALUES (#{product_id}, #{replyer}, #{reply})
+	</insert>
+	
 	<select id="getList" resultType="org.team.domain.product.ProductReplyVO">
 		SELECT
 			r.id id,
@@ -21,6 +26,25 @@
 			
 		FROM
 			tbl_product_reply r JOIN tbl_member m ON r.replyer = m.userid
+			
+		WHERE
+			r.product_id = #{product_id}
+		
+		ORDER BY r.id ASC
+	</select>
+	
+	<select id="getListDetail" resultType="org.team.domain.product.ProductReplyVO">
+		SELECT
+			r.id id,
+			r.product_id product_id,
+			r.replyer replyer,
+			r.reply reply,
+			r.reply_date reply_date,
+			r.update_date update_date,
+			m.username replyer_name
+			
+		FROM
+			tbl_product_detail_reply r JOIN tbl_member m ON r.replyer = m.userid
 			
 		WHERE
 			r.product_id = #{product_id}
@@ -45,8 +69,37 @@
 			r.id = #{id}
 	</select>
 	
+	<select id="readDetail" resultType="org.team.domain.product.ProductReplyVO">
+		SELECT
+			r.id id,
+			r.product_id product_id,
+			r.replyer replyer,
+			r.reply reply,
+			r.reply_date reply_date,
+			r.update_date update_date,
+			m.username replyer_name
+			
+		FROM
+			tbl_product_detail_reply r JOIN tbl_member m ON r.replyer = m.userid
+			
+		WHERE
+			r.id = #{id}
+	</select>
+	
 	<update id="update">
 		UPDATE tbl_product_reply
+		
+		SET
+			replyer = #{replyer},
+			reply = #{reply},
+			update_date = NOW()
+		
+		WHERE
+			id = #{id}
+	</update>
+	
+	<update id="updateDetail">
+		UPDATE tbl_product_detail_reply
 		
 		SET
 			replyer = #{replyer},
@@ -61,8 +114,16 @@
 		DELETE FROM tbl_product_reply WHERE id = #{id}
 	</delete>
 	
+	<delete id="deleteDetail">
+		DELETE FROM tbl_product_detail_reply WHERE id = #{id}
+	</delete>
+	
 	<delete id="deleteByPid">
 		DELETE FROM tbl_product_reply WHERE product_id = #{id}
+	</delete>
+	
+	<delete id="deleteDetailByPid">
+		DELETE FROM tbl_product_detail_reply WHERE product_id = #{id}
 	</delete>
 
 </mapper>

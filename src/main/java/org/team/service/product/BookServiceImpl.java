@@ -57,6 +57,11 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
+	public ProductVO getFile(Long id) {
+		return mapper.readFile(id);
+	}
+	
+	@Override
 	public void register(ProductVO product, MultipartFile file1, MultipartFile file2) {
 		mapper.insert(product);
 		
@@ -165,6 +170,7 @@ public class BookServiceImpl implements BookService {
 	@Transactional
 	public boolean remove(Long id) {
 		// 댓글 삭제
+		replyMapper.deleteDetailByPid(id);
 		replyMapper.deleteByPid(id);
 		
 		// AWS에서 삭제

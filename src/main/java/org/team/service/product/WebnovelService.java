@@ -11,9 +11,12 @@ public interface WebnovelService {
 
 	public ProductVO get(Long id);
 	
+	public ProductVO getFile(Long id);
+	
 	public void register(ProductVO product, MultipartFile file1, MultipartFile file2);
 
 	public boolean modify(ProductVO product, MultipartFile file1, MultipartFile file2);
 
 	public boolean remove(Long id);
+
 }

@@ -13,47 +13,18 @@ var appRoot = "${appRoot}";
 var pid = "${webtoon.id}";
 var userid = "${pinfo.member.userid}";
 </script>
-<script src="${appRoot}/resources/js/productReply.js"></script>
+<script src="${appRoot}/resources/js/productDetailReply.js"></script>
 
-<title>webtoon get</title>
+<title>webtoon detail</title>
 </head>
 <body>
 <pj:navbar1 />
 <div class="container">
-	<c:url value="/product/webtoon/modify" var="modifyUrl">
-		<c:param name="id" value="${webtoon.id}" />
-	</c:url>
-	<c:url value="/product/webtoon/detail" var="detailUrl">
-		<c:param name="id" value="${webtoon.id}" />
-	</c:url>
-	
-	<%-- 상품 상세 --%>
-	<div id="div-white" class="container mb-3 p-3">
-		<div>
-			<form action="${appRoot}/product/webtoon/detail" method="get" id="webtoon-get-form" class="form-inline">
-				<div id="div-get">
-					<img id="img-get" src="${imgRoot}webtoon/${webtoon.id}/cover/${webtoon.file_name}">
-				</div>
-				<div id="div-get-detail" class="ml-3">
-					<div id="div-get-detail-pname">
-						${webtoon.product_name}
-					</div>
-					<div id="div-get-detail-likecomment">
-						찜 수, 댓글 수 표시
-					</div>
-					<div id="div-get-detail-bottom" class="form-inline">
-						<div id="div-get-detail-wname">
-							${webtoon.writer_name}
-						</div>
-						<div id="div-get-detail-btn">
-							<sec:authorize access="hasRole('ROLE_ADMIN')">
-								<a class="btn btn-secondary" href="${modifyUrl}">수정/삭제</a>
-							</sec:authorize>
-							<a class="btn btn-primary" href="${detailUrl}">작품보기</a>
-						</div>
-					</div>
-				</div>
-			</form>
+
+	<%-- 내용 상세 --%>
+	<div id="div-white" class="container mb-3">
+		<div id="detail-div">
+			<img id="detail-img" src="${imgRoot}webtoon/${webtoon.id}/file/${webtoon.file_name}">
 		</div>
 	</div>
 	
@@ -160,6 +131,7 @@ var userid = "${pinfo.member.userid}";
 			</div>
 		</div>
 	</div>
+	
 </div>
 <pj:footer />
 </body>

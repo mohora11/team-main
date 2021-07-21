@@ -16,7 +16,6 @@ a:hover {
 #product-list-div {
 	width: 128px;
 	height: 128px;
-	margin: 0px;
 }
 
 #product-list-div > img {
@@ -105,7 +104,25 @@ body, #team-footer {
 	margin-top: 4px;
 }
 
-/* [book] list.jsp, [webtoon] list.jsp, [webnovel] list.jsp */
+/* navbar1.tag */
+#navbar-btn {
+	width: 0%;
+}
+
+.navbar-back-btn {
+	float: left;
+}
+
+#navbar-product {
+	display: flex;
+	align-items: center;
+}
+
+#navbar-product-name {
+	float: left;
+}
+
+/* [book, webtoon, webnovel] list.jsp */
 #carousel-product, .carousel-inner, #carousel-item {
 	width: 720px;
 	height: 400px;
@@ -118,7 +135,7 @@ body, #team-footer {
 	height: 100%;
 }
 
-/* [book] get.jsp, [webtoon] get.jsp, [webnovel] get.jsp */
+/* [book, webtoon, webnovel] get.jsp */
 #img-get {
 	width: 130px;
 	height: 160px;
@@ -158,11 +175,7 @@ body, #team-footer {
 	justify-content: space-between;
 }
 
-
-
-
-
-
-
-
-
+/* [book, webtoon, webnovel] detail.jsp */
+#detail-img {
+	width: 720px;
+}

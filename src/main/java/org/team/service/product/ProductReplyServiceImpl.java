@@ -40,4 +40,29 @@ public class ProductReplyServiceImpl implements ProductReplyService {
 		return mapper.delete(id);
 	}
 
+	@Override
+	public int registerDetail(ProductReplyVO vo) {
+		return mapper.insertDetail(vo);
+	}
+
+	@Override
+	public List<ProductReplyVO> getListDetail(Long product_id) {
+		return mapper.getListDetail(product_id);
+	}
+
+	@Override
+	public ProductReplyVO getDetail(Long id) {
+		return mapper.readDetail(id);
+	}
+
+	@Override
+	public int modifyDetail(ProductReplyVO vo) {
+		return mapper.updateDetail(vo);
+	}
+
+	@Override
+	public int removeDetail(Long id) {
+		return mapper.deleteDetail(id);
+	}
+
 }
