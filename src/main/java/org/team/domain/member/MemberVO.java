@@ -13,6 +13,7 @@ public class MemberVO {
 	private Date regdate;
 	private Date updateDate;
 	private boolean enabled;
+	private String usermail;
 	
 	private List<AuthVO> authList;
 }
