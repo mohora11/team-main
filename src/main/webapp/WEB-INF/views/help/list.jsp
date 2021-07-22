@@ -34,39 +34,36 @@
 	
 	<div class="container">
 
-		<h4>자유게시판 [${pageMaker.total }]</h4>
+		<h4>1:1 문의 [${pageMaker.total }]</h4>
 			<table class="table table-striped">
 			<thead>
 				<tr>
 					<th>제목</th>
 					<th>작성자</th>
 					<th>작성일</th>
-					<th>수정일</th>
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${list }" var="board">
+				<c:forEach items="${list }" var="help">
 					<tr>
-						<td><c:url value="/board/get" var="getUrl">
-								<c:param name="bno" value="${board.bno }" />
+						<td><c:url value="/help/get" var="getUrl">
+								<c:param name="hno" value="${help.hno }" />
 								<c:param name="pageNum" value="${pageMaker.cri.pageNum }" />
 								<c:param name="amount" value="${pageMaker.cri.amount }" />
 								<c:param name="type" value="${pageMaker.cri.type }" />
 								<c:param name="keyword" value="${pageMaker.cri.keyword }" />
 							</c:url> 
 							<a href="${getUrl}"> 
-								${board.title } 
-								<c:if test="${board.replyCnt > 0 }">
-									[${board.replyCnt }] 
+								${help.htitle } 
+								<c:if test="${help.replyCnt > 0 }">
+									[${help.replyCnt }] 
 								</c:if>
 							</a>
 							
 						</td>
-						<td>${board.writerName }</td>
+						<td>${help.writerName }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${board.regdate }" /></td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${board.updateDate }" /></td>
+								value="${help.hregdate }" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>
@@ -98,7 +95,7 @@
 		</nav>
 	<!--페이지 링크용 -->
 		<div style="display:none">
-			<form id="actionForm" action="${appRoot }/board/list" method="get">
+			<form id="actionForm" action="${appRoot }/help/list" method="get">
 				<input name="pageNum" value="${cri.pageNum }" /> 
 				<input name="amount" value="${cri.amount }" />
 				<input name="type" value="${cri.type }" />

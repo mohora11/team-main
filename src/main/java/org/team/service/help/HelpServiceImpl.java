@@ -1,19 +1,17 @@
-package org.team.service.board;
+package org.team.service.help;
 
 import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.team.domain.board.BoardVO;
-import org.team.domain.board.BoardCriteria;
-import org.team.domain.board.FileVO;
-import org.team.mapper.board.BoardMapper;
-import org.team.mapper.board.FileMapper;
-import org.team.mapper.board.ReplyMapper;
+import org.team.domain.help.HelpCriteria;
+import org.team.domain.help.HelpFileVO;
+import org.team.domain.help.HelpVO;
+import org.team.mapper.help.HelpFileMapper;
+import org.team.mapper.help.HelpMapper;
+import org.team.mapper.help.HelpReplyMapper;
 
 import lombok.Setter;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
@@ -23,13 +21,12 @@ import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
-@Service 
-public class BoardServiceImpl implements BoardService {
+public class HelpServiceImpl {
 	private String bucketName;
 	private String profileName;
 	private S3Client s3;
 	
-	public BoardServiceImpl() {  
+	public HelpServiceImpl() {  
 		this.bucketName = "choongang-mohora11";
 		this.profileName = "spring1";
 		this.s3 = S3Client.builder()
@@ -39,27 +36,27 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Setter (onMethod_ = @Autowired)
-	private BoardMapper mapper;
+	private HelpMapper mapper;
 	
 	@Setter (onMethod_ = @Autowired)
-	private ReplyMapper replyMapper;
+	private HelpReplyMapper replyMapper;
 	
 	@Setter (onMethod_ = @Autowired)
-	private FileMapper fileMapper;
+	private HelpFileMapper fileMapper;
 		
 	@Override
-	public void register(BoardVO board) {
+	public void register(HelpVO board) {
 		mapper.insertSelectKey(board);
 	}
 	
 	@Override
 	@Transactional
-	public void register(BoardVO board, MultipartFile file) {
+	public void register(HelpVO board, MultipartFile file) {
 		register(board);
 		
 		if (file != null && file.getSize() > 0) {
-			FileVO vo = new FileVO();
-			vo.setBno(board.getBno());
+			HelpFileVO vo = new HelpFileVO();
+			vo.setHno(board.getHno());
 			vo.setFileName(file.getOriginalFilename());
 			
 			fileMapper.insert(vo);
@@ -67,13 +64,13 @@ public class BoardServiceImpl implements BoardService {
 		}
 	}
 
-	private void upload(BoardVO board, MultipartFile file) {
+	private void upload(HelpVO board, MultipartFile file) {
 		
 		try (InputStream is = file.getInputStream()) {
 
 			PutObjectRequest objectRequest = PutObjectRequest.builder()
 					.bucket(bucketName)
-					.key(board.getBno() + "/" + file.getOriginalFilename())
+					.key(board.getHno() + "/" + file.getOriginalFilename())
 					.contentType(file.getContentType())
 					.acl(ObjectCannedACL.PUBLIC_READ)
 					.build();
@@ -89,29 +86,29 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public BoardVO get(Long bno) {
-		return mapper.read(bno);
+	public HelpVO get(Long hno) {
+		return mapper.read(hno);
 	}
 
 	@Override
-	public boolean modify(BoardVO board) {
+	public boolean modify(HelpVO board) {
 		return mapper.update(board) == 1;
 	}
 	
 	@Override
 	@Transactional
-	public boolean modify(BoardVO board, MultipartFile file) {
+	public boolean modify(HelpVO board, MultipartFile file) {
 		
 		if (file != null & file.getSize() > 0) {
 			
-			BoardVO oldBoard = mapper.read(board.getBno());
+			HelpVO oldBoard = mapper.read(board.getHno());
 			removeFile(oldBoard);
 			upload(board, file);
 			
-			fileMapper.deleteByBno(board.getBno());
+			fileMapper.deleteByHno(board.getHno());
 			
-			FileVO vo = new FileVO();
-			vo.setBno(board.getBno());
+			HelpFileVO vo = new HelpFileVO();
+			vo.setHno(board.getHno());
 			vo.setFileName(file.getOriginalFilename());
 			fileMapper.insert(vo);
 		
@@ -121,23 +118,23 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	@Transactional
-	public boolean remove(Long bno) { 
+	public boolean remove(Long hno) { 
 		
-		replyMapper.deleteByBno(bno);
+		replyMapper.deleteByHno(hno);
 		
-		BoardVO vo = mapper.read(bno); 
+		HelpVO vo = mapper.read(hno); 
 		removeFile(vo);
 		
-		fileMapper.deleteByBno(bno);
+		fileMapper.deleteByHno(hno);
 		
-		int cnt = mapper.delete(bno);
+		int cnt = mapper.delete(hno);
 		
 		return cnt == 1;
 	} 
 
-	private void removeFile(BoardVO vo) {
+	private void removeFile(HelpVO vo) {
 
-		String key = vo.getBno() + "/" + vo.getFileName();
+		String key = vo.getHno() + "/" + vo.getFileName();
 		
 		DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
 				.bucket(bucketName)
@@ -150,13 +147,12 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getList(BoardCriteria cri) {
+	public List<HelpVO> getList(HelpCriteria cri) {
 		return mapper.getListWithPaging(cri);
 	}
 	
 	@Override
-	public int getTotal(BoardCriteria cri) {
+	public int getTotal(HelpCriteria cri) {
 		return mapper.getTotalCount(cri);
 	}
-
 }

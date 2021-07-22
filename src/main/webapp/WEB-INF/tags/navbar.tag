@@ -108,7 +108,7 @@
 				<span id="nav-board-underline" class=""></span>
 			</li>
 			<li class="nav-item">
-				<a id="nav-qna" class="nav-link text-dark" href="${appRoot}/qna/list">고객센터</a>
+				<a id="nav-qna" class="nav-link text-dark" href="${appRoot}/help/help">고객센터</a>
 				<span id="nav-qna-underline" class=""></span>
 			</li>
 		</ul>

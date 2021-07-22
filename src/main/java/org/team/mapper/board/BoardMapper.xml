@@ -14,7 +14,7 @@
 						b.title LIKE CONCAT('%', #{keyword}, '%')
 					</when>
 					<when test='type == "W"'>
-						b.writer LIKE CONCAT('%', #{keyword}, '%')
+						m.username LIKE CONCAT('%', #{keyword}, '%')
 					</when>
 				</choose>
 			</foreach>
@@ -60,13 +60,12 @@
 	GROUP BY b.bno    
     ORDER BY b.bno DESC
     LIMIT #{from}, #{amount}
-  
-    
-     
+
   </select>
   
   <select id="getTotalCount" resultType="int">
-  SELECT COUNT(*) FROM tbl_board b
+  SELECT COUNT(*) FROM tbl_board b JOIN tbl_member m
+  ON b.writer = m.userid
   <include refid="criteria"></include>
   </select>
   

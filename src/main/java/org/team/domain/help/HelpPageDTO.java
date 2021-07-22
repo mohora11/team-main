@@ -1,25 +1,23 @@
-package org.team.domain.board;
+package org.team.domain.help;
 
 import org.team.domain.member.Criteria;
 
 import lombok.Getter;
 
 @Getter
-public class PageDTO {
+public class HelpPageDTO {
 
-//	private int pageNum;
-// 	private int amount;
-	private BoardCriteria cri;
+	private HelpCriteria cri;
 	
-	private int startPage; // 현재 페이지 기준 시작 페이지
-	private int endPage; // 현재 페이지 기준 마지막 페이지
+	private int startPage; 
+	private int endPage; 
 	
-	private boolean prev; // '이전페이지'버튼 표시 유무
-	private boolean next; // '다음페이지'버튼 표시 유무
+	private boolean prev; 
+	private boolean next; 
 	
-	private int total; // 총게시물 숫자 가령 16페이지 에서 끝나면 endpage가 20이 출력이안됌
+	private int total; 
 	
-	public PageDTO(BoardCriteria cri, int total) {
+	public HelpPageDTO(HelpCriteria cri, int total) {
 		this.cri = cri;
 		this.total = total;
 		

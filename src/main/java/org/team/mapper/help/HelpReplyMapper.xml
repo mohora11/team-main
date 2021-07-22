@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.team.mapper.help.HelpReplyMapper">
+
+<delete id="removeByHnoByUserid">
+DELETE FROM tbl_qna_reply
+WHERE hno IN (
+	SELECT hno FROM tbl_qna WHERE hwriter = #{userid}
+)
+</delete>
+
+<delete id="removeByUserid">
+DELETE FROM tbl_qna_reply
+WHERE replyer1 = #{userid}
+</delete>
+
+<insert id="insert">
+	INSERT INTO tbl_qna_reply (hno, reply1, replyer1)
+	VALUES (#{hno}, #{reply1}, #{replyer1})
+</insert>
+
+<select id="read" resultType="org.team.domain.help.HelpReplyVO">
+	SELECT
+		qr.rno1 rno1,
+		qr.hno hno,
+		qr.reply1 reply1,
+		qr.replyer1 replyer1,
+		qr.replyDate1 replyDate1,
+		qr.username replyerName1
+	FROM
+		tbl_qna_reply qr JOIN tbl_member m ON qr.replyer1 = m.userid
+	WHERE
+		qr.rno1 = #{rno1}
+</select>
+
+<delete id="delete">
+	DELETE FROM tbl_qna_reply WHERE rno1 = #{rno1}
+</delete>				
+
+<insert id="insertSelectKey" useGeneratedKeys="true" keyProperty="rno1" keyColumn="rno1">
+INSERT INTO tbl_qna_reply (hno, reply1, replyer1)
+VALUES (#{hno}, #{reply1}, #{replyer1})
+</insert>
+
+<update id="update">
+UPDATE tbl_qna_reply
+SET reply1 = #{reply1},
+	replyer1 = #{replyer1},
+	updateDate = now()
+WHERE rno1 = #{rno1}	
+</update>
+
+<select id="getList" resultType="org.team.domain.help.HelpReplyVO">
+	SELECT
+		qr.rno1 rno1,
+		qr.hno hno,
+		qr.reply1 reply1,
+		qr.replyer1 replyer1,
+		qr.replyDate1 replyDate1,
+		qr.updateDate1 updateDate1,
+		m.username replyerName1
+	FROM 
+		tbl_qna_reply qr JOIN tbl_member m ON qr.replyer1 = m.userid
+	WHERE
+		qr.bno = #{bno}
+	ORDER BY qr.rno1 ASC	
+	 
+</select>
+
+<select id="getCountByHno" resultType="int">
+SELECT COUNT(*) FROM tbl_reply WHERE hno = #{hno}
+</select>
+
+<delete id="deleteByHno">
+DELETE FROM tbl_qna_reply
+WHERE hno= #{hno}
+</delete>
+
+
+</mapper>

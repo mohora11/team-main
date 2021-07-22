@@ -21,11 +21,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       
-  <sec:authorize access="isAuthenticated()"> 
       <li class="nav-item">
         <a class="nav-link" href="${registerUrl }"><i class="fas fa-pen"></i> 글쓰기</a>
       </li>
-  </sec:authorize>
 	  
     </ul>
   </div>
