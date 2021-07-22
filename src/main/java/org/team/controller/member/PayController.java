@@ -20,7 +20,7 @@ import lombok.extern.log4j.Log4j;
 @RequestMapping("/jq")
 @AllArgsConstructor
 @Log4j
-public class payController {
+public class PayController {
 	
 	@RequestMapping("/kakaopay")
 	@ResponseBody
@@ -32,7 +32,7 @@ public class payController {
 			sc.setRequestProperty("Authorization", "KakaoAK 7f7a3db05ac89ff129a3c77b81917a58");			// 인증정보
 			sc.setRequestProperty("Content-type", "application/x-www-form-urlencoded;charset=utf-8"); 	//컨텐츠 타입 정의
 			sc.setDoOutput(true); 																		// 서버에 내보낼게 있어서 트루 
-			String parameter = "cid=TC0ONETIME&partner_order_id=&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=5000won&quantity=1&total_amount=5500&vat_amount=500&tax_free_amount=0&approval_url=http://localhost:8080/team/member/pay&cancel_url=http://localhost:8080/team/member/cancel&fail_url=http://localhost:8080/team/member/fail";
+			String parameter = "cid=TC0ONETIME&partner_order_id=partner_order_id&partner_user_id=partner_user_id&item_name=5000won&quantity=1&total_amount=5500&vat_amount=500&tax_free_amount=0&approval_url=http://localhost:8080/team/member/pay&cancel_url=http://localhost:8080/team/member/cancel&fail_url=http://localhost:8080/team/member/fail";
 			OutputStream op = sc.getOutputStream(); // data 내보내는거
 			DataOutputStream dataop = new DataOutputStream(op); // 형변환
 			dataop.writeBytes(parameter);  // 데이터 바이트 변환
