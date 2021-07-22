@@ -39,7 +39,19 @@ var userid = "${pinfo.member.userid}";
 						${book.product_name}
 					</div>
 					<div id="div-get-detail-likecomment">
-						찜 수, 댓글 수 표시
+						<span id="like-icon" data-operation="like">
+							<i id="like-i" class="far fa-heart"></i>
+							<span> ${book.like_cnt},</span>
+						</span>
+						<span>조회수, </span>
+						<span>
+							<i class="fas fa-comment fa-flip-horizontal"></i>
+							<span> ${book.reply_cnt}</span>
+						</span>
+						<input type="text" id="like-id" value="${like.id}" hidden />
+						<input type="text" id="like-product-id" value="${book.id}" hidden />
+						<input type="text" id="like-user-id" value="${pinfo.member.userid}" hidden />
+						<input type="text" id="like-check-like" value="${like.check_like}" hidden />
 					</div>
 					<div id="div-get-detail-bottom" class="form-inline">
 						<div id="div-get-detail-wname">
@@ -49,6 +61,7 @@ var userid = "${pinfo.member.userid}";
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<a class="btn btn-secondary" href="${modifyUrl}">수정/삭제</a>
 							</sec:authorize>
+							<a class="btn btn-warning" href="${detailUrl}">찜</a>
 							<a class="btn btn-primary" href="${detailUrl}">작품보기</a>
 						</div>
 					</div>

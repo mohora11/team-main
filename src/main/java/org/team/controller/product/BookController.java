@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.team.domain.product.ProductLikeVO;
 import org.team.domain.product.ProductVO;
 import org.team.service.product.BookService;
+import org.team.service.product.LikeService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -24,6 +26,7 @@ import lombok.extern.log4j.Log4j;
 public class BookController {
 
 	private BookService service;
+	private LikeService likeService;
 	
 	@GetMapping("/list")
 	public void list(Model model) {
