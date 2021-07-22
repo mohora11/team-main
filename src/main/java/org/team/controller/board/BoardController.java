@@ -28,19 +28,11 @@ public class BoardController {
 	
 	private BoardService service;
 	
-	/*
-	@Autowired
-	public BoardController(BoardService service) {
-		this.service = service
-	}
-	 allargs 때문에 필요없음 */
-	
 	@GetMapping("/list")
 	public void list(@ModelAttribute("cri") BoardCriteria cri, Model model) {
-		log.info("board/list method......");
 		int total = service.getTotal(cri);
 		
-		// servcie getList() 실행결과를
+		// service getList() 실행결과를
 		List<BoardVO> list = service.getList(cri);
 		// model에 attribute로 넣고
 		model.addAttribute("list", list);
@@ -57,7 +49,7 @@ public class BoardController {
 		board.setFileName(file.getOriginalFilename());
 		
 		
-		// service에게 등록업무
+		// service에게 등록
 		service.register(board, file); // board객체가 가지고있는 프로퍼티 title,content,writer
 		
 		// redirect목적지로 정보 전달
@@ -69,12 +61,6 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
-//	@GetMapping("/get")
-//	public void get(@RequestParam("bno") Long bno, Model model) {
-//		
-//		log.info("/get");
-//		model.addAttribute("board", service.get(bno));
-//	}
 	
 	@GetMapping({"/get", "/modify"})
 	public void get(@RequestParam("bno") Long bno, 
@@ -88,7 +74,6 @@ public class BoardController {
 		// 결과를 모델에 넣음
 		model.addAttribute("board", vo);
 		
-		// forword
 	}
 	
 	@PostMapping("/modify")

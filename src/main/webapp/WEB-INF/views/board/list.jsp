@@ -35,6 +35,9 @@
 	<div class="container">
 
 		<h4>자유게시판</h4>
+		<c:if test="${board.boardCnt > 0 }">
+			[${board.boardCnt }] 
+		</c:if>
 		<table class="table table-striped">
 			<thead>
 				<tr>
@@ -108,22 +111,6 @@
 
 	</div>
 
-	<c:if test="${not empty result }">
-		<script>
-			$(document).ready(function() {
-				if (history.state == null) {
-					console.log("어서와 처음이지!!!");
-
-					$("#board-modal1").modal('show');
-					history.replaceState({}, null);
-
-				} else {
-
-					console.log("너 전에 왔었어!!!");
-				}
-			});
-		</script>
-
 		<div id="board-modal1" class="modal" tabindex="-1">
 			<div class="modal-dialog">
 				<div class="modal-content">
@@ -144,8 +131,6 @@
 				</div>
 			</div>
 		</div>
-	</c:if>
-
 
 	<nv:search /> 
 	<pj:footer />

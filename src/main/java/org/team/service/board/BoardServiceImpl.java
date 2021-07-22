@@ -23,13 +23,21 @@ import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
-//@AllArgsConstructor
-@Service //하위에 component 가 포함됨
+@Service 
 public class BoardServiceImpl implements BoardService {
 	private String bucketName;
 	private String profileName;
 	private S3Client s3;
 	
+	public BoardServiceImpl() {  
+		this.bucketName = "choongang-mohora11";
+		this.profileName = "spring1";
+		this.s3 = S3Client.builder()
+				.credentialsProvider(ProfileCredentialsProvider.create(profileName))
+				.build();
+		
+	}
+
 	@Setter (onMethod_ = @Autowired)
 	private BoardMapper mapper;
 	
@@ -38,22 +46,7 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Setter (onMethod_ = @Autowired)
 	private FileMapper fileMapper;
-	
-	
-	public BoardServiceImpl() { // 이렇게 해야 업로드할때 삭제할때 둘다 쓸 수 있음 
-		this.bucketName = "choongang-mohora11";
-		this.profileName = "spring1";
-//		this.s3 = S3Client.builder()
-//				.credentialsProvider(ProfileCredentialsProvider.create(profileName))
-//				.build();
-	}
-	
-	
-//	@Autowired 없어도됌
-//	public BoardServiceImpl(BoardMapper mapper) {
-//		this.mapper = mapper;
-//	} 위코드는 클래스위의 allargsconstructor로 인해 없어도됌
-	
+		
 	@Override
 	public void register(BoardVO board) {
 		mapper.insertSelectKey(board);
@@ -70,7 +63,7 @@ public class BoardServiceImpl implements BoardService {
 			vo.setFileName(file.getOriginalFilename());
 			
 			fileMapper.insert(vo);
-			upload(board, file); // 파일이 있을때만 일하도록	
+			upload(board, file); 	
 		}
 	}
 
@@ -110,12 +103,11 @@ public class BoardServiceImpl implements BoardService {
 	public boolean modify(BoardVO board, MultipartFile file) {
 		
 		if (file != null & file.getSize() > 0) {
-			// s3는 삭제후 재업로드
+			
 			BoardVO oldBoard = mapper.read(board.getBno());
 			removeFile(oldBoard);
 			upload(board, file);
 			
-			// tbl_board_file은 삭제후 insert
 			fileMapper.deleteByBno(board.getBno());
 			
 			FileVO vo = new FileVO();
@@ -129,25 +121,22 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	@Transactional
-	public boolean remove(Long bno) { //이 메소드로 댓글과 게시물이 동시에 삭제됨
-		// 댓글 삭제 
+	public boolean remove(Long bno) { 
+		
 		replyMapper.deleteByBno(bno);
 		
-		// 파일 삭제 (s3) // s3에서 먼저 삭제해야함
-		BoardVO vo = mapper.read(bno); // 파일을 삭제하려면 파일명을 불러와야함
+		BoardVO vo = mapper.read(bno); 
 		removeFile(vo);
 		
-		// 파일 삭제 (db)
 		fileMapper.deleteByBno(bno);
 		
-		// 게시물 삭제
 		int cnt = mapper.delete(bno);
 		
 		return cnt == 1;
 	} 
 
 	private void removeFile(BoardVO vo) {
-//		String bucketName = "";
+
 		String key = vo.getBno() + "/" + vo.getFileName();
 		
 		DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
