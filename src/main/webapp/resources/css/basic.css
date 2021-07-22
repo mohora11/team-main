@@ -16,7 +16,6 @@ a:hover {
 #product-list-div {
 	width: 128px;
 	height: 128px;
-	margin: 0px;
 }
 
 #product-list-div > img {
@@ -27,6 +26,10 @@ a:hover {
 .list-group-item {
 	border: none;
 	font-weight: bold;
+}
+
+#team-header {
+	border-bottom: 1px solid rgb(206, 212, 218);
 }
 
 #team-header, #div-white {
@@ -42,6 +45,10 @@ body, #team-footer {
 }
 
 /* navbar.tag */
+#navbar-search {
+	margin-top: 3px;
+}
+
 #login-btn, #charge-btn {
 	margin-top: 7px;
 }
@@ -50,9 +57,20 @@ body, #team-footer {
 	color: rgb(160, 160, 160);
 }
 
-.nav-link.active {
+#nav-home-underline.active,
+#nav-webtoon-underline.active,
+#nav-webnovel-underline.active,
+#nav-book-underline.active,
+#nav-board-underline.active,
+#nav-qna-underline.active {
 	background-color: white;
 	border-bottom: 2px solid #007bff;
+	position: relative;
+	top: -10px;
+}
+
+.nav-item {
+	height: 41px;
 }
 
 .nav-item > a.nav-link, #login-btn {
@@ -68,12 +86,15 @@ body, #team-footer {
 #navbar-search-input {
 	border-radius: 25px 0 0 25px;
 	border-right: none;
+	width: 150px;
+	height: 33px;
 }
 
 #navbar-search-icon {
 	border-radius: 0 25px 25px 0;
 	border-left: none;
 	background-color: white;
+	height: 33px;
 }
 
 #dropdownMenuIcon {
@@ -83,7 +104,25 @@ body, #team-footer {
 	margin-top: 4px;
 }
 
-/* [book] list.jsp, [webtoon] list.jsp, [webnovel] list.jsp */
+/* navbar1.tag */
+#navbar-btn {
+	width: 0%;
+}
+
+.navbar-back-btn {
+	float: left;
+}
+
+#navbar-product {
+	display: flex;
+	align-items: center;
+}
+
+#navbar-product-name {
+	float: left;
+}
+
+/* [book, webtoon, webnovel] list.jsp */
 #carousel-product, .carousel-inner, #carousel-item {
 	width: 720px;
 	height: 400px;
@@ -96,7 +135,7 @@ body, #team-footer {
 	height: 100%;
 }
 
-/* [book] get.jsp, [webtoon] get.jsp, [webnovel] get.jsp */
+/* [book, webtoon, webnovel] get.jsp */
 #img-get {
 	width: 130px;
 	height: 160px;
@@ -136,11 +175,7 @@ body, #team-footer {
 	justify-content: space-between;
 }
 
-
-
-
-
-
-
-
-
+/* [book, webtoon, webnovel] detail.jsp */
+#detail-img {
+	width: 720px;
+}

@@ -16,4 +16,6 @@ public class ProductVO {
 	private Date update_date;
 	
 	private String file_name;
+	
+	private int reply_cnt;
 }

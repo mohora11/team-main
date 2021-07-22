@@ -31,7 +31,7 @@
 		<nav class="navbar navbar-light">
 			<a class="navbar-brand" href="${appRoot}/main">Project 로고 위치</a>
 			<ul class="nav justify-content-end">
-				<li class="nav-item mr-3">
+				<li id="navbar-search" class="nav-item mr-3">
 					<form class="form-inline">
 						<div class="input-group mr-sm-2">
 							<input type="text" id="navbar-search-input" class="form-control">
@@ -89,21 +89,27 @@
 		<ul class="nav nav-fill">
 			<li class="nav-item">
 				<a id="nav-home" class="nav-link text-dark" href="${appRoot}/main">홈</a>
+				<span id="nav-home-underline" class=""></span>
 			</li>
 			<li class="nav-item">
 				<a id="nav-webtoon" class="nav-link text-dark" href="${appRoot}/product/webtoon/list">웹툰</a>
+				<span id="nav-webtoon-underline" class=""></span>
 			</li>
 			<li class="nav-item">
 				<a id="nav-webnovel" class="nav-link text-dark" href="${appRoot}/product/webnovel/list">웹소설</a>
+				<span id="nav-webnovel-underline" class=""></span>
 			</li>
 			<li class="nav-item">
 				<a id="nav-book" class="nav-link text-dark" href="${appRoot}/product/book/list">책</a>
+				<span id="nav-book-underline" class=""></span>
 			</li>
 			<li class="nav-item">
 				<a id="nav-board" class="nav-link text-dark" href="${appRoot}/board/list">게시판</a>
+				<span id="nav-board-underline" class=""></span>
 			</li>
 			<li class="nav-item">
 				<a id="nav-qna" class="nav-link text-dark" href="${appRoot}/qna/list">고객센터</a>
+				<span id="nav-qna-underline" class=""></span>
 			</li>
 		</ul>
 	</div>

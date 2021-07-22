@@ -47,4 +47,26 @@
 			</ul>
 		</nav>
 	</div>
+	<div id="team-header-below" class="mx-auto mt-2 pb-2">
+		<ul class="nav nav-fill">
+			<li id="navbar-btn" class="nav-item">
+				<button type="button" id="back-btn" class="btn btn-light navbar-back-btn">뒤로가기</button>
+			</li>
+			<li id="navbar-product" class="nav-item" hidden>
+				<div id="navbar-product-name">
+					<c:choose>
+						<c:when test="${not empty book.product_name}">
+							${book.product_name}
+						</c:when>
+						<c:when test="${not empty webnovel.product_name}">
+							${webnovel.product_name}
+						</c:when>
+						<c:when test="${not empty webtoon.product_name}">
+							${webtoon.product_name}
+						</c:when>
+					</c:choose>
+				</div>
+			</li>
+		</ul>
+	</div>
 </div>

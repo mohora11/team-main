@@ -69,7 +69,7 @@
 			</c:url>
 			<a href="${getUrl}">
 				<div id="product-list-div" class="card mx-2 my-2">
-					<img src="https://freewebnovel.com/files/article/image/0/373/373s.jpg" class="card-img-top">
+					<img src="${imgRoot}webnovel/${webnovel.id}/cover/${webnovel.file_name}" class="card-img-top">
 					<div class="card-body">
 						<p class="card-text text-dark">${webnovel.product_name}</p>
 					</div>
@@ -78,6 +78,9 @@
 		</c:forEach>
 	</form>
 </div>
+
+<!-- Modal -->
+<%@ include file="/WEB-INF/subModules/webnovelModal.jsp" %>
 
 <pj:footer />
 </body>

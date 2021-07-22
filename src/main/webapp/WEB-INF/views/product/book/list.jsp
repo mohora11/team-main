@@ -79,6 +79,9 @@
 	</form>
 </div>
 
+<!-- Modal -->
+<%@ include file="/WEB-INF/subModules/bookModal.jsp" %>
+
 <pj:footer />
 </body>
 </html>

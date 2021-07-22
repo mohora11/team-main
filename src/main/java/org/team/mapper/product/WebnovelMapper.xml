@@ -5,14 +5,94 @@
 <mapper namespace="org.team.mapper.product.WebnovelMapper">
 
 	<select id="getList" resultType="org.team.domain.product.ProductVO">
-		SELECT * FROM tbl_product
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+		
 		WHERE product_category = 2
+		
 		ORDER BY id DESC
 	</select>
 	
 	<select id="get" resultType="org.team.domain.product.ProductVO">
-		SELECT * FROM tbl_product
-		WHERE id = #{id}
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name,
+		    (SELECT COUNT(r.product_id) FROM tbl_product_reply r JOIN tbl_product p ON p.id = r.product_id WHERE p.id = #{id}) reply_cnt
+		
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+		
+		WHERE p.id = #{id}
 	</select>
+	
+	<insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO tbl_product (product_category, product_genre, product_name, writer_name)
+		VALUES (#{product_category}, #{product_genre}, #{product_name}, #{writer_name})
+	</insert>
+	
+	<select id="readCover" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+		
+		WHERE p.id = #{id}
+	</select>
+	
+	<select id="readFile" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    f.file_name file_name,
+		    (SELECT COUNT(r.product_id) FROM tbl_product_detail_reply r JOIN tbl_product p ON p.id = r.product_id WHERE p.id = #{id}) reply_cnt
+		
+		FROM tbl_product p JOIN tbl_product_file f ON p.id = f.product_id
+		
+		WHERE p.id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE tbl_product
+		
+		SET
+			product_category  = #{product_category},
+		    product_genre = #{product_genre},
+		    product_name = #{product_name},
+		    writer_name = #{writer_name},
+		    update_date = NOW()
+		    
+		WHERE id = #{id}
+	</update>
+	
+	<delete id="remove">
+		DELETE FROM tbl_product
+		WHERE id = #{id}
+	</delete>
 	
 </mapper>

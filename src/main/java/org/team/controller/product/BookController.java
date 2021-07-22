@@ -43,20 +43,68 @@ public class BookController {
 		model.addAttribute("book", vo);
 	}
 	
+	@GetMapping("/detail")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_USER')")
+	public void detail(@RequestParam Long id, Model model) {
+		log.info("***book detail method***");
+		
+		ProductVO vo = service.getFile(id);
+		
+		model.addAttribute("book", vo);
+	}
+	
+	@GetMapping("/modify")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public void getModify(@RequestParam Long id, Model model) {
+		log.info("***book get/modify method***");
+		
+		ProductVO vo = service.get(id);
+		
+		model.addAttribute("book", vo);
+	}
+	
 	@PostMapping("/register")
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public String register(ProductVO product, @RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2, RedirectAttributes rttr) {
 		log.info("***book register method***");
 		
-		log.info(product.getProduct_category());
-		log.info(product.getProduct_genre());
-		log.info(product.getProduct_name());
-		log.info(product.getWriter_name());
-		
 		service.register(product, file1, file2);
 		
-		rttr.addFlashAttribute("result", product.getId());
+		rttr.addFlashAttribute("bookRegister", product.getProduct_name());
 		
 		return "redirect:/product/book/list";
 	}
+	
+	@PostMapping("/modify")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public String modify(ProductVO product, @RequestParam("file1") MultipartFile file1, @RequestParam("file2") MultipartFile file2, RedirectAttributes rttr) {
+		log.info("***book modify method***");
+		
+		ProductVO vo = service.get(product.getId());
+		
+		boolean success = service.modify(product, file1, file2);
+		
+		if (success) {
+			rttr.addFlashAttribute("bookBeforeModify", vo);
+		}
+		
+		return "redirect:/product/book/list";
+	}
+	
+	@PostMapping("/remove")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public String remove(@RequestParam Long id, RedirectAttributes rttr) {
+		log.info("***book remove method***");
+		
+		ProductVO vo = service.get(id);
+		
+		boolean success = service.remove(id);
+		
+		if (success) {
+			rttr.addFlashAttribute("bookRemove", vo.getProduct_name());
+		}
+		
+		return "redirect:/product/book/list";
+	}
+	
 }
