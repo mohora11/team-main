@@ -118,4 +118,37 @@
 		}
 	});
 	
+	// get.jsp 좋아요 버튼
+	$('#like-icon').click(function() {
+		var id = $('#like-id').val();
+		var pid = $('#like-product-id').val();
+		var uid = $('#like-user-id').val();
+		var check = $('#like-check-like').val();
+		
+		var operation = $(this).attr('data-operation');
+		var url = '/product/likes/' + operation;
+		
+		$.ajax({
+			type: 'post',
+			url: appRoot + url,
+			data: JSON.stringify(data),
+			contentType: "application/json",
+			success: function() {
+				console.log("좋아요 성공");
+				
+				if (operation === 'like') {
+					$('#like-icon').attr('data-operation', 'dislike');
+					$('#like-i').removeClass('far fa-heart').addClass('fas fa-heart');
+				} else {
+					$('#like-icon').attr('data-operation', 'like');
+					$('#like-i').removeClass('fas fa-heart').addClass('far fa-heart');
+				}
+			},
+			error: function() {
+				console.log("좋아요 실패");
+			}
+		});
+		
+	});
+	
  });
