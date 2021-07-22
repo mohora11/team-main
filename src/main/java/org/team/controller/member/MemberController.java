@@ -4,7 +4,6 @@ import java.security.Principal;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,7 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.team.domain.member.Criteria;
 import org.team.domain.member.MemberVO;
@@ -34,6 +32,22 @@ import lombok.extern.log4j.Log4j;
 @AllArgsConstructor
 @Log4j
 public class MemberController {
+	
+	
+	@RequestMapping("/pay")
+	public void pay() {
+		
+	}
+	
+	@RequestMapping("/fail")
+	public void fail() {
+		
+	}
+	
+	@RequestMapping("/cancel")
+	public void cancel() {
+		
+	}
 	
 	@Setter(onMethod_ = @Autowired)
 	private MemberService service;
