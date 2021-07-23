@@ -1,5 +1,7 @@
 package org.team.domain.help;
 
+import java.util.Date;
+
 import lombok.Data;
 
 @Data
@@ -9,7 +11,7 @@ public class HelpVO {
 	private String htitle;
 	private String hcontent;
 	private String hwriter;
-	private String hregdate;
+	private Date hregdate;
 	
 	private int replyCnt;
 	

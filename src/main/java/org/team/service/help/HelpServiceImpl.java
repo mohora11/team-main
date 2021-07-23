@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import org.team.domain.help.HelpCriteria;
@@ -21,7 +22,8 @@ import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
-public class HelpServiceImpl {
+@Service
+public class HelpServiceImpl implements HelpService {
 	private String bucketName;
 	private String profileName;
 	private S3Client s3;

@@ -3,7 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %>
-<%@ taglib prefix="nv" tagdir="/WEB-INF/tags/board" %>
+<%@ taglib prefix="ht" tagdir="/WEB-INF/tags/help" %>
 
 
 <!DOCTYPE html>
@@ -12,7 +12,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp"%>
 
-<title>Insert title here</title>
+<title>고객센터</title>
 
 <script>
 	$(document).ready(function() {
@@ -61,7 +61,7 @@
 							</a>
 							
 						</td>
-						<td>${help.writerName }</td>
+						<td>${help.hwriter }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
 								value="${help.hregdate }" /></td>
 					</tr>
@@ -126,7 +126,7 @@
 			</div>
 		</div>
 
-	<nv:search /> 
+	<ht:helptag /> 
 	<pj:footer />
 </body>
 </html>

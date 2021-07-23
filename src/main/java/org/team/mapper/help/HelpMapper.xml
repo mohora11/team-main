@@ -50,7 +50,7 @@
     	m.username writerName,
     	count(rno1) replyCnt
     FROM tbl_qna q LEFT JOIN tbl_qna_reply qr ON q.hno = qr.hno
-    					  INNER JOIN tbl_member m ON q.writer1 = m.userid
+    					  INNER JOIN tbl_member m ON q.hwriter = m.userid
 	<include refid="criteria"></include>
 	GROUP BY q.hno    
     ORDER BY q.hno DESC
@@ -82,9 +82,9 @@
   	 q.hwriter hwriter,
   	 q.hregdate hregdate,
   	 f.fileName fileName,
-  	 m.userName writerName<!--  -->
+  	 m.userName writerName
   	FROM tbl_qna q LEFT JOIN tbl_help_file f ON q.hno = f.hno
-  						  JOIN tbl_member m ON q.hwriter = m.userid <!--  -->
+  						  JOIN tbl_member m ON q.hwriter = m.userid 
   	WHERE q.hno = #{hno}
   </select>
   
