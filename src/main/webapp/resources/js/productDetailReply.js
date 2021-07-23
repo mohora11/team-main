@@ -45,6 +45,9 @@ $(function() {
 	/* 페이지 로딩 후 댓글 목록 가져오는 함수 실행 */
 	getReplyList();
 	
+	/* 댓글 개수 */
+	var replyCnt = parseInt($('#replyCnt').text());
+	
 	/* 댓글 입력 버튼 */
 	$("#reply-insert-btn1").click(function() {
 		var pid = $("#reply-pid-input1").val();
@@ -68,6 +71,9 @@ $(function() {
 				$("#reply-insert-modal").modal("hide");
 				// 댓글 리스트 가져오고
 				getReplyList();
+				// 현재 보여지는 댓글 개수 +1
+				$('#replyCnt').text(replyCnt + 1);
+				replyCnt = replyCnt + 1;
 				// 안내 메세지 보여주기
 				$("#reply-modal").modal("show");
 				$("#reply-modal-body").text("새 댓글을 입력하였습니다.");
@@ -172,6 +178,9 @@ $(function() {
 					$("#reply-modify-modal").modal("hide");
 					// 댓글 리스트 가져오고
 					getReplyList();
+					// 현재 보여지는 댓글 개수 -1
+					$('#replyCnt').text(replyCnt - 1);
+					replyCnt = replyCnt - 1;
 					// 안내 메세지 보여주기
 					$("#reply-modal").modal("show");
 					$("#reply-modal-body").text("댓글을 삭제하였습니다.");

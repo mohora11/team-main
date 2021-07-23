@@ -13,6 +13,7 @@ var appRoot = "${appRoot}";
 var pid = "${book.id}";
 var userid = "${pinfo.member.userid}";
 </script>
+<script src="${appRoot}/resources/js/productLike.js"></script>
 <script src="${appRoot}/resources/js/productReply.js"></script>
 
 <title>book get</title>
@@ -39,16 +40,15 @@ var userid = "${pinfo.member.userid}";
 						${book.product_name}
 					</div>
 					<div id="div-get-detail-likecomment">
-						<span id="like-icon" data-operation="like">
+						<span id="like-icon">
 							<i id="like-i" class="far fa-heart"></i>
-							<span> ${book.like_cnt},</span>
+							<span id="like-cnt">${book.like_cnt}</span>
 						</span>
 						<span>조회수, </span>
 						<span>
 							<i class="fas fa-comment fa-flip-horizontal"></i>
-							<span> ${book.reply_cnt}</span>
+							<span id="replyCntAbove">${book.reply_cnt}</span>
 						</span>
-						<input type="text" id="like-id" value="${like.id}" hidden />
 						<input type="text" id="like-product-id" value="${book.id}" hidden />
 						<input type="text" id="like-user-id" value="${pinfo.member.userid}" hidden />
 						<input type="text" id="like-check-like" value="${like.check_like}" hidden />
@@ -73,7 +73,7 @@ var userid = "${pinfo.member.userid}";
 	<%-- 댓글 목록 --%>
 	<div id="div-white" class="container p-3">
 		<h5>
-			댓글 <c:if test="${book.reply_cnt > 0}"><small>[${book.reply_cnt}]</small></c:if>
+			댓글 <c:if test="${book.reply_cnt > 0}"><small>[</small><small id="replyCntBelow">${book.reply_cnt}</small><small>]</small></c:if>
 		</h5>
 		
 		<hr>
