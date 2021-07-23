@@ -1,5 +1,6 @@
 package org.team.controller.product;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -11,10 +12,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.team.domain.member.MemberVO;
 import org.team.domain.product.ProductLikeVO;
 import org.team.domain.product.ProductVO;
 import org.team.service.product.BookService;
-import org.team.service.product.LikeService;
+import org.team.service.product.ProductLikeService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -26,7 +28,7 @@ import lombok.extern.log4j.Log4j;
 public class BookController {
 
 	private BookService service;
-	private LikeService likeService;
+	private ProductLikeService likeService;
 	
 	@GetMapping("/list")
 	public void list(Model model) {
@@ -38,12 +40,18 @@ public class BookController {
 	}
 	
 	@GetMapping("/get")
-	public void get(@RequestParam Long id, Model model) {
+	public void get(@RequestParam Long id, Model model, Principal principal) {
 		log.info("***book get method***");
 		
 		ProductVO vo = service.get(id);
-		
 		model.addAttribute("book", vo);
+		
+		// 해당 상품을 읽어올 때 현재 사용자가 해당 상품에 좋아요를 눌렀었는지 확인
+		if (principal != null) { // 로그인 상태가 아니면 아래의 principal.getName()에서 NullPointerException이 발생하므로 로그인 상태인 경우만
+			ProductLikeVO lvo = likeService.get(id.toString(), principal.getName());
+			model.addAttribute("like", lvo);
+		}
+		
 	}
 	
 	@GetMapping("/detail")
