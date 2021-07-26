@@ -1,27 +1,25 @@
 <%@ page contentType="text/html; charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %>
-
-<!DOCTYPE html>
+<%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %><!DOCTYPE html>
 <html>
 <head>
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>1:1 문의하기</title>
+<title>Insert title here</title>
 </head>
 <body>
 <pj:navbar />
 <div class="container">
-	<h4>1:1 문의하기</h4>
+	<h4>문의 등록</h4>
 	
 	<div class="row">
 		<div class="col-12">
 			<form action="${appRoot }/help/register" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="input1">제목</label>
-					<input id="input1" class="form-control" name="htitle">
+					<input id="input1" class="form-control" name="title">
 				</div>
 				<div class="form-group">
 					<label for="input3">파일</label>
@@ -29,11 +27,11 @@
 				</div>
 				<div class="form-group">
 					<label for="textarea1">내용</label>
-					<textarea id="textarea1" class="form-control" name="hcontent"></textarea>
+					<textarea id="textarea1" class="form-control" name="content"></textarea>
 				</div>
 				<div class="form-group">
 					<label for="input2">작성자</label>
-					<input id="input2" type="hidden" value="${pinfo.member.userid }" readonly class="form-control" name="hwriter">
+					<input id="input2" type="hidden" value="${pinfo.member.userid }" readonly class="form-control" name="writer">
 					<input value="${pinfo.member.userName }" readonly class="form-control">
 				</div>
 				<input class="btn btn-primary" type="submit" value="작성" />

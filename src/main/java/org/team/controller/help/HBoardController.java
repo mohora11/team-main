@@ -12,85 +12,96 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.team.domain.help.HelpCriteria;
-import org.team.domain.help.HelpPageDTO;
-import org.team.domain.help.HelpVO;
-import org.team.service.help.HelpService;
+import org.team.domain.help.HBoardVO;
+import org.team.domain.help.HBoardCriteria;
+import org.team.domain.help.HPageDTO;
+import org.team.service.help.HBoardService;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 @Controller
 @RequestMapping("/help/*")
 @AllArgsConstructor
-public class HelpController {
-
-	private HelpService service;
-
+@Log4j
+public class HBoardController {
+	
+	private HBoardService service;
+	
 	@GetMapping("/list")
-	public void list(@ModelAttribute("cri") HelpCriteria cri, Model model) {
+	public void list(@ModelAttribute("cri") HBoardCriteria cri, Model model) {
 		int total = service.getTotal(cri);
-
-		List<HelpVO> list = service.getList(cri);
-
+		
+		
+		List<HBoardVO> list = service.getList(cri);
+		
 		model.addAttribute("list", list);
-		model.addAttribute("pageMaker", new HelpPageDTO(cri, total));
-
+		model.addAttribute("pageMaker", new HPageDTO(cri, total));
+		
+		 
 	}
-
+	
 	@PostMapping("/register")
 	@PreAuthorize("isAuthenticated()")
-	public String register(HelpVO board, @RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
-
+	public String register(HBoardVO board, 
+		@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {	
+		
 		board.setFileName(file.getOriginalFilename());
-
-		service.register(board, file);
-
+		
+		
+		service.register(board, file); 
+		
 		rttr.addFlashAttribute("result", board.getHno());
 		rttr.addFlashAttribute("messageTitle", "등록 성공.");
 		rttr.addFlashAttribute("messageBody", board.getHno() + "번 게시물 등록 되었습니다.");
-
+		
 		// /board/list redirect
 		return "redirect:/help/list";
 	}
-
-	@GetMapping({ "/get", "/modify" })
-	public void get(@RequestParam("bno") Long bno, @ModelAttribute("cri") HelpCriteria cri, Model model) {
-
-		HelpVO vo = service.get(bno);
-
-		model.addAttribute("board", vo);
-
+	
+	
+	@GetMapping({"/get", "/modify"})
+	public void get(@RequestParam("hno") Long hno, 
+			@ModelAttribute("cri") HBoardCriteria cri, 
+			Model model) {
+		log.info("help/get method");
+		
+		HBoardVO vo = service.get(hno);
+		
+		model.addAttribute("help", vo);
+		
 	}
-
+	
 	@PostMapping("/modify")
-	@PreAuthorize("principal.username == #help.hwriter") // 720p
+	@PreAuthorize("principal.username == #help.writer")// 720p
 //	@PreAuthorize("authication.name == #board.writer")// spring.io
-	public String modify(HelpVO board, HelpCriteria cri, @RequestParam("file") MultipartFile file,
-			RedirectAttributes rttr) {
-
-
+	public String modify(HBoardVO board, HBoardCriteria cri,
+			@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
+		
+		log.info("modify:" + board);
+		
 		boolean success = service.modify(board, file); // 101줄 if(success) 가능
-
+		
 		if (service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
 			rttr.addFlashAttribute("messagTitle", "수정 성공.");
 			rttr.addFlashAttribute("messageBody", "수정 되었습니다.");
 		}
-
+		
 		rttr.addAttribute("pageNum", cri.getPageNum());
 		rttr.addAttribute("amount", cri.getAmount());
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-
+	
 		return "redirect:/help/list";
 	}
-
+	
 	@PostMapping("/remove")
-	@PreAuthorize("principal.username == #writer") // 720p
-	public String remove(Long hno, HelpCriteria cri, RedirectAttributes rttr, String writer) {
-
+	@PreAuthorize("principal.username == #writer")  // 720p
+	public String remove(Long hno, HBoardCriteria cri, RedirectAttributes rttr, String writer) {
+		
 		boolean success = service.remove(hno);
-
+		
 		if (success) {
 			rttr.addFlashAttribute("result", "success");
 			rttr.addFlashAttribute("messagTitle", "삭제 성공.");
@@ -100,14 +111,14 @@ public class HelpController {
 		rttr.addAttribute("amount", cri.getAmount());
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
-
+		
 		return "redirect:/help/list";
 	}
-
+	
 	@GetMapping("/register")
 	@PreAuthorize("isAuthenticated()") // 673p
-	public void register(@ModelAttribute("cri") HelpCriteria cri) {
+	public void register(@ModelAttribute("cri") HBoardCriteria cri) {
 		// forward함 WEB-INF/views/board/register.jsp
 	}
-
+	
 }

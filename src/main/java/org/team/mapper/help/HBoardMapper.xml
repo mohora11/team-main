@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.team.mapper.help.HBoardMapper">
+
+	<sql id="criteria">
+		<where>
+			<foreach item="type" separator="OR" collection="typeArr">
+				<choose>
+					<when test='type == "T"'>
+						b.title LIKE CONCAT('%', #{keyword}, '%')
+					</when>
+					<when test='type == "W"'>
+						m.username LIKE CONCAT('%', #{keyword}, '%')
+					</when>
+				</choose>
+			</foreach>
+		</where>
+	</sql>
+  
+  
+  <select id="getList" resultType="org.team.domain.help.HBoardVO">
+    
+    <![CDATA[ 
+    SELECT 
+    	hno hno,
+    	title title,
+    	content content,
+    	writer writer,
+    	regdate regdate,  
+    	 
+    FROM tbl_help_board
+    
+    WHERE hno > 0 ORDER BY hno DESC
+  
+    ]]>
+     
+  </select>
+  
+  <select id="getListWithPaging" resultType="org.team.domain.help.HBoardVO">
+    
+     
+    SELECT 
+    	b.hno hno,
+    	b.title title,
+    	b.content content,
+    	b.writer writer,
+    	b.regdate regdate,  
+    	m.username writerName,
+    	count(hrno) replyCnt
+    FROM tbl_help_board b LEFT JOIN tbl_help_reply r ON b.hno = r.hno
+    					  INNER JOIN tbl_member m ON b.writer = m.userid
+	
+	<include refid="criteria"></include> 
+	GROUP BY b.hno    
+    ORDER BY b.hno DESC
+    LIMIT #{from}, #{amount}
+
+  </select>
+  
+  <select id="getTotalCount" resultType="int">
+  SELECT COUNT(*) FROM tbl_help_board b JOIN tbl_member m
+  ON b.writer = m.userid
+  <include refid="criteria"></include>
+  </select>
+  
+  <insert id="insert">
+  	INSERT INTO tbl_help_board (title, content, writer)
+  	VALUES (#{title}, #{content}, #{writer}) <!-- get get  -->
+  </insert>
+  
+  <insert id="insertSelectKey" useGeneratedKeys="true" keyProperty="hno" keyColumn="hno">
+  	INSERT INTO tbl_help_board (title, content, writer)
+  	VALUES (#{title}, #{content}, #{writer})
+  </insert>
+  
+  <select id="read" resultType="org.team.domain.help.HBoardVO">
+  	SELECT 
+  	 b.hno hno,
+  	 b.title title,
+  	 b.content content, 
+  	 b.writer writer,
+  	 b.regdate regdate,
+  	 f.fileName fileName,
+  	 m.userName writerName<!--  -->
+  	FROM tbl_help_board b LEFT JOIN tbl_board_file f ON b.hno = f.hno
+  						  JOIN tbl_member m ON b.writer = m.userid <!--  -->
+  	WHERE b.hno = #{hno}
+  </select>
+  
+  <delete id="delete">
+  	DELETE FROM tbl_help_board WHERE hno = #{hno}
+  </delete>
+
+  
+  <delete id="removeByUserid">
+  DELETE FROM tbl_help_board
+  WHERE writer = #{userid}
+  </delete>
+
+</mapper>

@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
-<mapper namespace="org.team.mapper.help.HelpFileMapper">
+<mapper namespace="org.team.mapper.help.HFileMapper">
 
 
 <insert id="insert" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
@@ -12,7 +12,7 @@ INSERT INTO tbl_help_file (hno, fileName)
 VALUES (#{hno}, #{fileName})
 </insert>
 
-<delete id="deleteByBno">
+<delete id="deleteByHno">
 DELETE FROM tbl_help_file
 WHERE hno = #{hno} 
 </delete>
@@ -20,8 +20,8 @@ WHERE hno = #{hno}
 <delete id="removeByUserid">
 DELETE FROM tbl_help_file
 WHERE hno IN (
-	SELECT hno FROM tbl_qna
-	WHERE hwriter = #{userid}
+	SELECT hno FROM tbl_help_board
+	WHERE writer = #{userid}
 )
 </delete>
  

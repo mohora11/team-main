@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>Insert title here</title>
+<title></title>
 <script>
 var appRoot = "${appRoot}";
 var boardBno = "${board.bno}";

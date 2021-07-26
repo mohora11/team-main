@@ -2,55 +2,57 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html>
 <html>
 <head>
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>Insert title here</title>
+<title></title>
 <script>
 var appRoot = "${appRoot}";
-var boardBno = "${board.bno}";
+var helpHno = "${help.hno}";
 var userid = "${pinfo.member.userid}";
 </script>
-<script src="${appRoot }/resources/js/get.js"></script>
+<script src="${appRoot }/resources/js/hget.js"></script>
 
 
 </head>
 <body>
+<pj:navbar>문의하기</pj:navbar>
 
 <div class="container">
 <div id="alert1" class="alert alert-primary fade" role="alert">
   
 </div>
-	<h1>글 보기</h1>
+	<h1>문의내용</h1>
 	
 	<div class="row">
 		<div class="col-12">
 			<form>
 				<div class="form-group">
 					<label for="input1">제목</label>
-					<input readonly="readonly" id="input1" class="form-control" name="htitle" value="${help.htitle }">
+					<input readonly="readonly" id="input1" class="form-control" name="title" value="${board.title }">
 				</div>
 				<div class="form-group">
 					<label for="textarea1">내용</label>
 					<textarea readonly="readonly" id="textarea1" class="form-control" 
-					name="hcontent"><c:out value="${help.hcontent }" /></textarea>
+					name="content"><c:out value="${help.content }" /></textarea>
 				</div>
 				<c:if test="${not empty help.fileName }"> 
 					<div>
 						<img class="img-fluid" 
-						src="${imgRoot}${help.hno }/${help.fileName}">
+						src="https://choongang-mohora11.s3.ap-northeast-2.amazonaws.com/${help.hno }/${help.fileName}">
 					</div>
 				</c:if> 
 				<div class="form-group">
 					<label for="input2">작성자</label>
-					<input type="hidden" readonly="readonly" id="input2" class="form-control" name="hwriter" value="${help.hwriter }">
+					<input type="hidden" readonly="readonly" id="input2" class="form-control" name="writer" value="${help.writer }">
 					<input readonly="readonly" class="form-control" value="${help.writerName }">
 				</div>
 				
-				<c:url value="/board/modify" var="modifyUrl">
+				<c:url value="/help/modify" var="modifyUrl">
 					<c:param name="hno" value="${help.hno }"/>
 					<c:param name="pageNum" value="${cri.pageNum }"/>
 					<c:param name="amount" value="${cri.amount }"/>
@@ -58,7 +60,7 @@ var userid = "${pinfo.member.userid}";
 					<c:param name="keyword" value="${cri.keyword }" />
 				</c:url>
 				
-				<c:if test="${pinfo.member.userid eq help.hwriter }" >
+				<c:if test="${pinfo.member.userid eq help.writer }" >
 				<a class="btn btn-secondary" href="${modifyUrl }">수정/삭제</a>	
 				</c:if>
 			</form>
@@ -93,7 +95,7 @@ var userid = "${pinfo.member.userid}";
       </div>
       <div class="modal-body">
         <form>
-          <input type="text" value="${help.hno }" readonly hidden id="reply-bno-input1">	
+          <input type="text" value="${help.hno }" readonly hidden id="reply-hno-input1">	
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">작성자</label>
             <input type="text" readonly value="${pinfo.member.userName }" class="form-control" />
@@ -125,8 +127,8 @@ var userid = "${pinfo.member.userid}";
       </div>
       <div class="modal-body">
         <form>
-          <input type="text" value="" readonly hidden id="reply-rno-input2">
-          <input type="text" value="${board.bno }" readonly hidden id="reply-bno-input2">	
+          <input type="text" value="" readonly hidden id="reply-hrno-input2">
+          <input type="text" value="${help.hno }" readonly hidden id="reply-hno-input2">	
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">작성자</label>
             <input id="reply-replyerName-input2" class="form-control" readonly type="text" />

@@ -3,6 +3,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="pj" tagdir="/WEB-INF/tags" %>
+<%@ taglib prefix="nv" tagdir="/WEB-INF/tags/board" %>
 <%@ taglib prefix="ht" tagdir="/WEB-INF/tags/help" %>
 
 
@@ -12,7 +13,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp"%>
 
-<title>고객센터</title>
+<title>1:1 문의</title>
 
 <script>
 	$(document).ready(function() {
@@ -54,16 +55,16 @@
 								<c:param name="keyword" value="${pageMaker.cri.keyword }" />
 							</c:url> 
 							<a href="${getUrl}"> 
-								${help.htitle } 
+								${help.title } 
 								<c:if test="${help.replyCnt > 0 }">
 									[${help.replyCnt }] 
 								</c:if>
 							</a>
 							
 						</td>
-						<td>${help.hwriter }</td>
+						<td>${help.writerName }</td>
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${help.hregdate }" /></td>
+								value="${help.regdate }" /></td>
 					</tr>
 				</c:forEach>
 			</tbody>

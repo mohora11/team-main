@@ -6,13 +6,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-import org.team.domain.help.HelpCriteria;
-import org.team.domain.help.HelpFileVO;
-import org.team.domain.help.HelpVO;
-import org.team.mapper.help.HelpFileMapper;
-import org.team.mapper.help.HelpMapper;
-import org.team.mapper.help.HelpReplyMapper;
+import org.team.domain.help.HBoardVO;
+import org.team.domain.help.HBoardCriteria;
+import org.team.domain.help.HFileVO;
+import org.team.mapper.help.HBoardMapper;
+import org.team.mapper.help.HFileMapper;
+import org.team.mapper.help.HReplyMapper;
 
 import lombok.Setter;
 import software.amazon.awssdk.auth.credentials.ProfileCredentialsProvider;
@@ -22,13 +23,13 @@ import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.ObjectCannedACL;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
 
-@Service
-public class HelpServiceImpl implements HelpService {
+@Service 
+public class HBoardServiceImpl implements HBoardService {
 	private String bucketName;
 	private String profileName;
 	private S3Client s3;
 	
-	public HelpServiceImpl() {  
+	public HBoardServiceImpl() {  
 		this.bucketName = "choongang-mohora11";
 		this.profileName = "spring1";
 		this.s3 = S3Client.builder()
@@ -38,26 +39,26 @@ public class HelpServiceImpl implements HelpService {
 	}
 
 	@Setter (onMethod_ = @Autowired)
-	private HelpMapper mapper;
+	private HBoardMapper mapper;
 	
 	@Setter (onMethod_ = @Autowired)
-	private HelpReplyMapper replyMapper;
+	private HReplyMapper replyMapper;
 	
 	@Setter (onMethod_ = @Autowired)
-	private HelpFileMapper fileMapper;
+	private HFileMapper fileMapper;
 		
 	@Override
-	public void register(HelpVO board) {
+	public void register(HBoardVO board) {
 		mapper.insertSelectKey(board);
 	}
 	
 	@Override
 	@Transactional
-	public void register(HelpVO board, MultipartFile file) {
+	public void register(HBoardVO board, MultipartFile file) {
 		register(board);
 		
 		if (file != null && file.getSize() > 0) {
-			HelpFileVO vo = new HelpFileVO();
+			HFileVO vo = new HFileVO();
 			vo.setHno(board.getHno());
 			vo.setFileName(file.getOriginalFilename());
 			
@@ -66,7 +67,7 @@ public class HelpServiceImpl implements HelpService {
 		}
 	}
 
-	private void upload(HelpVO board, MultipartFile file) {
+	private void upload(HBoardVO board, MultipartFile file) {
 		
 		try (InputStream is = file.getInputStream()) {
 
@@ -88,28 +89,28 @@ public class HelpServiceImpl implements HelpService {
 	}
 
 	@Override
-	public HelpVO get(Long hno) {
+	public HBoardVO get(Long hno) {
 		return mapper.read(hno);
 	}
 
 	@Override
-	public boolean modify(HelpVO board) {
+	public boolean modify(HBoardVO board) {
 		return mapper.update(board) == 1;
 	}
 	
 	@Override
 	@Transactional
-	public boolean modify(HelpVO board, MultipartFile file) {
+	public boolean modify(HBoardVO board, MultipartFile file) {
 		
 		if (file != null & file.getSize() > 0) {
 			
-			HelpVO oldBoard = mapper.read(board.getHno());
+			HBoardVO oldBoard = mapper.read(board.getHno());
 			removeFile(oldBoard);
 			upload(board, file);
 			
 			fileMapper.deleteByHno(board.getHno());
 			
-			HelpFileVO vo = new HelpFileVO();
+			HFileVO vo = new HFileVO();
 			vo.setHno(board.getHno());
 			vo.setFileName(file.getOriginalFilename());
 			fileMapper.insert(vo);
@@ -124,7 +125,7 @@ public class HelpServiceImpl implements HelpService {
 		
 		replyMapper.deleteByHno(hno);
 		
-		HelpVO vo = mapper.read(hno); 
+		HBoardVO vo = mapper.read(hno); 
 		removeFile(vo);
 		
 		fileMapper.deleteByHno(hno);
@@ -134,7 +135,7 @@ public class HelpServiceImpl implements HelpService {
 		return cnt == 1;
 	} 
 
-	private void removeFile(HelpVO vo) {
+	private void removeFile(HBoardVO vo) {
 
 		String key = vo.getHno() + "/" + vo.getFileName();
 		
@@ -149,12 +150,13 @@ public class HelpServiceImpl implements HelpService {
 	}
 
 	@Override
-	public List<HelpVO> getList(HelpCriteria cri) {
+	public List<HBoardVO> getList(HBoardCriteria cri) {
 		return mapper.getListWithPaging(cri);
 	}
 	
 	@Override
-	public int getTotal(HelpCriteria cri) {
+	public int getTotal(HBoardCriteria cri) {
 		return mapper.getTotalCount(cri);
 	}
+
 }
