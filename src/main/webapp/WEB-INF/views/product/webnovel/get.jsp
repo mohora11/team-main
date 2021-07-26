@@ -40,11 +40,14 @@ var userid = "${pinfo.member.userid}";
 						${webnovel.product_name}
 					</div>
 					<div id="div-get-detail-likecomment">
+						<span>
+							<i class="far fa-eye"></i>
+							<span>${webnovel.view_cnt}&nbsp</span>
+						</span>
 						<span id="like-icon">
 							<i id="like-i" class="far fa-heart"></i>
-							<span id="like-cnt">${webnovel.like_cnt}</span>
+							<span id="like-cnt">${webnovel.like_cnt}&nbsp</span>
 						</span>
-						<span>조회수, </span>
 						<span>
 							<i class="fas fa-comment fa-flip-horizontal"></i>
 							<span id="replyCntAbove">${webnovel.reply_cnt}</span>
@@ -60,6 +63,9 @@ var userid = "${pinfo.member.userid}";
 						<div id="div-get-detail-btn">
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<a class="btn btn-secondary" href="${modifyUrl}">수정/삭제</a>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+								<button type="button" id="like-btn" class="btn btn-warning">찜</button>
 							</sec:authorize>
 							<a class="btn btn-primary" href="${detailUrl}">작품보기</a>
 						</div>

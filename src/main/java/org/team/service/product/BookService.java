@@ -19,4 +19,6 @@ public interface BookService {
 
 	public boolean remove(Long id);
 
+	public void plusCnt(Long id);
+
 }

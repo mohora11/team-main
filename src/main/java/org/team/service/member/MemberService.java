@@ -1,6 +1,9 @@
 package org.team.service.member;
 
+import java.util.List;
+
 import org.team.domain.member.MemberVO;
+import org.team.domain.product.ProductVO;
 
 public interface MemberService {
 
@@ -16,5 +19,9 @@ public interface MemberService {
 
 	boolean modify(MemberVO vo, String oldPassword);
 
+	public List<ProductVO> getLikes(String userid);
+	public List<ProductVO> getWebtoonLikes(String userid);
+	public List<ProductVO> getWebnovelLikes(String userid);
+	public List<ProductVO> getBookLikes(String userid);
 
 }

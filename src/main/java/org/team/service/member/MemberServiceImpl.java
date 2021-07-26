@@ -1,12 +1,16 @@
 package org.team.service.member;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.team.domain.member.AuthVO;
 import org.team.domain.member.MemberVO;
+import org.team.domain.product.ProductVO;
 import org.team.mapper.member.MemberMapper;
+import org.team.mapper.product.ProductLikeMapper;
 
 import lombok.Setter;
 
@@ -15,6 +19,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ProductLikeMapper likeMapper;
 	
 	@Setter(onMethod_ = @Autowired)
 	private PasswordEncoder encoder;
@@ -79,5 +86,25 @@ public class MemberServiceImpl implements MemberService {
 		// 회원삭제(tbl_member)
 		int cnt = mapper.remove(vo);
 		return cnt == 1;
-}
+	}
+	
+	@Override
+	public List<ProductVO> getLikes(String userid) {
+		return likeMapper.getLikes(userid);
+	}
+	
+	@Override
+	public List<ProductVO> getWebtoonLikes(String userid) {
+		return likeMapper.getWebtoonLikes(userid);
+	}
+	
+	@Override
+	public List<ProductVO> getWebnovelLikes(String userid) {
+		return likeMapper.getWebnovelLikes(userid);
+	}
+	
+	@Override
+	public List<ProductVO> getBookLikes(String userid) {
+		return likeMapper.getBookLikes(userid);
+	}
 }
