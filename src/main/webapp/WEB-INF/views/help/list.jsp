@@ -45,7 +45,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach items="${list }" var="help">
+				<c:forEach items="${list }" var="help" >
 					<tr>
 						<td><c:url value="/help/get" var="getUrl">
 								<c:param name="hno" value="${help.hno }" />
