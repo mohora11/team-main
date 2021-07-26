@@ -30,5 +30,81 @@
 		SELECT check_like FROM tbl_product_like
 		WHERE product_id = #{id} AND user_id = #{userid}
 	</select>
+	
+	<select id="getLikes" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+							JOIN tbl_product_like l ON p.id = l.product_id
+		
+		WHERE l.user_id = #{userid}
+		
+		ORDER BY id DESC
+	</select>
+	
+	<select id="getWebtoonLikes" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+							JOIN tbl_product_like l ON p.id = l.product_id
+		
+		WHERE l.user_id = #{userid} AND p.product_category = 1
+		
+		ORDER BY id DESC
+	</select>
+	
+	<select id="getWebnovelLikes" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+							JOIN tbl_product_like l ON p.id = l.product_id
+		
+		WHERE l.user_id = #{userid} AND p.product_category = 2
+		
+		ORDER BY id DESC
+	</select>
+	
+	<select id="getBookLikes" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+							JOIN tbl_product_like l ON p.id = l.product_id
+		
+		WHERE l.user_id = #{userid} AND p.product_category = 3
+		
+		ORDER BY id DESC
+	</select>
 
 </mapper>

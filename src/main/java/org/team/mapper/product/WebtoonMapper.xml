@@ -32,6 +32,7 @@
 		    p.register_date register_date,
 		    p.update_date update_date,
 		    p.like_cnt like_cnt,
+		    p.view_cnt view_cnt,
 		    c.file_name file_name,
 		    (SELECT COUNT(r.product_id) FROM tbl_product_reply r JOIN tbl_product p ON p.id = r.product_id WHERE p.id = #{id}) reply_cnt
 		
@@ -77,6 +78,15 @@
 		
 		WHERE p.id = #{id}
 	</select>
+	
+	<update id="plusCnt">
+		UPDATE tbl_product
+		
+		SET
+			view_cnt = view_cnt + 1
+			
+		WHERE id = #{id}
+	</update>
 	
 	<update id="update">
 		UPDATE tbl_product

@@ -28,6 +28,26 @@ a:hover {
 	font-weight: bold;
 }
 
+ul.sel {
+	align-items: center;
+	justify-content: space-between;
+}
+
+li.sel {
+	padding: 10px 10px 10px 0px !important;
+}
+
+.list-group-item > a {
+	border: none;
+	font-weight: 500;
+	color: black;
+}
+
+.btn-light {
+	border: none;
+	background-color: rgb(238, 238, 238);
+}
+
 #team-header {
 	border-bottom: 1px solid rgb(206, 212, 218);
 }
@@ -42,6 +62,10 @@ body, #team-footer {
 
 .container, #team-header-above, #team-header-below, #team-footer {
 	width: 720px;
+}
+
+#dropdown-menu {
+	text-align: center;
 }
 
 /* navbar.tag */

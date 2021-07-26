@@ -60,6 +60,11 @@ public class WebtoonServiceImpl implements WebtoonService {
 	public ProductVO getFile(Long id) {
 		return mapper.readFile(id);
 	}
+	
+	@Override
+	public void plusCnt(Long id) {
+		mapper.plusCnt(id);
+	}
 
 	@Override
 	public void register(ProductVO product, MultipartFile file1, MultipartFile file2) {

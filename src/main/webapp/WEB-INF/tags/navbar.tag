@@ -25,6 +25,9 @@
 		<c:param name="type" value="${cri.type }"></c:param>
 </c:url>
 
+<c:url value="/member/likes" var="likesUrl">
+	<c:param name="userid" value="${pinfo.member.userid}"></c:param>
+</c:url>
 
 <div id="team-header" class="d-flex flex-column sticky-top pt-3 mb-3">
 	<div id="team-header-above" class="mx-auto mb-2">
@@ -69,13 +72,16 @@
 						<div class="dropdown">
 							<span id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="dropdownMenuIcon" class="far fa-user"></i></span>
 							
-							<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+							<div id="dropdown-menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 									<a class="dropdown-item" href="${appRoot}/product/register">작품 등록</a>
 									<div class="dropdown-divider"></div>
 								</sec:authorize>
-								<a class="dropdown-item" href="${appRoot}/member/info">내 정보</a>
-								<a class="dropdown-item" href="${appRoot}/member/pay">캐시충전</a>
+								<a class="dropdown-item"><small>내 캐시</small><br>x,xxx원</a>
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="${appRoot}/member/info">회원 정보</a>
+								<a class="dropdown-item" href="${likesUrl}">찜 목록</a>
+								<a class="dropdown-item" href="${appRoot}/member/pay">캐시 충전</a>
 								<div class="dropdown-divider"></div>
 								<a class="dropdown-item" href="${appRoot}/logout">로그아웃</a>
 							</div>
@@ -108,7 +114,7 @@
 				<span id="nav-board-underline" class=""></span>
 			</li>
 			<li class="nav-item">
-				<a id="nav-qna" class="nav-link text-dark" href="${appRoot}/qna/list">고객센터</a>
+				<a id="nav-qna" class="nav-link text-dark" href="${appRoot}/help/list">고객센터</a>
 				<span id="nav-qna-underline" class=""></span>
 			</li>
 		</ul>

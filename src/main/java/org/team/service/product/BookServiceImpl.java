@@ -62,6 +62,11 @@ public class BookServiceImpl implements BookService {
 	}
 	
 	@Override
+	public void plusCnt(Long id) {
+		mapper.plusCnt(id);
+	}
+	
+	@Override
 	public void register(ProductVO product, MultipartFile file1, MultipartFile file2) {
 		mapper.insert(product);
 		

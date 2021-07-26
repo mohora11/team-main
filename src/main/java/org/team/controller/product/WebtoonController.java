@@ -59,6 +59,8 @@ public class WebtoonController {
 		log.info("***book detail method***");
 		
 		ProductVO vo = service.getFile(id);
+		// 작품 보기 시 view_cnt값 1증가(조회수)
+		service.plusCnt(id);
 		
 		model.addAttribute("webtoon", vo);
 	}

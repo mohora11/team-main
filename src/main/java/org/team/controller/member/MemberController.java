@@ -1,6 +1,7 @@
 package org.team.controller.member;
 
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -15,13 +16,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.team.domain.member.Criteria;
 import org.team.domain.member.MemberVO;
+import org.team.domain.product.ProductVO;
 import org.team.security.domain.CustomUser;
 import org.team.service.member.MemberService;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -133,5 +135,37 @@ public class MemberController {
 			return new ResponseEntity<> ("exist", HttpStatus.OK);
 		}
 		
+	}
+	
+	@GetMapping("/likes")
+	@PreAuthorize("isAuthenticated()")
+	public void likes(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> list = service.getLikes(userid);
+		
+		model.addAttribute("list", list);
+	}
+	
+	@GetMapping("/likesWebtoon")
+	@PreAuthorize("isAuthenticated()")
+	public void likesWebtoon(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> webtoon = service.getWebtoonLikes(userid);
+		
+		model.addAttribute("webtoon", webtoon);
+	}
+	
+	@GetMapping("/likesWebnovel")
+	@PreAuthorize("isAuthenticated()")
+	public void likesWebnovel(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> webnovel = service.getWebnovelLikes(userid);
+		
+		model.addAttribute("webnovel", webnovel);
+	}
+	
+	@GetMapping("/likesBook")
+	@PreAuthorize("isAuthenticated()")
+	public void likesBook(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> book = service.getBookLikes(userid);
+		
+		model.addAttribute("book", book);
 	}
 }
