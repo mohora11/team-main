@@ -15,7 +15,10 @@
 <pj:navbar />
 
 <%-- top 5 carousel --%>
-<div class="container mb-3">
+<div id="div-white" class="container mb-3">
+	<ul class="list-group list-group-horizontal">
+		<li class="list-group-item">책 TOP 5</li>
+	</ul>
 	<div id="carousel-product" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
 			<li data-target="#carousel-product" data-slide-to="0" class="active"></li>

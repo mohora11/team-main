@@ -111,8 +111,15 @@ body, #team-footer {
 	margin-top: 3px;
 }
 
+#nav-divider {
+	margin-top: 7px;
+	color: rgb(200, 200, 200);
+}
+
 #login-btn, #charge-btn {
 	margin-top: 7px;
+	font-weight: bold;
+	font-size: 17px;
 }
 
 #login-btn-link, #charge-btn-link {
@@ -135,7 +142,7 @@ body, #team-footer {
 	height: 41px;
 }
 
-.nav-item > a.nav-link, #login-btn {
+.nav-item > a.nav-link {
 	font-weight: bold;
 	font-size: 17px;
 }
