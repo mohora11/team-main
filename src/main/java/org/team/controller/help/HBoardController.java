@@ -28,7 +28,13 @@ public class HBoardController {
 	
 	private HBoardService service;
 	
+	@RequestMapping("/main")
+	public void main() {
+		
+	}
+	
 	@GetMapping("/list")
+	@PreAuthorize("isAuthenticated()")
 	public void list(@ModelAttribute("cri") HBoardCriteria cri, Model model) {
 		int total = service.getTotal(cri);
 		
@@ -55,7 +61,7 @@ public class HBoardController {
 		rttr.addFlashAttribute("messageTitle", "등록 성공.");
 		rttr.addFlashAttribute("messageBody", board.getHno() + "번 게시물 등록 되었습니다.");
 		
-		// /board/list redirect
+		// /help/list redirect
 		return "redirect:/help/list";
 	}
 	
@@ -64,7 +70,6 @@ public class HBoardController {
 	public void get(@RequestParam("hno") Long hno, 
 			@ModelAttribute("cri") HBoardCriteria cri, 
 			Model model) {
-		log.info("help/get method");
 		
 		HBoardVO vo = service.get(hno);
 		
@@ -74,7 +79,6 @@ public class HBoardController {
 	
 	@PostMapping("/modify")
 	@PreAuthorize("principal.username == #help.writer")// 720p
-//	@PreAuthorize("authication.name == #board.writer")// spring.io
 	public String modify(HBoardVO board, HBoardCriteria cri,
 			@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
 		

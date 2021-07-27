@@ -46,6 +46,7 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${list }" var="help" >
+				<c:if test="${help.writerName eq pinfo.member.userName}">
 					<tr>
 						<td><c:url value="/help/get" var="getUrl">
 								<c:param name="hno" value="${help.hno }" />
@@ -66,6 +67,8 @@
 						<td><fmt:formatDate pattern="yyyy-MM-dd"
 								value="${help.regdate }" /></td>
 					</tr>
+					</c:if>
+				
 				</c:forEach>
 			</tbody>
 		</table>

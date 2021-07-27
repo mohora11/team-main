@@ -20,7 +20,10 @@
 			</foreach>
 		</where>
 	</sql>
+  	
+  	
   
+ 
   
   <select id="getList" resultType="org.team.domain.help.HBoardVO">
     
