@@ -34,21 +34,15 @@ public class SendEmail {
 		   }
 		  });
 
-		  // Compose the message
 		  try {
 		   MimeMessage message = new MimeMessage(session);
 		   message.setFrom(new InternetAddress(user));
 		   message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
+		   message.setSubject("[leebook]메일 인증 번호");
+		   message.setText(" 입력하실 코드는 " + num + " 입니다.");
 
-		   // Subject
-		   message.setSubject("메일 인증 번호");
-		   
-		   // Text    num int여서 + "" 
-		  message.setText(" 인증 번호는 " + num + " 입니다.");
-
-		   // send the message
 		   Transport.send(message);
-		   System.out.println("message sent successfully...");
+		   System.out.println("***gg***");
 
 		  } catch (MessagingException e) {
 		   e.printStackTrace();
