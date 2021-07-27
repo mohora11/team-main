@@ -20,4 +20,9 @@ public class MainServiceImpl implements MainService {
 		return mapper.getList();
 	}
 
+	@Override
+	public List<ProductVO> getRank() {
+		return mapper.getRank();
+	}
+
 }

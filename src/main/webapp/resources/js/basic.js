@@ -1,7 +1,3 @@
-/**
- * 
- */
- 
 $(function() {
 
 	// navbar에서 선택한 category를 active 상태로 변경하여 navbar에 현재 category 표시
@@ -50,6 +46,9 @@ $(function() {
 	} else {
 		$('#navbar-product').removeAttr('hidden');
 	}
+	
+	// top 5 carousel의 첫번째 항목의 class에 active를 추가함(active가 딱 1개인 경우만 carousel이 동작하는데, carousel을 c:forEach로 생성시켰기 때문에 active를 1개만 줄 수 없어서 작성함)
+	$('.carousel-inner div').filter(':first').addClass('active');
 	
 	// contextPath 구하기
 	function getContextPath(){

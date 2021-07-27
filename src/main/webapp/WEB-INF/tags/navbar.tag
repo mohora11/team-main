@@ -27,11 +27,6 @@
 						<a href="${appRoot}/member/login" id="login-btn-link">로그인</a>
 					</li>
 				</sec:authorize>
-				<sec:authorize access="isAuthenticated()">
-					<form action="${appRoot}/logout" method="post">
-						<input type="submit" class="btn btn-outline-secondary" value="로그아웃">
-					</form>
-				</sec:authorize>
 				
 	  <sec:authorize access="!isAuthenticated()">
 	  	<li class="nav-item">

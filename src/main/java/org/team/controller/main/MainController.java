@@ -26,8 +26,10 @@ public class MainController {
 		log.info("***main list method***");
 		
 		List<ProductVO> list = service.getList();
+		List<ProductVO> rank = service.getRank();
 		
 		model.addAttribute("list", list);
+		model.addAttribute("rank", rank);
 	}
 	
 	@RequestMapping("/product/register")

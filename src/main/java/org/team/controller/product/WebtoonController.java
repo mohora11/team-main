@@ -34,8 +34,10 @@ public class WebtoonController {
 		log.info("***webtoon list method***");
 		
 		List<ProductVO> list = service.getList();
+		List<ProductVO> rank = service.getRank();
 		
 		model.addAttribute("list", list);
+		model.addAttribute("rank", rank);
 	}
 	
 	@GetMapping("/get")

@@ -8,4 +8,6 @@ public interface MainMapper {
 
 	public List<ProductVO> getList();
 
+	public List<ProductVO> getRank();
+
 }

@@ -9,18 +9,56 @@ a:hover {
 	padding: 0px;
 }
 
+.carousel-caption {
+	bottom: 0px;
+	color: black;
+	font-weight: bold;
+}
+
+.fa-angle-left, .fa-angle-right {
+	color: black;
+	width: 20px !important;
+	height: 20px !important;
+}
+
+.form-inline > a {
+	height: 170px;
+	
+}
+
 .card-body {
 	padding: 5px;
+	height: 170px !important;
+}
+
+div.card-body > p {
+	position: relative;
+	left: -6px;
+	width: 128px;
+	margin-top: 119px;
+	border-left: 1px solid rgb(223, 223, 223);
+	border-bottom: 1px solid rgb(223, 223, 223);
+	border-right: 1px solid rgb(223, 223, 223);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	text-align: center;
+	font-size: 15px;
 }
 
 #product-list-div {
 	width: 128px;
 	height: 128px;
+	margin-bottom: 0px !important;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
 }
 
 #product-list-div > img {
-	width: 126px;
-	height: 96px;
+	position: absolute;
+	height: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .list-group-item {
@@ -146,17 +184,20 @@ body, #team-footer {
 	float: left;
 }
 
-/* [book, webtoon, webnovel] list.jsp */
+/* main.jsp, [book, webtoon, webnovel] list.jsp */
 #carousel-product, .carousel-inner, #carousel-item {
 	width: 720px;
-	height: 400px;
+	height: 450px;
+	overflow: hidden;
+	background-color: white;
 }
 
 .carousel-inner > #carousel-item > a > img {
-	top: 0;
-	left: 0;
-	width: 100%;
+	position: absolute;
 	height: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 /* [book, webtoon, webnovel] get.jsp */
