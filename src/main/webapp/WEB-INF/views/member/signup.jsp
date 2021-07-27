@@ -87,7 +87,7 @@
 					alert("인증되었습니다!");
 					$("#signup").removeAttr("hidden");
 				} else {
-					console.log("인증번호 틀립니다 ㅠ");
+					console.log("인증번호 틀립니다");
 					alert("틀린 인증번호 입니다.");
 					$("#sang-inz-input").focus();
 				}
@@ -168,23 +168,22 @@
 						<label for="signup-input3">이름</label> <input type="text"
 							class="form-control" id="signup-input3" name="userName">
 					</div>
-                <div style="margin-top: 25px"></div>
-				
-				<div style="margin: 0 auto;" class="col-5">
-				<div style="text-align: left;">
-					<h5>
-						E-mail
-					</h5>
+
+					<div class="form-group">
+						<label for="signup-input3">이메일</label> <input type="text"
+							class="form-control" id="signup-input3" name="usermail">
+						
+					</div>
 				</div>
 				</div>
 				<div class="ps_box2 col-5">
 					<input style="border:none; outline: none; width: 230px;" type="text" id="sang-email" name="usermail" class="" title="Email" maxlength="30">
 					<button style="display: inline;" class="emailbtn" id="sang-authnum" type="button">인증번호 전송</button>
                 </div>
-                <div style="margin-top: 25px"></div>
-                
-                <div hidden class="ps_box2 col-5" id="sang-inz-div">
-	                <input style="border:none; outline: none; width: 230px;" type="text" class="" name="inz" id="sang-inz-input" maxlength="30"/>
+               
+                <div class="ps_box2 col-5">
+                <div hidden  id="sang-inz-div">
+	                <input type="text" class="" name="inz" id="sang-inz-input">
 					<button class="emailbtn" id="sang-inz-btn" type="button">인증</button>
                 </div>
                 <div style="margin-top: 25px"></div>
