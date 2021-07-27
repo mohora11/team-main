@@ -6,7 +6,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.team.domain.product.ProductCriteria;
 import org.team.domain.product.ProductVO;
 import org.team.service.main.MainService;
 
@@ -30,6 +32,15 @@ public class MainController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("rank", rank);
+	}
+	
+	@GetMapping("/search")
+	public void search(@ModelAttribute("cri") ProductCriteria cri, Model model) {
+		log.info("***main search method***");
+		
+		List<ProductVO> list = service.getSearchList(cri);
+		
+		model.addAttribute("list", list);
 	}
 	
 	@RequestMapping("/product/register")

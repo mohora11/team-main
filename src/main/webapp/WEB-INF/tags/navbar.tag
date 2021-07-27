@@ -3,6 +3,10 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 
+<c:url value="/search" var="listUrl">
+	<c:param name="keyword" value="${cri.keyword}" />
+</c:url>
+
 <c:url value="/member/likes" var="likesUrl">
 	<c:param name="userid" value="${pinfo.member.userid}"></c:param>
 </c:url>
@@ -13,27 +17,26 @@
 			<a class="navbar-brand" href="${appRoot}/main">Project 로고 위치</a>
 			<ul class="nav justify-content-end">
 				<li id="navbar-search" class="nav-item mr-3">
-					<form class="form-inline">
+					<form action="${listUrl}" method="get" id="search-form" class="form-inline">
 						<div class="input-group mr-sm-2">
-							<input type="text" id="navbar-search-input" class="form-control">
+							<input type="text" id="navbar-search-input" name="keyword" class="form-control" value="${cri.keyword}">
 						    <div class="input-group-prepend">
-								<div id="navbar-search-icon" class="input-group-text"><span><i class="fas fa-search"></i></span></div>
+								<div id="navbar-search-icon" class="input-group-text"><span id="search-icon"><i class="fas fa-search"></i></span></div>
 						    </div>
 					  	</div>
 					</form>
 				</li>
 				<sec:authorize access="!isAuthenticated()">
+					<li id="charge-btn" class="nav-item">
+						<a href="${appRoot}/member/pay" id="charge-btn-link">캐시충전</a>
+					</li>
+					<li id="nav-divider" class="nav-item" onselectstart="return false">
+						<span><small>&nbsp;ㅣ&nbsp;</small></span>
+					</li>
 					<li id="login-btn" class="nav-item">
 						<a href="${appRoot}/member/login" id="login-btn-link">로그인</a>
 					</li>
 				</sec:authorize>
-				
-	  <sec:authorize access="!isAuthenticated()">
-	  	<li class="nav-item">
-	  		<a class="nav-link" href="${appRoot}/member/signup">회원가입</a>
-	  	</li>
-	  </sec:authorize>
-				
 				<sec:authorize access="isAuthenticated()">
 					<li class="nav-item">
 						<div class="dropdown">

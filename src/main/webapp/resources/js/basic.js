@@ -1,5 +1,10 @@
 $(function() {
 
+	// navbar 검색창의 검색 아이콘 클릭해도 submit 시키기
+	$('#search-icon').click(function() {
+		$('#search-form').submit();
+	});
+
 	// navbar에서 선택한 category를 active 상태로 변경하여 navbar에 현재 category 표시
 	var currentUrl = document.location.href.split('http://localhost:8080/');
 	var splitUrl = currentUrl[1];
