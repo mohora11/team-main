@@ -14,6 +14,6 @@ public class MemberVO {
 	private Date updateDate;
 	private boolean enabled;
 	private String usermail;
-	
+	private Integer id;
 	private List<AuthVO> authList;
 }

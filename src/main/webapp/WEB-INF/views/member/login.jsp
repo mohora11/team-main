@@ -40,8 +40,8 @@
 		<br>
 		<div class="container">
 		<a href="${appRoot}/member/signup" class="btn btn-primary">회원가입</a>
-		<a href="${appRoot}/member/info" class="btn btn-primary">비밀번호 찾기/변경</a>
-		<a href="${appRoot}/member/info" class="btn btn-primary">아이디 찾기/변경</a>	
+		<a href="${appRoot}/member/findpw" class="btn btn-primary">비밀번호 찾기/변경</a>
+		<a href="${appRoot}/member/findid" class="btn btn-primary">아이디 찾기/변경</a>	
 		</div>
 		
 </body>

@@ -1,5 +1,7 @@
 package org.team.service.member;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -34,6 +36,18 @@ public class MemberServiceImpl implements MemberService {
 		mapper.insertAuth(avo);
 		
 		return cnt == 1;
+	}
+	
+	@Override
+	public List<MemberVO> read2(MemberVO vo) {
+		
+		return mapper.read2(vo);
+	}
+	
+	@Override
+	public List<MemberVO> read3(MemberVO vo) {
+		
+		return mapper.read3(vo);
 	}
 	
 	@Override

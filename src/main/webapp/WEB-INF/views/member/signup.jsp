@@ -55,6 +55,46 @@
 			}
 		})
 
+			var authurl = "${appRoot}"+"/member/authNumber";
+	
+	$("#sang-authnum").click(function() {
+		var idE = $("#sang-email").val();
+		/* var idP = $("#sang-pnum").val(); */
+		
+		$re=/^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;			
+		if(!$re.test(idE)){
+			alert("정확한 형식의 Email을 입력해 주세요");
+			$("#sang-email").focus();
+			return false;
+		}
+		
+		$.post(authurl, {idE: idE/* ,idP: idP */}, function(data) {
+			if (data == 'ok1') {
+				$("#sang-inz-div").removeAttr("hidden");
+			} else {
+			
+			}
+		});
+	});
+	
+	$("#sang-authnum").click(function(){
+		
+		$("#sang-inz-btn").click(function(){
+			var idI = $("#sang-inz-input").val();
+			$.post(authurl, {idI: idI}, function(data) {
+				if (data == 'ok2') {
+					console.log("인증번호 맞습니다!");
+					alert("인증되었습니다!");
+					$("#signup").removeAttr("hidden");
+				} else {
+					console.log("인증번호 틀립니다 ㅠ");
+					alert("틀린 인증번호 입니다.");
+					$("#sang-inz-input").focus();
+				}
+			});
+		});
+	});	
+		
 		// 패스워드 확인
 		$("#signup-input2, #signup-input4").keyup(function() {
 			var pw1 = $("#signup-input2").val();
@@ -128,10 +168,26 @@
 						<label for="signup-input3">이름</label> <input type="text"
 							class="form-control" id="signup-input3" name="userName">
 					</div>
-					<div class="form-group">
-						<label for="signup-input4">이메일</label> <input type="text"
-							class="form-control" id="signup-input4" name="usermail">
-					</div>
+                <div style="margin-top: 25px"></div>
+				
+				<div style="margin: 0 auto;" class="col-5">
+				<div style="text-align: left;">
+					<h5>
+						E-mail
+					</h5>
+				</div>
+				</div>
+				<div class="ps_box2 col-5">
+					<input style="border:none; outline: none; width: 230px;" type="text" id="sang-email" name="usermail" class="" title="Email" maxlength="30">
+					<button style="display: inline;" class="emailbtn" id="sang-authnum" type="button">인증번호 전송</button>
+                </div>
+                <div style="margin-top: 25px"></div>
+                
+                <div hidden class="ps_box2 col-5" id="sang-inz-div">
+	                <input style="border:none; outline: none; width: 230px;" type="text" class="" name="inz" id="sang-inz-input" maxlength="30"/>
+					<button class="emailbtn" id="sang-inz-btn" type="button">인증</button>
+                </div>
+                <div style="margin-top: 25px"></div>
 					<button disabled type="submit" class="btn btn-primary"
 						id="signup-btn1">회원 가입</button>
 				</form>

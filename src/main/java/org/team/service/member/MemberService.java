@@ -1,5 +1,7 @@
 package org.team.service.member;
 
+import java.util.List;
+
 import org.team.domain.member.MemberVO;
 
 public interface MemberService {
@@ -15,6 +17,12 @@ public interface MemberService {
 	boolean remove(MemberVO vo, String oldPassword);
 
 	boolean modify(MemberVO vo, String oldPassword);
+	
+	List<MemberVO> read2(MemberVO vo);
+
+	List<MemberVO> read3(MemberVO vo);
+
+
 
 
 }
