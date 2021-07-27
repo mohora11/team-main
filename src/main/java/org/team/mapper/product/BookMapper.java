@@ -22,4 +22,6 @@ public interface BookMapper {
 
 	public void plusCnt(Long id);
 
+	public List<ProductVO> getRank();
+
 }

@@ -22,6 +22,27 @@
 		ORDER BY id DESC
 	</select>
 	
+	<select id="getRank" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    p.view_cnt view_cnt,
+		    c.file_name file_name
+		
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+		
+		WHERE p.product_category = 3
+		
+		ORDER BY p.view_cnt DESC
+		
+		LIMIT 0, 5
+	</select>
+	
 	<select id="get" resultType="org.team.domain.product.ProductVO">
 		SELECT
 			p.id id,

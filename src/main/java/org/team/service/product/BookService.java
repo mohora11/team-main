@@ -21,4 +21,6 @@ public interface BookService {
 
 	public void plusCnt(Long id);
 
+	public List<ProductVO> getRank();
+
 }

@@ -50,6 +50,11 @@ public class WebtoonServiceImpl implements WebtoonService {
 	public List<ProductVO> getList() {
 		return mapper.getList();
 	}
+	
+	@Override
+	public List<ProductVO> getRank() {
+		return mapper.getRank();
+	}
 
 	@Override
 	public ProductVO get(Long id) {
