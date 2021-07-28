@@ -18,6 +18,14 @@ public interface MemberService {
 	boolean remove(MemberVO vo, String oldPassword);
 
 	boolean modify(MemberVO vo, String oldPassword);
+	
+	List<MemberVO> read2(MemberVO vo);
+
+	List<MemberVO> read3(MemberVO vo);
+
+	boolean approve(String pgToken) throws Exception;
+
+
 
 	public List<ProductVO> getLikes(String userid);
 	public List<ProductVO> getWebtoonLikes(String userid);

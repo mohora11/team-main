@@ -5,6 +5,28 @@
 
 <mapper namespace="org.team.mapper.member.MemberMapper">
 
+	<select id="read2" resultMap="memberMap">
+		SELECT
+			m.userid userid,
+			m.userName userName,
+			m.usermail usermail
+		FROM
+			user m
+		WHERE
+			m.userName = #{userName} AND m.usermail = #{usermail}
+	</select>
+	
+		<select id="read3" resultMap="memberMap">
+		SELECT
+			m.userid userid,
+			m.userName userName,
+			m.userEmail usermail
+		FROM
+			user m
+		WHERE
+			m.userid = #{userid} AND m.userName = #{userName} AND m.userEmail = #{usermail}
+	</select>
+	
 	<delete id="removeAuth">
 		DELETE FROM tbl_member_auth
 		WHERE userid = #{userid}
@@ -27,9 +49,9 @@
 
 	<insert id="insert">
 		INSERT INTO tbl_member
-		(userid, userpw, username)
+		(userid, userpw, username, usermail)
 		VALUES
-		(#{userid}, #{userpw}, #{userName})
+		(#{userid}, #{userpw}, #{userName}, #{usermail})
 	</insert>
 
 	<insert id="insertAuth">
@@ -47,6 +69,7 @@
 		m.enabled enabled,
 		m.regdate regdate,
 		m.updateDate updateDate,
+		m.usermail usermail,
 		a.auth auth
 		FROM
 		tbl_member m LEFT JOIN tbl_member_auth a ON m.userid = a.userid
@@ -60,6 +83,7 @@
 		id="memberMap">
 		<id property="userid" column="userid" />
 		<result property="userpw" column="userpw" />
+		<result property="usermail" column="usermail" />
 		<result property="userName" column="username" />
 		<result property="regdate" column="regdate" />
 		<result property="updateDate" column="updateDate" />
