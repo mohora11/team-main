@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.team.SendEmail;
@@ -28,7 +29,6 @@ import org.team.domain.member.Criteria;
 import org.team.domain.member.MemberVO;
 import org.team.security.domain.CustomUser;
 import org.team.service.member.MemberService;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -46,6 +46,27 @@ public class MemberController {
 	@RequestMapping("/pay")
 	public void pay() {
 		
+	}
+	
+//	@RequestMapping(value = "/pay", params = "pg_token")
+	public String pay(@RequestParam("pg_token") String pgToken) {
+		String failUrl = "/member/fail";
+		String successUrl = "/member/success";
+		
+		try {
+			
+			if (service.approve(pgToken)) {
+				log.info("모두 잘됨!!");
+				
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("뭔가 이상1111!!");
+		}
+		
+		log.info("뭔가 이상2222!!");
+		return null;
 	}
 	
 	@RequestMapping("/fail")

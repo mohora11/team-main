@@ -22,6 +22,8 @@ public interface MemberService {
 
 	List<MemberVO> read3(MemberVO vo);
 
+	boolean approve(String pgToken) throws Exception;
+
 
 
 
