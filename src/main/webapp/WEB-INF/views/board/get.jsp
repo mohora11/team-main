@@ -108,7 +108,7 @@ var userid = "${pinfo.member.userid}";
 									<option value="A" >음란물 게시</option>
 									<option value="B" >욕설 및 비방</option>
 									<option value="C" >정치글 및 분란야기</option>
-								</select><br> 
+								</select><br>  
 								<label for="recipient-name" class="col-form-label">신고자</label>
 								<input type="text" readonly value="${pinfo.member.userName }"
 									class="form-control" /> <input type="hidden"

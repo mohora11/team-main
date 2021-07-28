@@ -33,7 +33,7 @@ var userid = "${pinfo.member.userid}";
 			<form>
 				<div class="form-group">
 					<label for="input1">제목</label>
-					<input readonly="readonly" id="input1" class="form-control" name="title" value="${board.title }">
+					<input readonly="readonly" id="input1" class="form-control" name="title" value="${help.title }">
 				</div>
 				<div class="form-group">
 					<label for="textarea1">내용</label>
