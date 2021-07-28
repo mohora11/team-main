@@ -9,23 +9,81 @@ a:hover {
 	padding: 0px;
 }
 
+.carousel-caption {
+	bottom: 0px;
+	color: black;
+	font-weight: bold;
+}
+
+.fa-angle-left, .fa-angle-right {
+	color: black;
+	width: 20px !important;
+	height: 20px !important;
+}
+
+.form-inline > a {
+	height: 170px;
+	
+}
+
 .card-body {
 	padding: 5px;
+	height: 170px !important;
+}
+
+div.card-body > p {
+	position: relative;
+	left: -6px;
+	width: 128px;
+	margin-top: 119px;
+	border-left: 1px solid rgb(223, 223, 223);
+	border-bottom: 1px solid rgb(223, 223, 223);
+	border-right: 1px solid rgb(223, 223, 223);
+	border-bottom-left-radius: 4px;
+	border-bottom-right-radius: 4px;
+	text-align: center;
+	font-size: 15px;
 }
 
 #product-list-div {
 	width: 128px;
 	height: 128px;
+	margin-bottom: 0px !important;
+	border-bottom-left-radius: 0px;
+	border-bottom-right-radius: 0px;
 }
 
 #product-list-div > img {
-	width: 126px;
-	height: 96px;
+	position: absolute;
+	height: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 .list-group-item {
 	border: none;
 	font-weight: bold;
+}
+
+ul.sel {
+	align-items: center;
+	justify-content: space-between;
+}
+
+li.sel {
+	padding: 10px 10px 10px 0px !important;
+}
+
+.list-group-item > a {
+	border: none;
+	font-weight: 500;
+	color: black;
+}
+
+.btn-light {
+	border: none;
+	background-color: rgb(238, 238, 238);
 }
 
 #team-header {
@@ -44,13 +102,47 @@ body, #team-footer {
 	width: 720px;
 }
 
+#dropdown-menu {
+	text-align: center;
+}
+
 /* navbar.tag */
 #navbar-search {
 	margin-top: 3px;
 }
 
+#search-rank {
+	position: absolute;
+	top: 97%;
+	width: 191px;
+	border: 1px solid rgb(206, 212, 218);
+	border-radius: 0 0 15px 15px;
+	background-color: white;
+	/* 객체가 겹치는 경우 z-index 값을 조절하여 우선순위를 정함(높을수록 앞에 나옴) */
+	z-index: 1;
+}
+
+#search-rank-list {
+	position: relative;
+}
+
+#search-rank-list-keyword1,
+#search-rank-list-keyword2,
+#search-rank-list-keyword3,
+#search-rank-list-keyword4,
+#search-rank-list-keyword5 {
+	color: black;
+}
+
+#nav-divider {
+	margin-top: 7px;
+	color: rgb(200, 200, 200);
+}
+
 #login-btn, #charge-btn {
 	margin-top: 7px;
+	font-weight: bold;
+	font-size: 17px;
 }
 
 #login-btn-link, #charge-btn-link {
@@ -73,7 +165,7 @@ body, #team-footer {
 	height: 41px;
 }
 
-.nav-item > a.nav-link, #login-btn {
+.nav-item > a.nav-link {
 	font-weight: bold;
 	font-size: 17px;
 }
@@ -122,17 +214,20 @@ body, #team-footer {
 	float: left;
 }
 
-/* [book, webtoon, webnovel] list.jsp */
+/* main.jsp, [book, webtoon, webnovel] list.jsp */
 #carousel-product, .carousel-inner, #carousel-item {
 	width: 720px;
-	height: 400px;
+	height: 450px;
+	overflow: hidden;
+	background-color: white;
 }
 
 .carousel-inner > #carousel-item > a > img {
-	top: 0;
-	left: 0;
-	width: 100%;
+	position: absolute;
 	height: 100%;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
 
 /* [book, webtoon, webnovel] get.jsp */

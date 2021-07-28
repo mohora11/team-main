@@ -31,7 +31,7 @@ var userid = "${pinfo.member.userid}";
 	<%-- 댓글 목록 --%>
 	<div id="div-white" class="container p-3">
 		<h5>
-			댓글 <c:if test="${webtoon.reply_cnt > 0}"><small>[${webtoon.reply_cnt}]</small></c:if>
+			댓글 <c:if test="${webtoon.reply_cnt > 0}"><small>[</small><small id="replyCnt">${webtoon.reply_cnt}</small><small>]</small></c:if>
 		</h5>
 		
 		<hr>
