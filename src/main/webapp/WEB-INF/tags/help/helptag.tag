@@ -5,7 +5,7 @@
 
 
 
-<c:url value="/board/register" var="registerUrl">
+<c:url value="/help/register" var="registerUrl">
 	<c:if test="${not empty cri.pageNum }">
 		<c:param name="pageNum" value="${cri.pageNum }"></c:param>
 	</c:if>
@@ -22,7 +22,7 @@
     <ul class="navbar-nav mr-auto">
       
       <li class="nav-item">
-        <a class="nav-link" href="${registerUrl }"><i class="fas fa-pen"></i> 글쓰기</a>
+        <a class="nav-link" href="${registerUrl }"><i class="fas fa-pen"></i> 문의하기</a>
       </li>
 	  
     </ul>

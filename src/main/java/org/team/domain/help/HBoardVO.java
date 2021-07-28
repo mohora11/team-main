@@ -1,4 +1,4 @@
-package org.team.domain.board;
+package org.team.domain.help;
 
 import java.util.Date;
 
@@ -7,9 +7,9 @@ import org.springframework.web.multipart.MultipartFile;
 import lombok.Data;
 
 @Data //bean
-public class BoardVO {
+public class HBoardVO {
 	 
-	private long bno;
+	private long hno;
 	private String title;
 	private String content;
 	private String writer;

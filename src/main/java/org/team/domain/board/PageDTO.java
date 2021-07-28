@@ -21,6 +21,7 @@ public class PageDTO {
 	
 	public PageDTO(BoardCriteria cri, int total) {
 		this.cri = cri;
+		this.total = total;
 		
 		int current = cri.getPageNum();
 		int numPerPage = cri.getAmount();

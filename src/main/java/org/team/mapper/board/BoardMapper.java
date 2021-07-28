@@ -8,7 +8,6 @@ import org.team.domain.member.MemberVO;
 
 public interface BoardMapper {
 	
-//	@Select("SELECT * FROM tbl_board")
 	public List<BoardVO> getList();
 	
 	public List<BoardVO> getListWithPaging(BoardCriteria cri);

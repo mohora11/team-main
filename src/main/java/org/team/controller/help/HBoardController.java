@@ -1,4 +1,4 @@
-package org.team.controller.board;
+package org.team.controller.help;
 
 import java.util.List;
 
@@ -12,38 +12,44 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.team.domain.board.BoardVO;
-import org.team.domain.board.BoardCriteria;
-import org.team.domain.board.PageDTO;
-import org.team.service.board.BoardService;
+import org.team.domain.help.HBoardVO;
+import org.team.domain.help.HBoardCriteria;
+import org.team.domain.help.HPageDTO;
+import org.team.service.help.HBoardService;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
 
 @Controller
-@RequestMapping("/board/*")
+@RequestMapping("/help/*")
 @AllArgsConstructor
 @Log4j
-public class BoardController {
+public class HBoardController {
 	
-	private BoardService service;
+	private HBoardService service;
 	
-	@GetMapping("/list")
-	public void list(@ModelAttribute("cri") BoardCriteria cri, Model model) {
+	@RequestMapping("/main")
+	public void main() {
+		
+	}
+	
+	@GetMapping({"/list", "/admin"})
+	@PreAuthorize("isAuthenticated()")
+	public void list(@ModelAttribute("cri") HBoardCriteria cri, Model model) {
 		int total = service.getTotal(cri);
 		
 		
-		List<BoardVO> list = service.getList(cri);
+		List<HBoardVO> list = service.getList(cri);
 		
 		model.addAttribute("list", list);
-		model.addAttribute("pageMaker", new PageDTO(cri, total));		
+		model.addAttribute("pageMaker", new HPageDTO(cri, total));
+		
 		 
 	}
-
 	
 	@PostMapping("/register")
 	@PreAuthorize("isAuthenticated()")
-	public String register(BoardVO board, 
+	public String register(HBoardVO board, 
 		@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {	
 		
 		board.setFileName(file.getOriginalFilename());
@@ -51,31 +57,29 @@ public class BoardController {
 		
 		service.register(board, file); 
 		
-		rttr.addFlashAttribute("result", board.getBno());
+		rttr.addFlashAttribute("result", board.getHno());
 		rttr.addFlashAttribute("messageTitle", "등록 성공.");
-		rttr.addFlashAttribute("messageBody", board.getBno() + "번 게시물 등록 되었습니다.");
+		rttr.addFlashAttribute("messageBody", board.getHno() + "번 게시물 등록 되었습니다.");
 		
-		// /board/list redirect
-		return "redirect:/board/list";
+		// /help/list redirect
+		return "redirect:/help/list";
 	}
 	
 	
 	@GetMapping({"/get", "/modify"})
-	public void get(@RequestParam("bno") Long bno, 
-			@ModelAttribute("cri") BoardCriteria cri, 
+	public void get(@RequestParam("hno") Long hno, 
+			@ModelAttribute("cri") HBoardCriteria cri, 
 			Model model) {
-		log.info("board/get method");
 		
-		BoardVO vo = service.get(bno);
+		HBoardVO vo = service.get(hno);
 		
-		model.addAttribute("board", vo);
+		model.addAttribute("help", vo);
 		
 	}
 	
 	@PostMapping("/modify")
-	@PreAuthorize("principal.username == #board.writer")// 720p
-//	@PreAuthorize("authication.name == #board.writer")// spring.io
-	public String modify(BoardVO board, BoardCriteria cri,
+	@PreAuthorize("principal.username == #help.writer")// 720p
+	public String modify(HBoardVO board, HBoardCriteria cri,
 			@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {
 		
 		log.info("modify:" + board);
@@ -93,14 +97,14 @@ public class BoardController {
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 	
-		return "redirect:/board/list";
+		return "redirect:/help/list";
 	}
 	
 	@PostMapping("/remove")
 	@PreAuthorize("principal.username == #writer")  // 720p
-	public String remove(Long bno, BoardCriteria cri, RedirectAttributes rttr, String writer) {
+	public String remove(Long hno, HBoardCriteria cri, RedirectAttributes rttr, String writer) {
 		
-		boolean success = service.remove(bno);
+		boolean success = service.remove(hno);
 		
 		if (success) {
 			rttr.addFlashAttribute("result", "success");
@@ -112,12 +116,12 @@ public class BoardController {
 		rttr.addAttribute("type", cri.getType());
 		rttr.addAttribute("keyword", cri.getKeyword());
 		
-		return "redirect:/board/list";
+		return "redirect:/help/list";
 	}
 	
 	@GetMapping("/register")
 	@PreAuthorize("isAuthenticated()") // 673p
-	public void register(@ModelAttribute("cri") BoardCriteria cri) {
+	public void register(@ModelAttribute("cri") HBoardCriteria cri) {
 		// forward함 WEB-INF/views/board/register.jsp
 	}
 	

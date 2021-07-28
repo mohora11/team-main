@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="org.team.mapper.help.HReplyMapper">
+
+<delete id="removeByHnoByUserid">
+DELETE FROM tbl_help_reply
+WHERE hno IN (
+	SELECT hno FROM tbl_help_board WHERE writer = #{userid}
+)
+</delete>
+
+<delete id="removeByUserid">
+DELETE FROM tbl_help_reply
+WHERE replyer = #{userid}
+</delete>
+
+<insert id="insert">
+	INSERT INTO tbl_help_reply (hno, reply, replyer)
+	VALUES (#{hno}, #{reply}, #{replyer})
+</insert>
+
+<select id="read" resultType="org.team.domain.help.HReplyVO">
+	SELECT
+		r.hrno hrno,
+		r.hno hno,
+		r.reply reply,
+		r.replyer replyer,
+		r.replyDate replyDate,
+		m.username replyerName
+	FROM
+		tbl_help_reply r JOIN tbl_member m ON r.replyer = m.userid
+	WHERE
+		r.hrno = #{hrno}
+</select>
+
+<delete id="delete">
+	DELETE FROM tbl_help_reply WHERE hrno = #{hrno}
+</delete>				
+
+<insert id="insertSelectKey" useGeneratedKeys="true" keyProperty="hrno" keyColumn="hrno">
+INSERT INTO tbl_help_reply (hno, reply, replyer)
+VALUES (#{hno}, #{reply}, #{replyer})
+</insert>
+
+<update id="update">
+UPDATE tbl_help_reply
+SET reply = #{reply},
+	replyer = #{replyer},
+	updateDate = now()
+WHERE hrno = #{hrno}	
+</update>
+
+<select id="getList" resultType="org.team.domain.help.HReplyVO">
+	SELECT
+		r.hrno hrno,
+		r.hno hno,
+		r.reply reply,
+		r.replyer replyer,
+		r.replyDate replyDate,
+		m.username replyerName
+	FROM 
+		tbl_help_reply r JOIN tbl_member m ON r.replyer = m.userid
+	WHERE
+		r.hno = #{hno}
+	ORDER BY r.hrno ASC	
+	 
+</select>
+
+<select id="getCountByHno" resultType="int">
+SELECT COUNT(*) FROM tbl_help_reply WHERE hno = #{hno}
+</select>
+
+<delete id="deleteByHno">
+DELETE FROM tbl_help_reply
+WHERE hno= #{hno}
+</delete>
+
+
+</mapper>

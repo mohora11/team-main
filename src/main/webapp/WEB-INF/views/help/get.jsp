@@ -12,21 +12,21 @@
 <title></title>
 <script>
 var appRoot = "${appRoot}";
-var boardBno = "${board.bno}";
+var helpHno = "${help.hno}";
 var userid = "${pinfo.member.userid}";
 </script>
-<script src="${appRoot }/resources/js/get.js"></script>
+<script src="${appRoot }/resources/js/hget.js"></script>
 
 
 </head>
 <body>
-<pj:navbar></pj:navbar>
+<pj:navbar>문의하기</pj:navbar>
 
 <div class="container">
 <div id="alert1" class="alert alert-primary fade" role="alert">
   
 </div>
-	<h1>글 보기</h1>
+	<h1>문의내용</h1>
 	
 	<div class="row">
 		<div class="col-12">
@@ -38,32 +38,31 @@ var userid = "${pinfo.member.userid}";
 				<div class="form-group">
 					<label for="textarea1">내용</label>
 					<textarea readonly="readonly" id="textarea1" class="form-control" 
-					name="content"><c:out value="${board.content }" /></textarea>
+					name="content"><c:out value="${help.content }" /></textarea>
 				</div>
-				<c:if test="${not empty board.fileName }"> 
+				<c:if test="${not empty help.fileName }"> 
 					<div>
 						<img class="img-fluid" 
-						src="https://choongang-mohora11.s3.ap-northeast-2.amazonaws.com/${board.bno }/${board.fileName}">
+						src="https://choongang-mohora11.s3.ap-northeast-2.amazonaws.com/${help.hno }/${help.fileName}">
 					</div>
 				</c:if> 
 				<div class="form-group">
 					<label for="input2">작성자</label>
-					<input type="hidden" readonly="readonly" id="input2" class="form-control" name="writer" value="${board.writer }">
-					<input readonly="readonly" class="form-control" value="${board.writerName }">
+					<input type="hidden" readonly="readonly" id="input2" class="form-control" name="writer" value="${help.writer }">
+					<input readonly="readonly" class="form-control" value="${help.writerName }">
 				</div>
 				
-				<c:url value="/board/modify" var="modifyUrl">
-					<c:param name="bno" value="${board.bno }"/>
+				<c:url value="/help/modify" var="modifyUrl">
+					<c:param name="hno" value="${help.hno }"/>
 					<c:param name="pageNum" value="${cri.pageNum }"/>
 					<c:param name="amount" value="${cri.amount }"/>
 					<c:param name="type" value="${cri.type }" />
 					<c:param name="keyword" value="${cri.keyword }" />
 				</c:url>
 				
-				<c:if test="${pinfo.member.userid eq board.writer }" >
+				<c:if test="${pinfo.member.userid eq help.writer }" >
 				<a class="btn btn-secondary" href="${modifyUrl }">수정/삭제</a>	
 				</c:if>
-				
 			</form>
 		</div>
 	</div>
@@ -75,62 +74,15 @@ var userid = "${pinfo.member.userid}";
 			<h3>댓글</h3>
 			
 			<sec:authorize access="isAuthenticated()">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reply-insert-modal">댓글 작성</button>
-			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#report-insert-modal">신고하기</button>				
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reply-insert-modal">댓글 작성</button>				
 			</sec:authorize>
 			<ul class="list-unstyled" id="reply-list-container">
 			</ul>
 			</div>
 		</div>
 	</div>
-<!-- 신고하기 모달  -->
 
-	<div class="modal fade" id="report-insert-modal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="exampleModalLabel">신고하기</h5>
-					<button type="button" class="close" data-dismiss="modal"
-						aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-				</div>
-				<div class="modal-body">
-					<form>
-						<input type="text" value="${board.bno }" readonly hidden
-							id="report-bno-input1">
-						<div class="form-group">
-							<label for="recipient-name" class="col-from-label">신고사유</label>
-							<form method="get" class="form-inline"> 
-								<select name="type" class="form-control mr-sm-2">
-									<option value="">--</option>
-									<option value="A" >음란물 게시</option>
-									<option value="B" >욕설 및 비방</option>
-									<option value="C" >정치글 및 분란야기</option>
-								</select><br> 
-								<label for="recipient-name" class="col-form-label">신고자</label>
-								<input type="text" readonly value="${pinfo.member.userName }"
-									class="form-control" /> <input type="hidden"
-									value="${pinfo.member.userid }" class="form-control"
-									id="report-input1">
-						</div>
-						<div class="form-group">
-							<label for="message-text" class="col-form-label">상세 내용</label>
-							<textarea class="form-control" id="report-textarea1"></textarea>
-						</div>
-					</form>
-				</div>
-				<div class="modal-footer">
-					<button id="report-insert-btn1" type="button" class="btn btn-danger">신고</button>
-					<button type="button" class="btn btn-secondary"
-						data-dismiss="modal">닫기</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 댓글 입력 모달  -->
+<!-- 댓글 입력 모달  -->
 
 <div class="modal fade" id="reply-insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -143,7 +95,7 @@ var userid = "${pinfo.member.userid}";
       </div>
       <div class="modal-body">
         <form>
-          <input type="text" value="${board.bno }" readonly hidden id="reply-bno-input1">	
+          <input type="text" value="${help.hno }" readonly hidden id="reply-hno-input1">	
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">작성자</label>
             <input type="text" readonly value="${pinfo.member.userName }" class="form-control" />
@@ -175,8 +127,8 @@ var userid = "${pinfo.member.userid}";
       </div>
       <div class="modal-body">
         <form>
-          <input type="text" value="" readonly hidden id="reply-rno-input2">
-          <input type="text" value="${board.bno }" readonly hidden id="reply-bno-input2">	
+          <input type="text" value="" readonly hidden id="reply-hrno-input2">
+          <input type="text" value="${help.hno }" readonly hidden id="reply-hno-input2">	
           <div class="form-group">
             <label for="recipient-name" class="col-form-label">작성자</label>
             <input id="reply-replyerName-input2" class="form-control" readonly type="text" />
