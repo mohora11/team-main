@@ -102,7 +102,7 @@ var userid = "${pinfo.member.userid}";
 							id="report-bno-input1">
 						<div class="form-group">
 							<label for="recipient-name" class="col-from-label">신고사유</label>
-							<form method="get" class="form-inline">
+							<form method="get" class="form-inline"> 
 								<select name="type" class="form-control mr-sm-2">
 									<option value="">--</option>
 									<option value="A" >음란물 게시</option>
