@@ -35,8 +35,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MemberController {
 	
-	
 	@RequestMapping("/pay")
+	@PreAuthorize("isAuthenticated()")
 	public void pay() {
 		
 	}

@@ -5,26 +5,34 @@ $(function() {
 		$('#search-form').submit();
 	});
 	
-	// navbar 검색창 focus in
-	$('#navbar-search-input').focus(function() {
-		$('#navbar-search-input').css('border-radius', '15px 0 0 0');
-		$('#navbar-search-icon').css('border-radius', '0 15px 0 0');
-		$('#search-rank').removeAttr('hidden');
+	// navbar 검색창 focus in, out
+	$('#navbar-search-input').on({
+		focus: function() {
+			$('#navbar-search-input').css('border-radius', '15px 0 0 0');
+			$('#navbar-search-icon').css('border-radius', '0 15px 0 0');
+			$('#search-rank').removeAttr('hidden');
+		},
+		blur: function() {
+			$('#navbar-search-input').css('border-radius', '25px 0 0 25px');
+			$('#navbar-search-icon').css('border-radius', '0 25px 25px 0');
+			$('#search-rank').attr('hidden', 'hidden');
+		}
 	});
 	
-	// navbar 검색창 focus out
-	$('#navbar-search-input').blur(function() {
-		$('#navbar-search-input').css('border-radius', '25px 0 0 25px');
-		$('#navbar-search-icon').css('border-radius', '0 25px 25px 0');
-		$('#search-rank').attr('hidden', 'hidden');
-	});
-	
-	// navbar 검색 TOP 5에서 선택한 keyword로 검색하기
-	$('#search-rank-list-keyword1, #search-rank-list-keyword2, #search-rank-list-keyword3, #search-rank-list-keyword4, #search-rank-list-keyword5').mousedown(function(e) {
-		e.preventDefault();
-		var keyword = $(this).text();
-		$('#navbar-search-input').val(keyword);
-		$('#search-form').submit();
+	// navbar 검색 TOP 5 항목에 마우스 올리거나 내리면 색상 변경, 선택한 keyword로 검색하기
+	$('#search-rank-list-keyword1, #search-rank-list-keyword2, #search-rank-list-keyword3, #search-rank-list-keyword4, #search-rank-list-keyword5').on({
+		mouseenter: function() {
+			$(this).css('background-color', 'rgb(230, 230, 230)');
+		},
+		mouseleave: function() {
+			$(this).css('background-color', 'white');
+		},
+		mousedown: function(e) {
+			e.preventDefault();
+			var keyword = $(this).text();
+			$('#navbar-search-input').val(keyword);
+			$('#search-form').submit();
+		}
 	});
 	
 	// navbar에서 선택한 category를 active 상태로 변경하여 navbar에 현재 category 표시

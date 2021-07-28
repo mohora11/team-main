@@ -126,6 +126,14 @@ body, #team-footer {
 	position: relative;
 }
 
+#search-rank-list-keyword1,
+#search-rank-list-keyword2,
+#search-rank-list-keyword3,
+#search-rank-list-keyword4,
+#search-rank-list-keyword5 {
+	color: black;
+}
+
 #nav-divider {
 	margin-top: 7px;
 	color: rgb(200, 200, 200);
