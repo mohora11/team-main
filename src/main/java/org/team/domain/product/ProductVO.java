@@ -18,4 +18,8 @@ public class ProductVO {
 	private String file_name;
 	
 	private int reply_cnt;
+	
+	private int like_cnt;
+	
+	private int view_cnt;
 }

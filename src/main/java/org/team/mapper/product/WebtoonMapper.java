@@ -19,4 +19,8 @@ public interface WebtoonMapper {
 	public int update(ProductVO product);
 
 	public int remove(Long id);
+
+	public void plusCnt(Long id);
+
+	public List<ProductVO> getRank();
 }

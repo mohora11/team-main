@@ -26,6 +26,13 @@
 		</dependencies>
 	</dependencyManagement>
 	<dependencies>
+		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpclient -->
+		<dependency>
+		    <groupId>org.apache.httpcomponents</groupId>
+		    <artifactId>httpclient</artifactId>
+		    <version>4.5.13</version>
+		</dependency>
+			
 		<!-- https://mvnrepository.com/artifact/org.springframework.security/spring-security-web -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -49,6 +56,24 @@
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-taglibs</artifactId>
 		    <version>${org.springframework-version}</version>
+		</dependency>
+		
+				<!-- https://mvnrepository.com/artifact/com.googlecode.json-simple/json-simple -->
+		<dependency>
+		    <groupId>com.googlecode.json-simple</groupId>
+		    <artifactId>json-simple</artifactId>
+		    <version>1.1.1</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/javax.mail/javax.mail-api -->
+		<dependency>
+		    <groupId>javax.mail</groupId>
+		    <artifactId>javax.mail-api</artifactId>
+		    <version>1.6.2</version>
+		</dependency>
+				<dependency>
+		    <groupId>com.sun.mail</groupId>
+		    <artifactId>javax.mail</artifactId>
+		    <version>1.6.0</version>
 		</dependency>
 		
 		<dependency>

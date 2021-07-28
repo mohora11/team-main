@@ -19,4 +19,8 @@ public interface WebnovelService {
 
 	public boolean remove(Long id);
 
+	public void plusCnt(Long id);
+
+	public List<ProductVO> getRank();
+
 }

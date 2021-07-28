@@ -33,8 +33,16 @@
 					<label class="form-check-label" for="checkbox1">자동 로그인</label>
 				</div>
 				
-				<input class="btn btn-primary" type="submit" value="로그인">
+				<input class="btn btn-primary" type="submit" value="로그인"> <br>
+				
 			</form>
 		</div>
+		<br>
+		<div class="container">
+		<a href="${appRoot}/member/signup" class="btn btn-primary">회원가입</a>
+		<a href="${appRoot}/member/findpw" class="btn btn-primary">비밀번호 찾기/변경</a>
+		<a href="${appRoot}/member/findid" class="btn btn-primary">아이디 찾기/변경</a>	
+		</div>
+		
 </body>
 </html>

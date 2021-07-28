@@ -1,9 +1,14 @@
 package org.team.controller.member;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,14 +19,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.team.SendEmail;
 import org.team.domain.member.Criteria;
 import org.team.domain.member.MemberVO;
+import org.team.domain.product.ProductVO;
 import org.team.security.domain.CustomUser;
 import org.team.service.member.MemberService;
-
 
 import lombok.AllArgsConstructor;
 import lombok.Setter;
@@ -33,10 +41,35 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MemberController {
 	
+
+	@Setter(onMethod_ = @Autowired)
+	private MemberService service;
 	
 	@RequestMapping("/pay")
+	@PreAuthorize("isAuthenticated()")
 	public void pay() {
 		
+	}
+	
+//	@RequestMapping(value = "/pay", params = "pg_token")
+	public String pay(@RequestParam("pg_token") String pgToken) {
+		String failUrl = "/member/fail";
+		String successUrl = "/member/success";
+		
+		try {
+			
+			if (service.approve(pgToken)) {
+				log.info("모두 잘됨!!");
+				
+				return null;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			log.info("뭔가 이상1111!!");
+		}
+		
+		log.info("뭔가 이상2222!!");
+		return null;
 	}
 	
 	@RequestMapping("/fail")
@@ -49,8 +82,15 @@ public class MemberController {
 		
 	}
 	
-	@Setter(onMethod_ = @Autowired)
-	private MemberService service;
+	@GetMapping("/findid")
+	public void findid() {
+		log.info("*** findid in ***");
+	}
+	
+	@GetMapping("/findpw")
+	public void findpw() {
+		log.info("*** findpw in ***");
+	}
 	
 	@GetMapping("/login")
 	public void login() {
@@ -133,5 +173,110 @@ public class MemberController {
 			return new ResponseEntity<> ("exist", HttpStatus.OK);
 		}
 		
+	}
+	
+	@PostMapping("/findid")
+	public ResponseEntity<List<String>> findid(@RequestBody MemberVO vo, Model model) {
+		log.info("***findid post***");
+		log.info(vo);
+		
+		List<String> userid = new ArrayList<String>();
+		
+		List<MemberVO> vo2 = service.read2(vo);
+		log.info(vo2);
+		
+		
+		
+		if(vo2.size() == 0) {
+			return new ResponseEntity<List<String>> (HttpStatus.BAD_REQUEST);
+		} else {
+			for(MemberVO fid : vo2) {
+				if(fid.getUsermail().equals(vo.getUsermail())) {
+					userid.add(fid.getUserid());
+				}
+			}
+			return new ResponseEntity<List<String>> (userid, HttpStatus.OK);
+		}
+		
+	}
+	
+	@PostMapping("/findpw")
+	public ResponseEntity<String> findpw(@RequestBody MemberVO vo) {
+		
+		log.info(vo);
+		
+		// 서비스 일 시키고
+		List<MemberVO> vo2 = service.read3(vo);
+		
+		if (!vo2.isEmpty()) {
+			return new ResponseEntity<>("success", HttpStatus.OK);
+		} else {
+			return new ResponseEntity<> ("exist", HttpStatus.OK);
+		}
+	}
+	@PostMapping("/authNumber")
+	public void authNumber(MemberVO member, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response)throws IOException {
+		
+		HttpSession session = request.getSession();
+		
+		String idI = request.getParameter("idI");
+		String idE = request.getParameter("idE");
+		
+		log.info(idE);
+		
+		if(idI == null) {
+			
+		
+			int num = (int) (Math.random()*123);
+			
+			SendEmail.sendEmail(num, idE);
+			
+			session.setAttribute("authRandomNumber", num);
+			System.out.println(num);
+			
+			response.getWriter().append("ok1");
+			
+			
+		} else {
+			int num = (Integer) session.getAttribute("authRandomNumber");
+			int num1 = Integer.parseInt(idI);
+			if (num == num1) {
+				response.getWriter().append("ok2");
+			} else {
+				response.getWriter().append("not ok");
+			}
+
+		}
+
+	@GetMapping("/likes")
+	@PreAuthorize("isAuthenticated()")
+	public void likes(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> list = service.getLikes(userid);
+		
+		model.addAttribute("list", list);
+	}
+	
+	@GetMapping("/likesWebtoon")
+	@PreAuthorize("isAuthenticated()")
+	public void likesWebtoon(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> webtoon = service.getWebtoonLikes(userid);
+		
+		model.addAttribute("webtoon", webtoon);
+	}
+	
+	@GetMapping("/likesWebnovel")
+	@PreAuthorize("isAuthenticated()")
+	public void likesWebnovel(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> webnovel = service.getWebnovelLikes(userid);
+		
+		model.addAttribute("webnovel", webnovel);
+	}
+	
+	@GetMapping("/likesBook")
+	@PreAuthorize("isAuthenticated()")
+	public void likesBook(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> book = service.getBookLikes(userid);
+		
+		model.addAttribute("book", book);
 	}
 }

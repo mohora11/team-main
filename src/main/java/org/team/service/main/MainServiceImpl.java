@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.team.domain.product.ProductCriteria;
 import org.team.domain.product.ProductVO;
 import org.team.mapper.main.MainMapper;
 
@@ -18,6 +19,26 @@ public class MainServiceImpl implements MainService {
 	@Override
 	public List<ProductVO> getList() {
 		return mapper.getList();
+	}
+	
+	@Override
+	public List<ProductVO> getSearchList(ProductCriteria cri) {
+		return mapper.getSearchList(cri);
+	}
+
+	@Override
+	public List<ProductVO> getRank() {
+		return mapper.getRank();
+	}
+	
+	@Override
+	public void insertKeyword(ProductCriteria cri) {
+		mapper.insertKeyword(cri);
+	}
+	
+	@Override
+	public List<ProductCriteria> getSearchRank() {
+		return mapper.getSearchRank();
 	}
 
 }
