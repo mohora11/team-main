@@ -33,7 +33,7 @@ public class HBoardController {
 		
 	}
 	
-	@GetMapping("/list")
+	@GetMapping({"/list", "/admin"})
 	@PreAuthorize("isAuthenticated()")
 	public void list(@ModelAttribute("cri") HBoardCriteria cri, Model model) {
 		int total = service.getTotal(cri);

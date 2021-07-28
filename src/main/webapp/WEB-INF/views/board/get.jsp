@@ -63,6 +63,7 @@ var userid = "${pinfo.member.userid}";
 				<c:if test="${pinfo.member.userid eq board.writer }" >
 				<a class="btn btn-secondary" href="${modifyUrl }">수정/삭제</a>	
 				</c:if>
+				
 			</form>
 		</div>
 	</div>
@@ -74,15 +75,62 @@ var userid = "${pinfo.member.userid}";
 			<h3>댓글</h3>
 			
 			<sec:authorize access="isAuthenticated()">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reply-insert-modal">댓글 작성</button>				
+			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reply-insert-modal">댓글 작성</button>
+			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#report-insert-modal">신고하기</button>				
 			</sec:authorize>
 			<ul class="list-unstyled" id="reply-list-container">
 			</ul>
 			</div>
 		</div>
 	</div>
+<!-- 신고하기 모달  -->
 
-<!-- 댓글 입력 모달  -->
+	<div class="modal fade" id="report-insert-modal" tabindex="-1"
+		aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">신고하기</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					<form>
+						<input type="text" value="${board.bno }" readonly hidden
+							id="report-bno-input1">
+						<div class="form-group">
+							<label for="recipient-name" class="col-from-label">신고사유</label>
+							<form method="get" class="form-inline">
+								<select name="type" class="form-control mr-sm-2">
+									<option value="">--</option>
+									<option value="A" >음란물 게시</option>
+									<option value="B" >욕설 및 비방</option>
+									<option value="C" >정치글 및 분란야기</option>
+								</select><br> 
+								<label for="recipient-name" class="col-form-label">신고자</label>
+								<input type="text" readonly value="${pinfo.member.userName }"
+									class="form-control" /> <input type="hidden"
+									value="${pinfo.member.userid }" class="form-control"
+									id="report-input1">
+						</div>
+						<div class="form-group">
+							<label for="message-text" class="col-form-label">상세 내용</label>
+							<textarea class="form-control" id="report-textarea1"></textarea>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button id="report-insert-btn1" type="button" class="btn btn-danger">신고</button>
+					<button type="button" class="btn btn-secondary"
+						data-dismiss="modal">닫기</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 댓글 입력 모달  -->
 
 <div class="modal fade" id="reply-insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">

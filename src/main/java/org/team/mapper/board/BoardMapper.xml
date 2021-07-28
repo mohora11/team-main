@@ -22,24 +22,6 @@
 	</sql>
   
   
-  <select id="getList" resultType="org.team.domain.board.BoardVO">
-    
-    <![CDATA[ 
-    SELECT 
-    	bno bno,
-    	title title,
-    	content content,
-    	writer writer,
-    	regdate regdate,  
-    	updatedate updateDate
-    	 
-    FROM tbl_board
-    
-    WHERE bno > 0 ORDER BY bno DESC
-  
-    ]]>
-     
-  </select>
   
   <select id="getListWithPaging" resultType="org.team.domain.board.BoardVO">
     

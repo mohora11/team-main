@@ -89,7 +89,7 @@
   	 b.regdate regdate,
   	 f.fileName fileName,
   	 m.userName writerName<!--  -->
-  	FROM tbl_help_board b LEFT JOIN tbl_board_file f ON b.hno = f.hno
+  	FROM tbl_help_board b LEFT JOIN tbl_help_file f ON b.hno = f.hno
   						  JOIN tbl_member m ON b.writer = m.userid <!--  -->
   	WHERE b.hno = #{hno}
   </select>

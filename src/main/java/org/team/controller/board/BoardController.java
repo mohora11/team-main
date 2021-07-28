@@ -36,10 +36,10 @@ public class BoardController {
 		List<BoardVO> list = service.getList(cri);
 		
 		model.addAttribute("list", list);
-		model.addAttribute("pageMaker", new PageDTO(cri, total));
-		
+		model.addAttribute("pageMaker", new PageDTO(cri, total));		
 		 
 	}
+
 	
 	@PostMapping("/register")
 	@PreAuthorize("isAuthenticated()")

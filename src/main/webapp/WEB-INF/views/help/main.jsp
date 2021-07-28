@@ -16,11 +16,13 @@
 <div class="container">
 	<nav class="nav flex-column">
   <a class="nav-link active" href="${appRoot }/help/main">찾아오시는 길</a>
+  <%-- <c:if test="${pinfo.member}"> --%>
   <a class="nav-link" href="${appRoot}/help/list">1:1 문의하기</a>
-  
-  
-  <a class="nav-link" href="#">Link</a>
-  <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+  <%-- </c:if> --%>	
+  <c:if test="${pinfo.member.userName eq 'admin'}">
+  <a class="nav-link" href="${appRoot}/help/admin" >1:1 문의 관리</a>
+  <a class="nav-link"  href="${appRoot}/board/report">신고함</a>
+  </c:if>
 </nav>
 </div>
 <pj:footer/>
