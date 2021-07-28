@@ -19,7 +19,13 @@
 				<li id="navbar-search" class="nav-item mr-3">
 					<form action="${listUrl}" method="get" id="search-form" class="form-inline">
 						<div class="input-group mr-sm-2">
-							<input type="text" id="navbar-search-input" name="keyword" class="form-control" value="${cri.keyword}">
+							<input type="text" id="navbar-search-input" name="keyword" class="form-control" value="${cri.keyword}" autocomplete="off" required>
+							<div id="search-rank" hidden="hidden">
+								<div id="search-rank-list"><strong class="nav-link">검색 TOP 5</strong></div>
+								<c:forEach items="${searchRank}" var="rank" varStatus="status">
+									<div id="search-rank-list"><a id="search-rank-list-keyword${status.count}" class="nav-link" href="">${rank.keyword}</a></div>
+								</c:forEach>
+							</div>
 						    <div class="input-group-prepend">
 								<div id="navbar-search-icon" class="input-group-text"><span id="search-icon"><i class="fas fa-search"></i></span></div>
 						    </div>

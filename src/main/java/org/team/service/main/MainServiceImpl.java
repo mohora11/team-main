@@ -30,5 +30,15 @@ public class MainServiceImpl implements MainService {
 	public List<ProductVO> getRank() {
 		return mapper.getRank();
 	}
+	
+	@Override
+	public void insertKeyword(ProductCriteria cri) {
+		mapper.insertKeyword(cri);
+	}
+	
+	@Override
+	public List<ProductCriteria> getSearchRank() {
+		return mapper.getSearchRank();
+	}
 
 }
