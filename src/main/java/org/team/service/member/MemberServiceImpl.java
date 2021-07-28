@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.team.domain.member.AuthVO;
 import org.team.domain.member.MemberVO;
+import org.team.domain.product.ProductVO;
 import org.team.mapper.member.MemberMapper;
+import org.team.mapper.product.ProductLikeMapper;
 
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -28,6 +30,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Setter(onMethod_ = @Autowired)
 	private MemberMapper mapper;
+	
+	@Setter(onMethod_ = @Autowired)
+	private ProductLikeMapper likeMapper;
 	
 	@Setter(onMethod_ = @Autowired)
 	private PasswordEncoder encoder;
@@ -153,5 +158,25 @@ public class MemberServiceImpl implements MemberService {
         }
         
 		return false;
+  }
+  
+	@Override
+	public List<ProductVO> getLikes(String userid) {
+		return likeMapper.getLikes(userid);
+	}
+	
+	@Override
+	public List<ProductVO> getWebtoonLikes(String userid) {
+		return likeMapper.getWebtoonLikes(userid);
+	}
+	
+	@Override
+	public List<ProductVO> getWebnovelLikes(String userid) {
+		return likeMapper.getWebnovelLikes(userid);
+	}
+	
+	@Override
+	public List<ProductVO> getBookLikes(String userid) {
+		return likeMapper.getBookLikes(userid);
 	}
 }

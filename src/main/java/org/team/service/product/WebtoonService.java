@@ -19,4 +19,8 @@ public interface WebtoonService {
 
 	public boolean remove(Long id);
 
+	public void plusCnt(Long id);
+
+	public List<ProductVO> getRank();
+
 }

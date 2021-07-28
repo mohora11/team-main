@@ -13,6 +13,7 @@ var appRoot = "${appRoot}";
 var pid = "${webnovel.id}";
 var userid = "${pinfo.member.userid}";
 </script>
+<script src="${appRoot}/resources/js/productLike.js"></script>
 <script src="${appRoot}/resources/js/productReply.js"></script>
 
 <title>webnovel get</title>
@@ -39,7 +40,21 @@ var userid = "${pinfo.member.userid}";
 						${webnovel.product_name}
 					</div>
 					<div id="div-get-detail-likecomment">
-						찜 수, 댓글 수 표시
+						<span>
+							<i class="far fa-eye"></i>
+							<span>${webnovel.view_cnt}&nbsp</span>
+						</span>
+						<span id="like-icon">
+							<i id="like-i" class="far fa-heart"></i>
+							<span id="like-cnt">${webnovel.like_cnt}&nbsp</span>
+						</span>
+						<span>
+							<i class="fas fa-comment fa-flip-horizontal"></i>
+							<span id="replyCntAbove">${webnovel.reply_cnt}</span>
+						</span>
+						<input type="text" id="like-product-id" value="${webnovel.id}" hidden />
+						<input type="text" id="like-user-id" value="${pinfo.member.userid}" hidden />
+						<input type="text" id="like-check-like" value="${like.check_like}" hidden />
 					</div>
 					<div id="div-get-detail-bottom" class="form-inline">
 						<div id="div-get-detail-wname">
@@ -48,6 +63,9 @@ var userid = "${pinfo.member.userid}";
 						<div id="div-get-detail-btn">
 							<sec:authorize access="hasRole('ROLE_ADMIN')">
 								<a class="btn btn-secondary" href="${modifyUrl}">수정/삭제</a>
+							</sec:authorize>
+							<sec:authorize access="isAuthenticated()">
+								<button type="button" id="like-btn" class="btn btn-warning">찜</button>
 							</sec:authorize>
 							<a class="btn btn-primary" href="${detailUrl}">작품보기</a>
 						</div>
@@ -60,7 +78,7 @@ var userid = "${pinfo.member.userid}";
 	<%-- 댓글 목록 --%>
 	<div id="div-white" class="container p-3">
 		<h5>
-			댓글 <c:if test="${webnovel.reply_cnt > 0}"><small>[${webnovel.reply_cnt}]</small></c:if>
+			댓글 <c:if test="${webnovel.reply_cnt > 0}"><small>[</small><small id="replyCntBelow">${webnovel.reply_cnt}</small><small>]</small></c:if>
 		</h5>
 		
 		<hr>

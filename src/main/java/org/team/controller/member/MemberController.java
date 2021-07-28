@@ -27,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.team.SendEmail;
 import org.team.domain.member.Criteria;
 import org.team.domain.member.MemberVO;
+import org.team.domain.product.ProductVO;
 import org.team.security.domain.CustomUser;
 import org.team.service.member.MemberService;
 
@@ -40,10 +41,12 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MemberController {
 	
+
 	@Setter(onMethod_ = @Autowired)
 	private MemberService service;
 	
 	@RequestMapping("/pay")
+	@PreAuthorize("isAuthenticated()")
 	public void pay() {
 		
 	}
@@ -244,6 +247,36 @@ public class MemberController {
 			}
 
 		}
+
+	@GetMapping("/likes")
+	@PreAuthorize("isAuthenticated()")
+	public void likes(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> list = service.getLikes(userid);
 		
+		model.addAttribute("list", list);
+	}
+	
+	@GetMapping("/likesWebtoon")
+	@PreAuthorize("isAuthenticated()")
+	public void likesWebtoon(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> webtoon = service.getWebtoonLikes(userid);
+		
+		model.addAttribute("webtoon", webtoon);
+	}
+	
+	@GetMapping("/likesWebnovel")
+	@PreAuthorize("isAuthenticated()")
+	public void likesWebnovel(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> webnovel = service.getWebnovelLikes(userid);
+		
+		model.addAttribute("webnovel", webnovel);
+	}
+	
+	@GetMapping("/likesBook")
+	@PreAuthorize("isAuthenticated()")
+	public void likesBook(@RequestParam("userid") String userid, Model model) {
+		List<ProductVO> book = service.getBookLikes(userid);
+		
+		model.addAttribute("book", book);
 	}
 }
