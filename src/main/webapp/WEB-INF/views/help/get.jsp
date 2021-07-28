@@ -33,9 +33,9 @@ var userid = "${pinfo.member.userid}";
 			<form>
 				<div class="form-group">
 					<label for="input1">제목</label>
-					<input readonly="readonly" id="input1" class="form-control" name="title" value="${board.title }">
+					<input readonly="readonly" id="input1" class="form-control" name="title" value="${help.title }">
 				</div>
-				<div class="form-group">
+				<div class="form-group">     
 					<label for="textarea1">내용</label>
 					<textarea readonly="readonly" id="textarea1" class="form-control" 
 					name="content"><c:out value="${help.content }" /></textarea>
@@ -43,7 +43,7 @@ var userid = "${pinfo.member.userid}";
 				<c:if test="${not empty help.fileName }"> 
 					<div>
 						<img class="img-fluid" 
-						src="https://choongang-mohora11.s3.ap-northeast-2.amazonaws.com/${help.hno }/${help.fileName}">
+						src="${imgRoot}help/${help.hno }/${help.fileName}">
 					</div>
 				</c:if> 
 				<div class="form-group">
