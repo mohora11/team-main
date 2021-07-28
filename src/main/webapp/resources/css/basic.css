@@ -111,6 +111,21 @@ body, #team-footer {
 	margin-top: 3px;
 }
 
+#search-rank {
+	position: absolute;
+	top: 97%;
+	width: 191px;
+	border: 1px solid rgb(206, 212, 218);
+	border-radius: 0 0 15px 15px;
+	background-color: white;
+	/* 객체가 겹치는 경우 z-index 값을 조절하여 우선순위를 정함(높을수록 앞에 나옴) */
+	z-index: 1;
+}
+
+#search-rank-list {
+	position: relative;
+}
+
 #nav-divider {
 	margin-top: 7px;
 	color: rgb(200, 200, 200);

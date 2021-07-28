@@ -57,4 +57,16 @@
 		LIMIT 0, 5
 	</select>
 	
+	<insert id="insertKeyword">
+		INSERT INTO tbl_search_keyword (keyword)
+		VALUES (#{keyword})
+	</insert>
+	
+	<select id="getSearchRank" resultType="org.team.domain.product.ProductCriteria">
+		SELECT keyword FROM tbl_search_keyword
+		GROUP BY keyword
+		ORDER BY COUNT(keyword) DESC
+		LIMIT 0, 5
+	</select>
+	
 </mapper>

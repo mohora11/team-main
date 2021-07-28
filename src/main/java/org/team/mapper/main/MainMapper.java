@@ -13,4 +13,8 @@ public interface MainMapper {
 
 	public List<ProductVO> getRank();
 
+	public void insertKeyword(ProductCriteria cri);
+
+	public List<ProductCriteria> getSearchRank();
+
 }
