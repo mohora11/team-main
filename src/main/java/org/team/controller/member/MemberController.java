@@ -247,7 +247,8 @@ public class MemberController {
 			}
 
 		}
-
+	}
+	
 	@GetMapping("/likes")
 	@PreAuthorize("isAuthenticated()")
 	public void likes(@RequestParam("userid") String userid, Model model) {
