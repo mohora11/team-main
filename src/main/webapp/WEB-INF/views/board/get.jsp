@@ -43,7 +43,7 @@ var userid = "${pinfo.member.userid}";
 				<c:if test="${not empty board.fileName }"> 
 					<div>
 						<img class="img-fluid" 
-						src="https://choongang-mohora11.s3.ap-northeast-2.amazonaws.com/${board.bno }/${board.fileName}">
+						src="${imgRoot}board/${board.bno }/${board.fileName}">
 					</div>
 				</c:if> 
 				<div class="form-group">

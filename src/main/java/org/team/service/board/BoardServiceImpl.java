@@ -30,7 +30,7 @@ public class BoardServiceImpl implements BoardService {
 	private S3Client s3;
 	
 	public BoardServiceImpl() {  
-		this.bucketName = "choongang-mohora11";
+		this.bucketName = "choongang-eemin90";
 		this.profileName = "spring1";
 		this.s3 = S3Client.builder()
 				.credentialsProvider(ProfileCredentialsProvider.create(profileName))
@@ -73,7 +73,7 @@ public class BoardServiceImpl implements BoardService {
 
 			PutObjectRequest objectRequest = PutObjectRequest.builder()
 					.bucket(bucketName)
-					.key(board.getBno() + "/" + file.getOriginalFilename())
+					.key("board/" + board.getBno() + "/" + file.getOriginalFilename())
 					.contentType(file.getContentType())
 					.acl(ObjectCannedACL.PUBLIC_READ)
 					.build();
