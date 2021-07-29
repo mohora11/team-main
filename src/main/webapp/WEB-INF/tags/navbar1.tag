@@ -2,6 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:url value="/search" var="listUrl">
 	<c:param name="keyword" value="${cri.keyword}" />
@@ -53,12 +54,14 @@
 									<a class="dropdown-item" href="${appRoot}/product/register">작품 등록</a>
 									<div class="dropdown-divider"></div>
 								</sec:authorize>
-								<a class="dropdown-item"><small>내 캐시</small><br>x,xxx원</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="${appRoot}/member/info">회원 정보</a>
-								<a class="dropdown-item" href="${likesUrl}">찜 목록</a>
-								<a class="dropdown-item" href="${appRoot}/member/pay">캐시 충전</a>
-								<div class="dropdown-divider"></div>
+								<sec:authorize access="!hasRole('ROLE_ADMIN')">
+									<a class="dropdown-item"><small>내 캐시</small><br><fmt:formatNumber value="${pinfo.member.money}" />원</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="${appRoot}/member/info">회원 정보</a>
+									<a class="dropdown-item" href="${likesUrl}">찜 목록</a>
+									<a class="dropdown-item" href="${appRoot}/member/pay">캐시 충전</a>
+									<div class="dropdown-divider"></div>
+								</sec:authorize>
 								<a class="dropdown-item" href="${appRoot}/logout">로그아웃</a>
 							</div>
 						</div>
