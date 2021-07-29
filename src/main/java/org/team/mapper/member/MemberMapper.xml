@@ -70,6 +70,7 @@
 		m.regdate regdate,
 		m.updateDate updateDate,
 		m.usermail usermail,
+		m.money,
 		a.auth auth
 		FROM
 		tbl_member m LEFT JOIN tbl_member_auth a ON m.userid = a.userid
@@ -88,6 +89,7 @@
 		<result property="regdate" column="regdate" />
 		<result property="updateDate" column="updateDate" />
 		<result property="enabled" column="enabled" />
+		<result property="money" column="money" />
 		<collection property="authList" resultMap="authMap" />
 	</resultMap>
 	<resultMap type="org.team.domain.member.AuthVO" id="authMap">

@@ -22,7 +22,7 @@ $(function() {
 	// navbar 검색 TOP 5 항목에 마우스 올리거나 내리면 색상 변경, 선택한 keyword로 검색하기
 	$('#search-rank-list-keyword1, #search-rank-list-keyword2, #search-rank-list-keyword3, #search-rank-list-keyword4, #search-rank-list-keyword5').on({
 		mouseenter: function() {
-			$(this).css('background-color', 'rgb(230, 230, 230)');
+			$(this).css('background-color', 'rgb(233, 236, 239)');
 		},
 		mouseleave: function() {
 			$(this).css('background-color', 'white');

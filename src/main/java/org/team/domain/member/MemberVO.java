@@ -16,4 +16,5 @@ public class MemberVO {
 	private String usermail;
 	private Integer id;
 	private List<AuthVO> authList;
+	private Long money;
 }
