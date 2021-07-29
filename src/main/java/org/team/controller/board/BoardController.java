@@ -46,6 +46,8 @@ public class BoardController {
 	public String register(BoardVO board, 
 		@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {	
 		
+		log.info("register get method");
+		
 		board.setFileName(file.getOriginalFilename());
 		
 		
