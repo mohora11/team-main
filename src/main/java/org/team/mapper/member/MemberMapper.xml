@@ -78,7 +78,6 @@
 		m.updateDate updateDate,
 		m.usermail usermail,
 		m.money,
-		si.id id,
 		a.auth auth
 		FROM
 		tbl_member m LEFT JOIN tbl_member_auth a ON m.userid = a.userid
