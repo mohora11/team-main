@@ -82,7 +82,6 @@
 		a.auth auth
 		FROM
 		tbl_member m LEFT JOIN tbl_member_auth a ON m.userid = a.userid
-							 left join storeinfo si on m.userid = si.userid
 		WHERE
 		m.userid = #{userid}
 
