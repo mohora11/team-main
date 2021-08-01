@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>Insert title here</title>
+<title>문의 수정/삭제</title>
 
 <script>
 $(document).ready(function() {
