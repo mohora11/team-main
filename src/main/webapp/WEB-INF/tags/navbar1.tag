@@ -22,7 +22,7 @@
 						<div class="input-group mr-sm-2">
 							<input type="text" id="navbar-search-input" name="keyword" class="form-control" value="${cri.keyword}" autocomplete="off" required>
 							<div id="search-rank" hidden="hidden">
-								<div id="search-rank-list"><strong class="nav-link">검색 TOP 5</strong></div>
+								<div id="search-rank-list"><strong class="nav-link">- 검색 TOP 5 -</strong></div>
 								<c:forEach items="${searchRank}" var="rank" varStatus="status">
 									<div id="search-rank-list"><a id="search-rank-list-keyword${status.count}" class="nav-link" href="">${rank.keyword}</a></div>
 								</c:forEach>

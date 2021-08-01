@@ -154,7 +154,7 @@ body, #team-footer {
 #nav-webnovel-underline.active,
 #nav-book-underline.active,
 #nav-board-underline.active,
-#nav-qna-underline.active {
+#nav-help-underline.active {
 	background-color: white;
 	border-bottom: 2px solid #007bff;
 	position: relative;
