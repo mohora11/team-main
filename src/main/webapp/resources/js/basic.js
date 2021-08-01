@@ -20,9 +20,26 @@ $(function() {
 	});
 	
 	// navbar 검색 TOP 5 항목에 마우스 올리거나 내리면 색상 변경, 선택한 keyword로 검색하기
-	$('#search-rank-list-keyword1, #search-rank-list-keyword2, #search-rank-list-keyword3, #search-rank-list-keyword4, #search-rank-list-keyword5').on({
+	$('#search-rank-list-keyword1, #search-rank-list-keyword2, #search-rank-list-keyword3, #search-rank-list-keyword4').on({
 		mouseenter: function() {
 			$(this).css('background-color', 'rgb(233, 236, 239)');
+		},
+		mouseleave: function() {
+			$(this).css('background-color', 'white');
+		},
+		mousedown: function(e) {
+			e.preventDefault();
+			var keyword = $(this).text();
+			$('#navbar-search-input').val(keyword);
+			$('#search-form').submit();
+		}
+	});
+	
+	// navbar 검색 TOP 5 항목에 마우스 올리거나 내리면 색상 변경, 선택한 keyword로 검색하기(제일 아래 키워드 mouseenter시 검색창 하단 형태가 변형되는 문제 때문에 따로 border-radius 적용)
+	$('#search-rank-list-keyword5').on({
+		mouseenter: function() {
+			$(this).css('background-color', 'rgb(233, 236, 239)');
+			$(this).css('border-radius', '0 0 15px 15px');
 		},
 		mouseleave: function() {
 			$(this).css('background-color', 'white');
@@ -65,9 +82,9 @@ $(function() {
 				$('#nav-board-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
-		case 'team/qna/list':
+		case 'team/help/main':
 			$(function() {
-				$('#nav-qna-underline').addClass('active').animate({width: '100%'}, 600);
+				$('#nav-help-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
 	}
