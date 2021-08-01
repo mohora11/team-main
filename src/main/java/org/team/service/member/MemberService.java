@@ -19,17 +19,20 @@ public interface MemberService {
 
 	boolean modify(MemberVO vo, String oldPassword);
 	
-	List<MemberVO> read2(MemberVO vo);
-
-	List<MemberVO> read3(MemberVO vo);
+	public MemberVO read2(String username, String usermail);
+	
+	public MemberVO read3(String userid, String username, String usermail);
 
 	boolean approve(String pgToken) throws Exception;
 
-
-
 	public List<ProductVO> getLikes(String userid);
+	
 	public List<ProductVO> getWebtoonLikes(String userid);
+	
 	public List<ProductVO> getWebnovelLikes(String userid);
+	
 	public List<ProductVO> getBookLikes(String userid);
+
+	public void setPw(String pw, String userid);
 
 }
