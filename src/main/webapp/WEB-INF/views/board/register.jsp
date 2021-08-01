@@ -7,7 +7,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>Insert title here</title>
+<title>게시물 작성</title>
 </head>
 <body>
 <pj:navbar />
@@ -19,7 +19,7 @@
 			<form action="${appRoot }/board/register" method="post" enctype="multipart/form-data">
 				<div class="form-group">
 					<label for="input1">제목</label>
-					<input id="input1" class="form-control" name="title">
+					<input required="required" id="input1" class="form-control" name="title">
 				</div>
 				<div class="form-group">
 					<label for="input3">파일</label>

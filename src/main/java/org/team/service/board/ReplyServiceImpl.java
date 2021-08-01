@@ -18,7 +18,7 @@ public class ReplyServiceImpl implements ReplyService {
 	@Override
 	public int register(ReplyVO vo) {
 		
-		return mapper.insert(vo);
+		return mapper.insertSelectKey(vo);
 		
 	}
 

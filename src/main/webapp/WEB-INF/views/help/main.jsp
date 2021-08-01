@@ -21,7 +21,7 @@
   <%-- </c:if> --%>	
   <c:if test="${pinfo.member.userName eq 'admin'}">
   <a class="nav-link" href="${appRoot}/help/admin" >1:1 문의 관리</a>
-  <a class="nav-link"  href="${appRoot}/board/report">신고함</a>
+  <a class="nav-link"  href="${appRoot}/report/list">신고함</a>
   </c:if>
 </nav>
 </div>

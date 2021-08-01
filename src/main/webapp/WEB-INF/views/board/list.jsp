@@ -12,7 +12,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp"%>
 
-<title>Insert title here</title>
+<title>자유게시판</title>
 
 <script>
 	$(document).ready(function() {

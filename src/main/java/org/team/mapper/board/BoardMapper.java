@@ -8,11 +8,8 @@ import org.team.domain.member.MemberVO;
 
 public interface BoardMapper {
 	
-	public List<BoardVO> getList();
-	
 	public List<BoardVO> getListWithPaging(BoardCriteria cri);
 	
-
 	public int insert(BoardVO board);	
 	
 	public int insertSelectKey(BoardVO board);

@@ -1,7 +1,5 @@
 package org.team.domain.board;
 
-import org.team.domain.member.Criteria;
-
 import lombok.Getter;
 
 @Getter
