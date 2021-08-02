@@ -13,11 +13,12 @@
 <title>Insert title here</title>
 
 
-<script>
-$(function () {
-	
-});
-</script>
+  <script language="javascript">
+  function showPopup() { window.open("popup1", "a", "width=400, height=300, left=100, top=50"); }
+  
+  
+  
+  </script>
 
 <title>아이디 찾기</title>
 
@@ -39,16 +40,15 @@ $(function () {
 			<div>
 				<input type="text" id="findid-usermail" name="usermail" />
 			</div>
-
+		<br>
 			<input class="button" type="submit" id="gogofindid" value="찾기">
 		</form>
+		
+		<hr>
 
-
-		<hr hidden class="result">
-		<h5>고객님의 정보와 일치하는 아이디 입니다.</h5>
-
-		<div id="resultid">
+		<div id="resultid" >
 			<h3>${userid}</h3>
+			<input type="button" value="팝업창" onclick="showPopup();" />
 		</div>
 	</div>
 	<pj:footer />

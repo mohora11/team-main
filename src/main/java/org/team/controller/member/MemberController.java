@@ -78,6 +78,11 @@ public class MemberController {
 		
 	}
 	
+	@RequestMapping("/popup1")
+	public void popup1() {
+		
+	}
+	
 	@RequestMapping("/cancel")
 	public void cancel() {
 		
@@ -165,7 +170,6 @@ public class MemberController {
 	public ResponseEntity<String> duplicate(String id) {
 		log.info("duplicate method");
 		
-		// 서비스 일 시키고
 		MemberVO vo = service.read(id);
 		
 		if (vo == null) {
@@ -179,7 +183,15 @@ public class MemberController {
 	@PostMapping("/findid")
 	public void findid(@RequestParam("username") String username, @RequestParam("usermail") String usermail, Model model) {
 		MemberVO vo = service.read2(username, usermail);
-		model.addAttribute("userid", vo.getUserid());
+		if(vo != null) {
+			
+			model.addAttribute("userid", vo.getUserid());
+
+		}else {
+			
+			model.addAttribute("userid", "일치하는 회원정보가 없습니다.");
+		}
+		
 	}
 	
 	@PostMapping("/findpw")
@@ -187,19 +199,23 @@ public class MemberController {
 		// findpw.jsp의 input 값들 받아와서 service의 read3 메소드 실행(유저 정보 불러오기)
 		MemberVO member = service.read3(userid, username, usermail);
 		
+		int num = (int) (Math.random()*999999);
+		String str = String.valueOf(num);
+
+		
 		// 유저 정보가 정상적으로 불러와지면(null이 아닌경우) if문 실행
 		if (member != null) {
 			// 패스워드 암호화
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			// 일단 강제로 패스워드를 123으로 초기화를 위해
-			String newPassword = "123";
-			// 평문 암호값(123)을 암호화 하여
+			// 일단 강제로 패스워드를 랜덤으로 초기화를 위해
+			String newPassword = str;
+			// 평문 암호값(랜덤)을 암호화 하여
 			String pw = encoder.encode(newPassword);
-			// 해당 id의 패스워드를 암호화된 123으로 설정
+			// 해당 id의 패스워드를 암호화된 랜덤으로 설정
 			service.setPw(pw, userid);
 			
 			// jsp 쪽으로 변경된 암호인 123(평문)을 전송
-			model.addAttribute("userpw", newPassword);
+			model.addAttribute("userpw", "고객님의 임시비밀번호는 \n" + newPassword + " 입니다.");
 		} else {
 			// 일치하는 유저 정보가 없는 경우
 			model.addAttribute("userpw", "일치하는 정보가 없습니다.");

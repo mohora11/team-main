@@ -17,7 +17,7 @@
 <body>
 <pj:navbar />
 <div class="container">
-   		<h1>아이디 찾기</h1>
+   		<h1>비밀번호 찾기</h1>
 
 		<form action="${appRoot}/member/findpw" method="post">
 			
@@ -35,13 +35,12 @@
 			<div>
 				<input type="text" id="findid-usermail" name="usermail" />
 			</div>
+		<br>
 			<input class="button" type="submit" id="gogofindid" value="찾기">
 		</form>
 
-
-		<hr hidden class="result">
-		<h5>고객님의 정보와 일치하는 패스워드 입니다.</h5>
-
+		<hr>
+		
 		<div id="resultid">
 			<h3>${userpw}</h3>
 		</div>
