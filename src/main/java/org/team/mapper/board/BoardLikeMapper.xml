@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.team.mapper.board.BoardLikeMapper">
+
+	<insert id="like" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO tbl_board_like (bno, writer, check_like)
+		VALUES (#{bno}, #{writer}, 1)
+	</insert>
+	
+	<update id="plusCnt">
+		UPDATE tbl_board
+		SET like_cnt = like_cnt + 1
+		WHERE bno = #{bno}
+	</update>
+	
+	<delete id="cancelLike">
+		DELETE FROM tbl_board_like
+		WHERE bno = #{bno} AND writer = #{writer}
+	</delete>
+	
+	<update id="minusCnt">
+		UPDATE tbl_board
+		SET like_cnt = like_cnt - 1
+		WHERE bno = #{bno}
+	</update>
+	
+	<insert id="dislike" useGeneratedKeys="true" keyProperty="id" keyColumn="id">
+		INSERT INTO tbl_board_dislike (bno, writer, check_dislike)
+		VALUES (#{bno}, #{writer}, 1)
+	</insert>
+	
+	<update id="displusCnt">
+		UPDATE tbl_board
+		SET dislike_cnt = dislike_cnt + 1
+		WHERE bno = #{bno}
+	</update>
+	
+	<delete id="cancelDislike">
+		DELETE FROM tbl_board_dislike
+		WHERE bno = #{bno} AND writer = #{writer}
+	</delete>
+	
+	<update id="disminusCnt">
+		UPDATE tbl_board
+		SET dislike_cnt = dislike_cnt - 1
+		WHERE bno = #{bno}
+	</update>
+	
+	<select id="read" resultType="org.team.domain.board.BoardLikeVO">
+		SELECT check_like FROM tbl_board_like
+		WHERE bno = #{bno} AND writer = #{userid}
+	</select>
+	
+	<select id="read1" resultType="org.team.domain.board.BoardLikeVO">
+		SELECT check_dislike FROM tbl_board_dislike
+		WHERE bno = #{bno} AND writer = #{userid}
+	</select>
+
+</mapper>

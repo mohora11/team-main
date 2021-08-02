@@ -42,31 +42,31 @@
 					<th>작성자</th>
 					<th>작성일</th>
 					<th>수정일</th>
+					<th>추천수</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${list }" var="board">
 					<tr>
-						<td><c:url value="/board/get" var="getUrl">
+						<td>
+							<c:url value="/board/get" var="getUrl">
 								<c:param name="bno" value="${board.bno }" />
 								<c:param name="pageNum" value="${pageMaker.cri.pageNum }" />
 								<c:param name="amount" value="${pageMaker.cri.amount }" />
 								<c:param name="type" value="${pageMaker.cri.type }" />
 								<c:param name="keyword" value="${pageMaker.cri.keyword }" />
-							</c:url> 
+							</c:url>
 							<a href="${getUrl}"> 
 								${board.title } 
 								<c:if test="${board.replyCnt > 0 }">
 									[${board.replyCnt }] 
 								</c:if>
 							</a>
-							
 						</td>
 						<td>${board.writerName }</td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${board.regdate }" /></td>
-						<td><fmt:formatDate pattern="yyyy-MM-dd"
-								value="${board.updateDate }" /></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }" /></td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.updateDate }" /></td>
+						<td><i class="far fa-thumbs-up"></i><span id="like-cnt">${board.like_cnt}</span>&nbsp;&nbsp;<i class="far fa-thumbs-down"></i><span id="dislike-cnt">${board.dislike_cnt}</span></td>
 					</tr>
 				</c:forEach>
 			</tbody>
