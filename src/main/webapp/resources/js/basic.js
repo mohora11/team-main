@@ -1,5 +1,21 @@
 $(function() {
-
+	/*
+	// 마우스 우클릭, 드래그 차단
+	$(document).on("contextmenu dragstart selectstart", function(e){
+        return false;
+    });
+	*/
+	
+	// login.jsp 로그인 상태 유지 label에 마우스 enter, leave 일때 tooltip 
+	$('#remember-warning').on({
+		mouseenter: function() {
+			$('#remember-warning').tooltip('show');
+		},
+		mouseleave: function() {
+			$('#remember-warning').tooltip('hide');
+		}
+	});
+	
 	// navbar 검색창의 검색 아이콘 클릭해도 submit 시키기
 	$('#search-icon').click(function() {
 		$('#search-form').submit();

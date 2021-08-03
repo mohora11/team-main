@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/* all(font) */
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 /* common */
 a:hover {
 	text-decoration: none
@@ -190,7 +195,7 @@ body, #team-footer {
 }
 
 #dropdownMenuIcon {
-	color: rgb(200, 200, 200);
+	color: rgb(100, 100, 100);
 	width: 30px;
 	height: 30px;
 	margin-top: 4px;
@@ -274,3 +279,21 @@ body, #team-footer {
 #detail-img {
 	width: 720px;
 }
+
+/* [member] login.jsp */
+#div-white-login {
+	width: 360px;
+	margin: 0 auto;
+}
+
+#login-input1, #login-input2 {
+	height: 50px;
+}
+
+/* [member] info.jsp */
+#div-white-info {
+	width: 360px;
+	margin: 0 auto;
+}
+
+

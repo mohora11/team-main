@@ -89,11 +89,13 @@ $(function() {
 
 </script>
 
-<title>Insert title here</title>
+<title>회원 정보ㅣLeeBook</title>
 </head>
 <body>
-<bd:navbar></bd:navbar>
-<div class="container">
+<pj:navbar />
+
+<div id="div-white-info" class="container mt-5">
+
 	<c:if test="${param.status == 'success' }">
 		<div id="alert1" class="alert alert-primary" role="alert">
 			회원 정보를 수정하였습니다.
@@ -106,7 +108,10 @@ $(function() {
 		</div>
 	</c:if>
 
-	<h1>회원 정보</h1>
+	<h2>회원 정보</h2>
+	
+	<br>
+	
 	<div class="row">
 		<div class="col-12">
 			<form id="member-info-form1" method="post" action="${appRoot }/member/modify">
@@ -116,17 +121,12 @@ $(function() {
 				</div>
 				<div class="form-group">
 					<label for="member-info-input2">새 패스워드</label>
-					
 					<div class="input-group">
 						<input type="password" class="form-control" id="member-info-input2" name="userpw">
 						<div class="input-group-append">
-							<button class="btn btn-outline-secondary"
-							        type="button"
-							        id="toggle-password-btn">
-							        
-							        <i id="toggle-password-icon" class="far fa-eye"></i>
-							        
-							        </button> 
+							<button class="btn btn-outline-secondary" type="button" id="toggle-password-btn">
+								<i id="toggle-password-icon" class="far fa-eye"></i>
+							</button>
 						</div>
 					</div>
 				</div>
@@ -135,7 +135,6 @@ $(function() {
 					<input type="password" class="form-control" id="member-info-input4">
 					<small id="member-info-password-message" class="form-text text-danger"></small>
 				</div>
-				
 				<div class="form-group">
 					<label for="member-info-input3">이름</label>
 					<input value="${member.userName }" type="text" class="form-control" id="member-info-input3" name="userName">
@@ -147,20 +146,16 @@ $(function() {
 	</div>
 </div>
 
-
 <%-- 기존 패스워드 입력 모달 --%>
 <div class="modal fade" id="old-password-modal">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title">
-					기존 패스워드 입력
-				</h5>
+				<h5 class="modal-title">기존 패스워드 입력</h5>
 				<button type="button" class="close" data-dismiss="modal">
 					<span>&times;</span>
 				</button>
 			</div>		
-			
 			<div class="modal-body">
 				<div class="form-group">
 					<label for="old-password-input">기존 패스워드</label>
@@ -168,15 +163,13 @@ $(function() {
 				</div>
 			</div>
 			<div class="modal-footer">
-				
 				<button type="button" id="old-password-modal-btn" class="btn btn-danger">확인</button>
-				
-				<button type="button" class="btn btn-secondary" data-dismiss="modal">
-					닫기
-				</button>
+				<button type="button" class="btn btn-secondary" data-dismiss="modal">닫기</button>
 			</div>
 		</div>
 	</div>
 </div>
+
+<pj:footer />
 </body>
 </html>
