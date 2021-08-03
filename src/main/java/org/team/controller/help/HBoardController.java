@@ -28,6 +28,11 @@ public class HBoardController {
 	
 	private HBoardService service;
 	
+	@RequestMapping("/map")
+	public void map() {
+		
+	}
+	
 	@RequestMapping("/main")
 	public void main() {
 		
