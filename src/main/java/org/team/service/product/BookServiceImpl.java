@@ -55,6 +55,21 @@ public class BookServiceImpl implements BookService {
 	public List<ProductVO> getRank() {
 		return mapper.getRank();
 	}
+	
+	@Override
+	public String getCnt() {
+		return mapper.getCnt();
+	}
+	
+	@Override
+	public List<ProductVO> getToday() {
+		return mapper.getToday();
+	}
+	
+	@Override
+	public String getTodayCnt() {
+		return mapper.getTodayCnt();
+	}
 
 	@Override
 	public ProductVO get(Long id) {

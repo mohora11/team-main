@@ -138,23 +138,33 @@ $(function() {
 	
 	// ADMIN 작품 등록
 	$('#product-register-btn').click(function(e) {
-		var category = $('#product-register-input1').val();
 		e.preventDefault();
 		
-		if (category == '1') {
-			$("#product-register-form")
-			.attr("action", getContextPath() + "/product/webtoon/register")
-			.submit();
-		} else if (category == '2') {
-			$("#product-register-form")
-			.attr("action", getContextPath() + "/product/webnovel/register")
-			.submit();
-		} else if (category == '3') {
-			$("#product-register-form")
-			.attr("action", getContextPath() + "/product/book/register")
-			.submit();
+		var category = $('#product-register-input1').val();
+		var genre = $('#product-register-input2').val();
+		var title = $('#product-register-input3').val();
+		var writer = $('#product-register-input4').val();
+		var cover = $('#product-register-input5').val();
+		var file = $('#product-register-input6').val();
+		
+		if ((genre != '') && (title != '') && (writer != '') && (cover != '') && (file != '')) {
+			if (category == '1') {
+				$("#product-register-form")
+				.attr("action", getContextPath() + "/product/webtoon/register")
+				.submit();
+			} else if (category == '2') {
+				$("#product-register-form")
+				.attr("action", getContextPath() + "/product/webnovel/register")
+				.submit();
+			} else if (category == '3') {
+				$("#product-register-form")
+				.attr("action", getContextPath() + "/product/book/register")
+				.submit();
+			} else {
+				alert('카테고리를 선택해주세요!');
+			}
 		} else {
-			alert('카테고리를 선택해주세요!');
+			alert('입력란을 작성해주세요!');
 		}
 	});
 	
