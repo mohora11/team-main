@@ -24,4 +24,10 @@ public interface BookMapper {
 
 	public List<ProductVO> getRank();
 
+	public String getCnt();
+
+	public List<ProductVO> getToday();
+
+	public String getTodayCnt();
+
 }

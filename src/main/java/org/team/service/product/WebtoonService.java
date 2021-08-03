@@ -23,4 +23,10 @@ public interface WebtoonService {
 
 	public List<ProductVO> getRank();
 
+	public String getCnt();
+
+	public List<ProductVO> getToday();
+
+	public String getTodayCnt();
+
 }

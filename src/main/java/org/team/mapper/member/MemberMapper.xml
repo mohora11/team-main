@@ -5,27 +5,34 @@
 
 <mapper namespace="org.team.mapper.member.MemberMapper">
 
-	<select id="read2" resultMap="memberMap">
+	<select id="read2" parameterType="String" resultType="org.team.domain.member.MemberVO">
 		SELECT
-			m.userid userid,
-			m.userName userName,
-			m.usermail usermail
+			userid userid,
+			userName username,
+			usermail usermail
 		FROM
-			user m
+			tbl_member
 		WHERE
-			m.userName = #{userName} AND m.usermail = #{usermail}
+			username = #{username} AND usermail = #{usermail}
 	</select>
 	
-		<select id="read3" resultMap="memberMap">
+		<select id="read3" parameterType="String" resultType="org.team.domain.member.MemberVO">
 		SELECT
-			m.userid userid,
-			m.userName userName,
-			m.userEmail usermail
+			userid userid,
+			userpw userpw,
+			userName username,
+			usermail usermail
 		FROM
-			user m
+			tbl_member
 		WHERE
-			m.userid = #{userid} AND m.userName = #{userName} AND m.userEmail = #{usermail}
+			userid = #{userid} AND username = #{username} AND usermail = #{usermail}
 	</select>
+	
+	<update id="setPw">
+		UPDATE tbl_member
+		SET userpw = #{pw}
+		WHERE userid = #{userid}
+	</update>
 	
 	<delete id="removeAuth">
 		DELETE FROM tbl_member_auth
@@ -70,6 +77,7 @@
 		m.regdate regdate,
 		m.updateDate updateDate,
 		m.usermail usermail,
+		m.money,
 		a.auth auth
 		FROM
 		tbl_member m LEFT JOIN tbl_member_auth a ON m.userid = a.userid
@@ -88,6 +96,7 @@
 		<result property="regdate" column="regdate" />
 		<result property="updateDate" column="updateDate" />
 		<result property="enabled" column="enabled" />
+		<result property="money" column="money" />
 		<collection property="authList" resultMap="authMap" />
 	</resultMap>
 	<resultMap type="org.team.domain.member.AuthVO" id="authMap">

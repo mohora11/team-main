@@ -1,8 +1,8 @@
 <%@ tag language="java" pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<%@ taglib prefix="sec"
-	uri="http://www.springframework.org/security/tags"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <c:url value="/search" var="listUrl">
 	<c:param name="keyword" value="${cri.keyword}" />
@@ -13,9 +13,9 @@
 </c:url>
 
 <div id="team-header" class="d-flex flex-column sticky-top pt-3 mb-3">
-	<div id="team-header-above" class="mx-auto mb-2">
+	<div id="team-header-above" class="mx-auto">
 		<nav class="navbar navbar-light">
-			<a class="navbar-brand" href="${appRoot}/main">Project 로고 위치</a>
+			<a class="navbar-brand" href="${appRoot}/main"><img id="main-logo" src="${imgRoot}leebook-logo.png"></a>
 			<ul class="nav justify-content-end">
 				<li id="navbar-search" class="nav-item mr-3">
 					<form action="${listUrl}" method="get" id="search-form"
@@ -25,9 +25,7 @@
 								class="form-control" value="${cri.keyword}" autocomplete="off"
 								required>
 							<div id="search-rank" hidden="hidden">
-								<div id="search-rank-list">
-									<strong class="nav-link">검색 TOP 5</strong>
-								</div>
+								<div id="search-rank-list"><strong class="nav-link">- 검색 TOP 5 -</strong></div>
 								<c:forEach items="${searchRank}" var="rank" varStatus="status">
 									<div id="search-rank-list">
 										<a id="search-rank-list-keyword${status.count}"
@@ -44,9 +42,10 @@
 					</form>
 				</li>
 				<sec:authorize access="!isAuthenticated()">
-					<li id="charge-btn" class="nav-item"><a
-						href="${appRoot}/member/pay" id="charge-btn-link">캐시충전</a></li>
-					<li id="nav-divider" class="nav-item" onselectstart="return false">
+					<li id="charge-btn" class="nav-item">
+						<a href="${appRoot}/member/pay" id="charge-btn-link">캐시충전</a>
+					</li>
+					<li id="nav-divider" class="nav-item">
 						<span><small>&nbsp;ㅣ&nbsp;</small></span>
 					</li>
 					<li id="login-btn" class="nav-item"><a
@@ -65,12 +64,14 @@
 									<a class="dropdown-item" href="${appRoot}/product/register">작품 등록</a>
 									<div class="dropdown-divider"></div>
 								</sec:authorize>
-								<a class="dropdown-item"><small>내 캐시</small><br>x,xxx원</a>
-								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="${appRoot}/member/info">회원 정보</a>
-								<a class="dropdown-item" href="${likesUrl}">찜 목록</a> <a
-									class="dropdown-item" href="${appRoot}/member/pay">캐시 충전</a>
-								<div class="dropdown-divider"></div>
+								<sec:authorize access="!hasRole('ROLE_ADMIN')">
+									<a class="dropdown-item"><small>내 캐시</small><br><fmt:formatNumber value="${pinfo.member.money}" />원</a>
+									<div class="dropdown-divider"></div>
+									<a class="dropdown-item" href="${appRoot}/member/info">회원 정보</a>
+									<a class="dropdown-item" href="${likesUrl}">찜 목록</a>
+									<a class="dropdown-item" href="${appRoot}/member/pay">캐시 충전</a>
+									<div class="dropdown-divider"></div>
+								</sec:authorize>
 								<a class="dropdown-item" href="${appRoot}/logout">로그아웃</a>
 							</div>
 						</div>
@@ -98,21 +99,22 @@
 			<span id="nav-board-underline" class=""></span>
 			</li>
 			<li class="nav-item">
-			<span id="dropdownMenuLink" class="nav-link text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-			고객센터<i id="dropdownMenuIcon"></i>
-			</span>
+			  <span id="dropdownMenuLink" class="nav-link text-dark" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+			    고객센터<i id="dropdownMenuIcon"></i>
+			  </span>
 
 				<div id="dropdown-menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-						<a class="dropdown-item" href="${appRoot}/help/list">1:1 문의하기</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="${appRoot }/help/map">찾아오시는 길</a>
-						<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${appRoot}/help/list">1:1 문의하기</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${appRoot }/help/map">찾아오시는 길</a>
 					<sec:authorize access="hasRole('ROLE_ADMIN')">
-							<a class="dropdown-item" href="${appRoot}/help/admin">1:1 문의관리</a>
-					</sec:authorize>
-						</div>
-					 
-			 <span id="nav-qna-underline" class=""></span></li>
+            <div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="${appRoot}/help/admin">1:1 문의관리</a>
+				  </sec:authorize>
+        </div>
+				<%--<a id="nav-help" class="nav-link text-dark" href="${appRoot}/help/main">고객센터</a>
+				  <span id="nav-help-underline" class=""></span>
+			  </li>--%>
 		</ul>
 	</div>
 </div>

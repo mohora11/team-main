@@ -16,5 +16,11 @@ public interface MainService {
 	public void insertKeyword(ProductCriteria cri);
 
 	public List<ProductCriteria> getSearchRank();
+
+	public String getCnt();
+
+	public List<ProductVO> getToday();
+
+	public String getTodayCnt();
 	
 }

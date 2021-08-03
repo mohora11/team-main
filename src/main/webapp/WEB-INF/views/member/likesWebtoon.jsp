@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>likes</title>
+<title>찜 목록ㅣLeeBook</title>
 </head>
 <body>
 <pj:navbar />
@@ -31,7 +31,7 @@
 	<%-- 찜 list --%>
 	<div id="div-white" class="container">
 		<ul class="list-group list-group-horizontal sel">
-			<li class="list-group-item col-7">찜 목록</li>
+			<li class="list-group-item col-7">${pinfo.member.userName}님의 찜 목록</li>
 			<ul class="list-group list-group-horizontal">
 				<li class="list-group-item sel"><a href="${likesUrl}"><button type="button" class="btn btn-light">전체</button></a></li>
 				<li class="list-group-item sel"><a href="${likesWebtoonUrl}"><button type="button" class="btn btn-primary">웹툰</button></a></li>

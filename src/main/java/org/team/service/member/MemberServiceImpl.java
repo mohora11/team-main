@@ -55,15 +55,19 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public List<MemberVO> read2(MemberVO vo) {
-		
-		return mapper.read2(vo);
+	public MemberVO read2(String username, String usermail) {
+		return mapper.read2(username, usermail);
 	}
 	
 	@Override
-	public List<MemberVO> read3(MemberVO vo) {
+	public MemberVO read3(String userid, String username, String usermail) {
 		
-		return mapper.read3(vo);
+		return mapper.read3(userid, username, usermail);
+	}
+	
+	@Override
+	public void setPw(String pw, String userid) {
+		mapper.setPw(pw, userid);
 	}
 	
 	@Override

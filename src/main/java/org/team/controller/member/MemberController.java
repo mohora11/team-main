@@ -15,6 +15,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -174,46 +175,37 @@ public class MemberController {
 		}
 		
 	}
-	
+
 	@PostMapping("/findid")
-	public ResponseEntity<List<String>> findid(@RequestBody MemberVO vo, Model model) {
-		log.info("***findid post***");
-		log.info(vo);
-		
-		List<String> userid = new ArrayList<String>();
-		
-		List<MemberVO> vo2 = service.read2(vo);
-		log.info(vo2);
-		
-		
-		
-		if(vo2.size() == 0) {
-			return new ResponseEntity<List<String>> (HttpStatus.BAD_REQUEST);
-		} else {
-			for(MemberVO fid : vo2) {
-				if(fid.getUsermail().equals(vo.getUsermail())) {
-					userid.add(fid.getUserid());
-				}
-			}
-			return new ResponseEntity<List<String>> (userid, HttpStatus.OK);
-		}
-		
+	public void findid(@RequestParam("username") String username, @RequestParam("usermail") String usermail, Model model) {
+		MemberVO vo = service.read2(username, usermail);
+		model.addAttribute("userid", vo.getUserid());
 	}
 	
 	@PostMapping("/findpw")
-	public ResponseEntity<String> findpw(@RequestBody MemberVO vo) {
+	public void findpw(@RequestParam("userid") String userid, @RequestParam("username") String username, @RequestParam("usermail") String usermail, Model model) {
+		// findpw.jsp의 input 값들 받아와서 service의 read3 메소드 실행(유저 정보 불러오기)
+		MemberVO member = service.read3(userid, username, usermail);
 		
-		log.info(vo);
-		
-		// 서비스 일 시키고
-		List<MemberVO> vo2 = service.read3(vo);
-		
-		if (!vo2.isEmpty()) {
-			return new ResponseEntity<>("success", HttpStatus.OK);
+		// 유저 정보가 정상적으로 불러와지면(null이 아닌경우) if문 실행
+		if (member != null) {
+			// 패스워드 암호화
+			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+			// 일단 강제로 패스워드를 123으로 초기화를 위해
+			String newPassword = "123";
+			// 평문 암호값(123)을 암호화 하여
+			String pw = encoder.encode(newPassword);
+			// 해당 id의 패스워드를 암호화된 123으로 설정
+			service.setPw(pw, userid);
+			
+			// jsp 쪽으로 변경된 암호인 123(평문)을 전송
+			model.addAttribute("userpw", newPassword);
 		} else {
-			return new ResponseEntity<> ("exist", HttpStatus.OK);
+			// 일치하는 유저 정보가 없는 경우
+			model.addAttribute("userpw", "일치하는 정보가 없습니다.");
 		}
 	}
+	
 	@PostMapping("/authNumber")
 	public void authNumber(MemberVO member, RedirectAttributes rttr, HttpServletRequest request, HttpServletResponse response)throws IOException {
 		

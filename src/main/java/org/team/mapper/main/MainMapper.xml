@@ -69,4 +69,34 @@
 		LIMIT 0, 5
 	</select>
 	
+	<select id="getCnt" resultType="String">
+		SELECT COUNT(id) cnt FROM tbl_product
+	</select>
+	
+	<select id="getToday" resultType="org.team.domain.product.ProductVO">
+	<![CDATA[
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    (SELECT COUNT(id) FROM tbl_product) cnt,
+		    c.file_name file_name
+		
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+		
+		WHERE p.register_date >= CURDATE()
+		
+		ORDER BY id DESC
+	]]>
+	</select>
+	
+	<select id="getTodayCnt" resultType="String">
+		SELECT COUNT(id) cnt FROM tbl_product
+		WHERE register_date >= CURDATE()
+	</select>
+	
 </mapper>
