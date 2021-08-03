@@ -35,7 +35,7 @@
 	
 	<div class="container">
 
-		<h4>1:1 문의 [${pageMaker.total }]</h4>
+		<h4>1:1 문의</h4>
 			<table class="table table-striped">
 			<thead>
 				<tr>
