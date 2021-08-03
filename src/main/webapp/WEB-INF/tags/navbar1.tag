@@ -13,9 +13,9 @@
 </c:url>
 
 <div id="team-header" class="d-flex flex-column sticky-top pt-3 mb-3">
-	<div id="team-header-above" class="mx-auto mb-2">
+	<div id="team-header-above" class="mx-auto">
 		<nav class="navbar navbar-light">
-			<a class="navbar-brand" href="${appRoot}/main">Project 로고 위치</a>
+			<a class="navbar-brand" href="${appRoot}/main"><img id="main-logo" src="${imgRoot}leebook-logo.png"></a>
 			<ul class="nav justify-content-end">
 				<li id="navbar-search" class="nav-item mr-3">
 					<form action="${listUrl}" method="get" id="search-form" class="form-inline">

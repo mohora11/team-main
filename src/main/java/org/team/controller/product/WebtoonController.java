@@ -35,9 +35,13 @@ public class WebtoonController {
 		
 		List<ProductVO> list = service.getList();
 		List<ProductVO> rank = service.getRank();
+		List<ProductVO> today = service.getToday();
 		
 		model.addAttribute("list", list);
 		model.addAttribute("rank", rank);
+		model.addAttribute("webtoonCnt", service.getCnt());
+		model.addAttribute("webtoonToday", today);
+		model.addAttribute("webtoonTodayCnt", service.getTodayCnt());
 	}
 	
 	@GetMapping("/get")

@@ -32,8 +32,12 @@ public class MainController {
 		
 		List<ProductVO> list = service.getList();
 		List<ProductVO> rank = service.getRank();
+		List<ProductVO> today = service.getToday();
 		model.addAttribute("list", list);
 		model.addAttribute("rank", rank);
+		model.addAttribute("allCnt", service.getCnt());
+		model.addAttribute("allToday", today);
+		model.addAttribute("allTodayCnt", service.getTodayCnt());
 		
 		// 세션에 검색 TOP 5 값 넣어줌
 		List<ProductCriteria> searchRank = service.getSearchRank();

@@ -17,4 +17,10 @@ public interface MainMapper {
 
 	public List<ProductCriteria> getSearchRank();
 
+	public String getCnt();
+
+	public List<ProductVO> getToday();
+
+	public String getTodayCnt();
+
 }

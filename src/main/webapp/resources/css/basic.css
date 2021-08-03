@@ -91,6 +91,11 @@ li.sel {
 	background-color: rgb(238, 238, 238);
 }
 
+span.badge-primary {
+	position: relative;
+	top: -5%;
+}
+
 #team-header {
 	border-bottom: 1px solid rgb(206, 212, 218);
 }
@@ -201,6 +206,11 @@ body, #team-footer {
 	margin-top: 4px;
 }
 
+#main-logo {
+	width: 100px;
+	height: 60px;
+}
+
 /* navbar1.tag */
 #navbar-btn {
 	width: 0%;
@@ -294,6 +304,11 @@ body, #team-footer {
 #div-white-info {
 	width: 360px;
 	margin: 0 auto;
+}
+
+/* [product] register.jsp */
+#div-register {
+	padding: 10px;
 }
 
 
