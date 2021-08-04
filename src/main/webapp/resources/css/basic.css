@@ -304,6 +304,28 @@ body, #team-footer {
 	height: 50px;
 }
 
+.login-left {
+	margin-right: 107px !important;
+}
+
+.login-right-id {
+	padding: 0px;
+	width: 100px;
+}
+
+#login-divider {
+	position: relative;
+	top: -1px;
+	left: -18px;
+}
+
+.login-right-pw {
+	position: relative;
+	left: -20px;
+	padding: 0px;
+	width: 90px;
+}
+
 /* [member] info.jsp */
 #div-white-info {
 	width: 360px;
