@@ -116,6 +116,10 @@ body, #team-footer {
 	text-align: center;
 }
 
+#div-white-wrapper {
+	padding: 20px;
+}
+
 /* navbar.tag */
 #navbar-search {
 	margin-top: 3px;
@@ -306,9 +310,6 @@ body, #team-footer {
 	margin: 0 auto;
 }
 
-/* [product] register.jsp */
-#div-register {
-	padding: 10px;
-}
+
 
 

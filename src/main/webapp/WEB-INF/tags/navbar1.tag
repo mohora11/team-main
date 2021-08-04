@@ -24,11 +24,15 @@
 							<div id="search-rank" hidden="hidden">
 								<div id="search-rank-list"><strong class="nav-link">- 검색 TOP 5 -</strong></div>
 								<c:forEach items="${searchRank}" var="rank" varStatus="status">
-									<div id="search-rank-list"><a id="search-rank-list-keyword${status.count}" class="nav-link" href="">${rank.keyword}</a></div>
+									<div id="search-rank-list">
+										<a id="search-rank-list-keyword${status.count}" class="nav-link" href="">${rank.keyword}</a>
+									</div>
 								</c:forEach>
 							</div>
 						    <div class="input-group-prepend">
-								<div id="navbar-search-icon" class="input-group-text"><span id="search-icon"><i class="fas fa-search"></i></span></div>
+								<div id="navbar-search-icon" class="input-group-text">
+									<span id="search-icon"><i class="fas fa-search"></i></span>
+								</div>
 						    </div>
 					  	</div>
 					</form>

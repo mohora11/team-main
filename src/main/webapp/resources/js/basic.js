@@ -103,6 +103,16 @@ $(function() {
 				$('#nav-help-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
+		case 'team/help/list':
+			$(function() {
+				$('#nav-help-underline').addClass('active').animate({width: '100%'}, 600);
+			});
+			break;
+		case 'team/help/map':
+			$(function() {
+				$('#nav-help-underline').addClass('active').animate({width: '100%'}, 600);
+			});
+			break;
 	}
 	
 	// 현재 각 상품 detail 페이지인 경우만 navbar1에서 product_name 표시
