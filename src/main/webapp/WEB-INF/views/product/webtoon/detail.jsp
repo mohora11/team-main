@@ -15,7 +15,7 @@ var userid = "${pinfo.member.userid}";
 </script>
 <script src="${appRoot}/resources/js/productDetailReply.js"></script>
 
-<title>webtoon detail</title>
+<title>${webtoon.product_name} - 웹툰ㅣLeeBook</title>
 </head>
 <body>
 <pj:navbar1 />

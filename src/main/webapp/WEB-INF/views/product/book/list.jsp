@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>book list</title>
+<title>책ㅣLeeBook</title>
 </head>
 <body>
 <pj:navbar />

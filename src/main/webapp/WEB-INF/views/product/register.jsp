@@ -15,8 +15,8 @@
 <body>
 <pj:navbar />
 <div id="div-white" class="container mt-3">
-	<div id="div-register" class="container">
-		<h2>작품 등록</h2>
+	<div id="div-white-wrapper" class="container">
+		<h3>작품 등록</h3>
 		<hr>
 		<div class="row">
 			<div class="col-12">

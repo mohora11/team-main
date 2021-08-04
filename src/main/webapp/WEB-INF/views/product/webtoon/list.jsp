@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>webtoon list</title>
+<title>웹툰ㅣLeeBook</title>
 </head>
 <body>
 <pj:navbar />

@@ -9,12 +9,13 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>modify</title>
+<title>책 수정/삭제ㅣLeeBook</title>
 </head>
 <body>
 <pj:navbar />
-<div class="container">
-	<h1>책 수정/삭제</h1>
+<div id="div-white" class="container mt-3">
+<div id="div-white-wrapper" class="container">
+	<h3>책 수정/삭제</h3>
 	<hr>
 	<div class="row">
 		<div class="col-12">
@@ -51,6 +52,7 @@
 				<button type="button" id="back-btn" class="btn btn-light">취소</button>
 			</form>
 		</div>
+	</div>
 	</div>
 </div>
 <pj:footer />
