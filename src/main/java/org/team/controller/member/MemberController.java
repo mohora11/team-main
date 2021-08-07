@@ -288,4 +288,23 @@ public class MemberController {
 		
 		model.addAttribute("book", book);
 	}
+	
+	@RequestMapping("/PaymentWindow")
+	public void PaymentWindow() {
+		log.info("*** Check Connection(PaymentWindow) ***");
+	}
+	
+	@RequestMapping("/inicis")
+	public void inicis(Criteria cri, Principal principal, Model model) {
+		log.info("*** Check Connection(inicis) ***");
+		
+	}
+	
+	@RequestMapping("/pay2")
+	public void pay2() {
+		log.info("*** Check Connection(inicis) ***");
+		
+	}
+	
+	
 }

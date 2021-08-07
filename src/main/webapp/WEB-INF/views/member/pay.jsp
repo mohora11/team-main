@@ -26,6 +26,17 @@
 	<div>
 	<button id="apibtn">카카오 페이 충전하기 5000원</button>
 	</div>
+
+	<div>
+	<a href="${appRoot}/member/PaymentWindow" id="login-btn-link">아임포트 충전 테스트 </a>
+	</div>
+	
+		<div>
+	<a href="${appRoot}/member/pay2" id="login-btn-link">아임포트 충전 테스트2222222222 </a>
+	</div>
+	
+	
+	
 	
 	<div class="card-body bg-white mt-0 shadow">
                 <p style="font-weight: bold">카카오 페이 결제</p>
@@ -38,10 +49,11 @@
                 <label ><input type="radio" name="money" value="35000"><span>35,000원</span></label>
                 <label ><input type="radio" name="money" value="40000"><span>40,000원</span></label>
                 <label ><input type="radio" name="money" value="50000"><span>50,000원</span></label>
-                <p  style="color: #ac2925; margin-top: 30px">최소 충전금액은 5,000원이며 <br/>최대 충전금액은 50,000원 입니다.</p>
+                <!-- <p  style="color: #ac2925; margin-top: 30px">최소 충전금액은 5,000원이며 <br/>최대 충전금액은 50,000원 입니다.</p> -->
                 <button type="button" class="btn btn-lg btn-block  btn-custom" id="apibtn">충 전 하 기</button>
                 </div>
-</div>
+
+ </div>
 <pj:footer />
 </body>
 </html>
