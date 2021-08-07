@@ -295,7 +295,7 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/inicis")
-	public void inicis(Criteria cri, Principal principal, Model model) {
+	public void inicis() {
 		log.info("*** Check Connection(inicis) ***");
 		
 	}
