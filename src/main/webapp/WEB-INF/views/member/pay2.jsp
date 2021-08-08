@@ -59,7 +59,7 @@
                 msg += '카드 승인번호 : ' + rsp.apply_num;
                 $.ajax({
                     type: "GET", 
-                    url: "/user/mypage/charge/point", //충전 금액값을 보낼 url 설정
+                    url: "/member/pay3", //충전 금액값을 보낼 url 설정 일단 작업중
                     data: {
                         "amount" : money
                     },
@@ -69,7 +69,7 @@
                 msg += '에러내용 : ' + rsp.error_msg;
             }
             alert(msg);
-            document.location.href="/user/mypage/home"; //alert창 확인 후 이동할 url 설정
+            document.location.href="<%=request.getContextPath()%>/member/fail"; //alert창 확인 후 이동할 url 설정
         });
     });
 </script>

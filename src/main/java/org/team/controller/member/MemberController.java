@@ -306,5 +306,11 @@ public class MemberController {
 		
 	}
 	
+	@GetMapping("/pay3")
+	public @ResponseBody void chargePoint(Long amount) {
+		System.out.println(amount);
+		
+		
+	}
 	
 }
