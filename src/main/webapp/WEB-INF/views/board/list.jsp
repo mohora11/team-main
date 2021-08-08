@@ -34,7 +34,7 @@
 	
 	<div class="container">
 
-		<h4>자유게시판 [${pageMaker.total }]</h4>
+		<h4>자유게시판 [${pageMaker.total }]</h4> 
 			<table class="table table-striped">
 			<thead>
 				<tr>
