@@ -67,8 +67,11 @@
   </select>
   
   <select id="getTotalCount" resultType="int">
+  <![CDATA[
   SELECT COUNT(*) FROM tbl_board b JOIN tbl_member m
   ON b.writer = m.userid
+  WHERE b.dislike_cnt < '20'
+  ]]> 
   <include refid="criteria"></include>
   </select>
   
