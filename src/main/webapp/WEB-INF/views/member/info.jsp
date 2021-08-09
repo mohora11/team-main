@@ -94,7 +94,7 @@ $(function() {
 <body>
 <pj:navbar />
 
-<div id="div-white-info" class="container mt-5">
+<div id="div-info" class="container mt-5">
 
 	<c:if test="${param.status == 'success' }">
 		<div id="alert1" class="alert alert-primary" role="alert">

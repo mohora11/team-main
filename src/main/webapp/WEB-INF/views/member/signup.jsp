@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp"%>
 
-<title>Insert title here</title>
+<title>회원 가입ㅣLeeBook</title>
 <script>
 	$(function() {
 		var canUseId = false;
@@ -19,6 +19,7 @@
 		$("#id-dup-btn").click(function() {
 			var idVal = $("#signup-input1").val();
 			var messageElem = $("#id-message");
+			messageElem.css("color", "black");
 			canUseId = false;
 			toggleEnableSubmit();
 
@@ -42,6 +43,7 @@
 							messageElem.text("사용가능한 아이디 입니다.");
 						} else if (data == "exist") {
 							console.log("사용 불가능한 아이디");
+							messageElem.css("color", "red");
 							messageElem.text("이미 있는 아이디 입니다.");
 						}
 
@@ -136,14 +138,17 @@
 
 </head>
 <body>
-	<pj:navbar></pj:navbar>
-	<div class="container">
+<pj:navbar />
+	<div id="div-signup" class="container mt-5">
 		<c:if test="${not empty param.error }">
 			<div id="alert1" class="alert alert-danger" role="alert">회원 가입에
 				실패하였습니다.</div>
 		</c:if>
 
-		<h1>회원 가입</h1>
+		<h2>회원 가입</h2>
+		
+		<br>
+		
 		<div class="row">
 			<div class="col-12">
 				<form method="post" action="${appRoot }/member/signup">
@@ -205,5 +210,6 @@
 			</div>
 		</div>
 	</div>
+<pj:footer />
 </body>
 </html>

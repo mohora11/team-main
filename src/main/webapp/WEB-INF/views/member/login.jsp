@@ -14,7 +14,7 @@
 <body>
 <pj:navbar />
 
-<div id="div-white-login" class="container mt-5">
+<div id="div-login" class="container mt-5">
 
 	<h2>로그인</h2>
 	
@@ -38,7 +38,7 @@
 
 	<hr>
 
-	<div id="div-white-login" class="container">
+	<div id="div-login" class="container">
 		<div class="row">
 			<a href="${appRoot}/member/signup" class="col-3 mr-auto login-left text-muted">회원가입</a>
 			<div class="row">
