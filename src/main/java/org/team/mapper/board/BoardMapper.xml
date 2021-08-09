@@ -25,7 +25,7 @@
   
   <select id="getListWithPaging" resultType="org.team.domain.board.BoardVO">
     
-     
+    <![CDATA[ 
     SELECT 
     	b.bno bno,
     	b.title title,
@@ -39,12 +39,31 @@
     	count(rno) replyCnt
     FROM tbl_board b LEFT JOIN tbl_reply r ON b.bno = r.bno
     					  INNER JOIN tbl_member m ON b.writer = m.userid
+    					  WHERE b.dislike_cnt < '20'
+	]]>    					  
 	
 	<include refid="criteria"></include> 
 	GROUP BY b.bno    
     ORDER BY b.bno DESC
     LIMIT #{from}, #{amount}
 
+  </select>
+ 
+  <select id="read" resultType="org.team.domain.board.BoardVO">
+  	SELECT 
+  	 b.bno bno,
+  	 b.title title,
+  	 b.content content, 
+  	 b.writer writer,
+  	 b.regdate regdate,
+  	 b.updatedate updateDate,
+  	 b.like_cnt like_cnt,
+  	 b.dislike_cnt dislike_cnt,
+  	 f.fileName fileName,
+  	 m.userName writerName<!--  -->
+  	FROM tbl_board b LEFT JOIN tbl_board_file f ON b.bno = f.bno
+  						  JOIN tbl_member m ON b.writer = m.userid <!--  -->
+  	WHERE b.bno = #{bno}
   </select>
   
   <select id="getTotalCount" resultType="int">
@@ -63,22 +82,6 @@
   	VALUES (#{title}, #{content}, #{writer})
   </insert>
   
-  <select id="read" resultType="org.team.domain.board.BoardVO">
-  	SELECT 
-  	 b.bno bno,
-  	 b.title title,
-  	 b.content content, 
-  	 b.writer writer,
-  	 b.regdate regdate,
-  	 b.updatedate updateDate,
-  	 b.like_cnt like_cnt,
-  	 b.dislike_cnt dislike_cnt,
-  	 f.fileName fileName,
-  	 m.userName writerName<!--  -->
-  	FROM tbl_board b LEFT JOIN tbl_board_file f ON b.bno = f.bno
-  						  JOIN tbl_member m ON b.writer = m.userid <!--  -->
-  	WHERE b.bno = #{bno}
-  </select>
   
   <delete id="delete">
   	DELETE FROM tbl_board WHERE bno = #{bno}

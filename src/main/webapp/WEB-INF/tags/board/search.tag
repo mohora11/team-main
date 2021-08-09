@@ -16,8 +16,8 @@
 		<c:param name="type" value="${cri.type }"></c:param>
 </c:url>
 
-<div class="container">
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<div class="container" >
+<nav class="navbar navbar-expand-lg" style="background-color: rgb(238, 238, 238);" >
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       
