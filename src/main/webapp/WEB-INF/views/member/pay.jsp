@@ -19,7 +19,19 @@
 
 	<h2>캐시 충전</h2>
 	
-	<p style="font-weight: bold">카카오 페이 결제</p>
+	<div>
+	  <button id="apibtn">카카오 페이 충전하기 5000원</button>
+	</div>
+
+	<div>
+	  <a href="${appRoot}/member/PaymentWindow" id="login-btn-link">아임포트 충전 테스트 </a>
+	</div>
+	
+	<div>
+	  <a href="${appRoot}/member/pay2" id="login-btn-link">아임포트 충전 테스트2222222222 </a>
+	</div>
+	
+  <p style="font-weight: bold">카카오 페이 결제</p>
 	
 	<label><input type="radio" name="money" value="5000"><span>5,000원</span></label>
 	<label><input type="radio" name="money" value="10000"><span>10,000원</span></label>

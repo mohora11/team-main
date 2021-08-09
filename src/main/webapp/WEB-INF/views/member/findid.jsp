@@ -10,12 +10,6 @@
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp"%>
 <link href="<c:url value='/resources/css/basic.css'/>" rel="stylesheet" />
 
-<script>
-$(function () {
-	
-});
-</script>
-
 <title>아이디 찾기ㅣLeeBook</title>
 
 </head>
@@ -41,9 +35,8 @@ $(function () {
 			</div>
 			<input class="btn btn-primary" type="submit" id="gogofindid" value="찾기">
 		</form>
-
-		<hr hidden class="result">
-		<h5>고객님의 정보와 일치하는 아이디 입니다.</h5>
+		
+		<hr>
 
 		<div id="resultid">
 			<h3>${userid}</h3>

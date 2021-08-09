@@ -17,9 +17,9 @@
 <body>
 <pj:navbar />
 <div id="div-findpw" class="container mt-5">
-   		<h2>패스워드 찾기</h2>
-   		
-   		<br>
+    <h2>패스워드 찾기</h2>
+
+    <br>
 
 		<form action="${appRoot}/member/findpw" method="post">
 			<div class="form-group">
