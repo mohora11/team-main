@@ -47,9 +47,9 @@
             amount: money,
             buyer_email: ${member.usermail },
             buyer_name: ${member.username },
-            buyer_tel: ${member.usertel },
-            buyer_addr: ${member.useraddr },
-            buyer_postcode: 'leebook'
+            buyer_tel: '123',
+            buyer_addr: '321321',
+            buyer_postcode: '123-456'
         }, function (rsp) {
             console.log(rsp);
             if (rsp.success) {
