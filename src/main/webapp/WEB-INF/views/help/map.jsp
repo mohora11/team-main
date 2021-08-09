@@ -13,13 +13,13 @@ text-align: center;
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
 
-<title>찾아오시는 길</title>
+<title>찾아오시는 길ㅣLeeBook</title>
 </head>
 <body>
 <pj:navbar />
 <div id="div-white" class="container">
 	<div id="div-white-wrapper" class="container">
-		<h2>찾아오시는 길</h2>
+		<h4>찾아오시는 길</h4>
 		<div style="vertical-align:top;">
 		  	<a href="https://choongang-eemin90.s3.ap-northeast-2.amazonaws.com/help/lee2min+map.png" target="_blank">
 		  	<img src="https://choongang-eemin90.s3.ap-northeast-2.amazonaws.com/help/lee2min+map1.png" width="680" height="450" title="위의 이미지를 클릭하면 확대됩니다." >
