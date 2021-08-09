@@ -31,11 +31,11 @@
 </head>
 <body>
 <pj:navbar />
-	
-	<div class="container">
+	<div id="div-white" class="container">
+	<div id="div-white-wrapper" class="container">
 
 		<h4>자유게시판 [${pageMaker.total }]</h4> 
-			<table class="table table-striped">
+			<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>제목</th>
@@ -127,6 +127,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 
 	<nv:search /> 

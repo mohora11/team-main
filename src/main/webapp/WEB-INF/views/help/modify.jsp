@@ -26,7 +26,8 @@ $(document).ready(function() {
 </head>
 <body>
 <pj:navbar></pj:navbar>
-<div class="container">
+<div id="div-white" class="container mb-3">
+<div id="div-white-wrapper" class="container">
 	<h1>글 수정/삭제</h1>
 	
 	<div class="row">
@@ -46,7 +47,7 @@ $(document).ready(function() {
 				<c:if test="${not empty help.fileName }"> 
 					<div>
 						<img class="img-fluid" 
-						src="${imgRoot}${help.bno }/${help.fileName}">
+						src="${imgRoot}${help.hno }/${help.fileName}">
 					</div>
 				</c:if>
 				
@@ -68,10 +69,10 @@ $(document).ready(function() {
 				<input class="btn btn-warning" type="submit" value="수정" />
 				<input id="board-remove-btn1" class="btn btn-danger" type="button" value="삭제" />
 				
-				
 			</form>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

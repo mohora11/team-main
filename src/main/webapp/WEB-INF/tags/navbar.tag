@@ -107,11 +107,15 @@
 				<span id="nav-help-underline" class=""></span>
 				
 				<div id="dropdown-menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-					<a class="dropdown-item" href="${appRoot}/help/list">1:1 문의하기</a>
-					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="${appRoot}/help/map">찾아오시는 길</a>
-					<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<sec:authorize access="!isAuthenticated()">
+						<a class="dropdown-item" href="${appRoot}/help/map">찾아오시는 길</a>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_USER')">
+						<a class="dropdown-item" href="${appRoot}/help/list">1:1 문의하기</a>
 						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="${appRoot}/help/map">찾아오시는 길</a>
+					</sec:authorize>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
 						<a class="dropdown-item" href="${appRoot}/help/admin">1:1 문의관리</a>
 					</sec:authorize>
 				</div>

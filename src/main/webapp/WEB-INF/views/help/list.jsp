@@ -32,11 +32,11 @@
 </head>
 <body>
 <pj:navbar />
-	
-	<div class="container">
+	<div id="div-white" class="container">
+	<div id="div-white-wrapper" class="container">
 
 		<h4>1:1 문의</h4>
-			<table class="table table-striped">
+			<table class="table table-hover">
 			<thead>
 				<tr>
 					<th>제목</th>
@@ -97,6 +97,7 @@
 
 			</ul>
 		</nav>
+	</div>
 	<!--페이지 링크용 -->
 		<div style="display:none">
 			<form id="actionForm" action="${appRoot }/help/list" method="get">
