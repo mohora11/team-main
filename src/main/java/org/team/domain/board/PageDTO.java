@@ -5,8 +5,6 @@ import lombok.Getter;
 @Getter
 public class PageDTO {
 
-//	private int pageNum;
-// 	private int amount;
 	private BoardCriteria cri;
 	
 	private int startPage; // 현재 페이지 기준 시작 페이지
