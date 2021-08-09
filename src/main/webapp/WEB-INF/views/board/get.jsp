@@ -23,10 +23,13 @@ var userid = "${pinfo.member.userid}";
 <body>
 <pj:navbar></pj:navbar>
 
-<div class="container">
-<div id="alert1" class="alert alert-primary fade" role="alert">
-  
-</div>
+<div id="div-white" class="container mb-3">
+<div id="div-white-wrapper" class="container">
+<c:if test="${not empty messageBody}">
+	<div id="alert1" class="alert alert-primary fade" role="alert">
+	  
+	</div>
+</c:if>
 	<h3>글 보기</h3>
 	<p><i class="far fa-thumbs-up"></i><span id="like-cnt">${board.like_cnt}</span>&nbsp;&nbsp;<i class="far fa-thumbs-down"></i><span id="dislike-cnt">${board.dislike_cnt}</span></p>
 	
@@ -49,8 +52,9 @@ var userid = "${pinfo.member.userid}";
 				<c:if test="${not empty board.fileName }"> 
 					<div>
 						<img class="img-fluid" 
-						src="${imgRoot}board/${board.bno }/${board.fileName}">  
+						src="${imgRoot}board/${board.bno }/${board.fileName}">
 					</div>
+					<br>
 				</c:if> 
 				<div class="form-group">
 					<label for="input2">작성자</label>
@@ -79,21 +83,24 @@ var userid = "${pinfo.member.userid}";
 		</div>
 	</div>
 </div>
+</div>
 
-<div class="container">
+<div id="div-white" class="container p-3">
 	<div class="row">
 		<div class="col-12">
+			<div class="row justify-content-between m-1">
+				<span style="font-size: 25px;">댓글</span>
+				<sec:authorize access="isAuthenticated()">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reply-insert-modal">댓글 작성</button>
+				</sec:authorize>
+			</div>
 			<br>
-			<h3>댓글</h3>
 			
-			<sec:authorize access="isAuthenticated()">
-				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reply-insert-modal">댓글 작성</button>
-			</sec:authorize>
 			<ul class="list-unstyled" id="reply-list-container">
 			</ul>
-			</div>
 		</div>
 	</div>
+</div>
 	
 <!-- 댓글 입력 모달  -->
 <div class="modal fade" id="reply-insert-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

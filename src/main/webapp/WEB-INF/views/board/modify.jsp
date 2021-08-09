@@ -26,7 +26,8 @@ $(document).ready(function() {
 </head>
 <body>
 <pj:navbar></pj:navbar>
-<div class="container">
+<div id="div-white" class="container mb-3">
+<div id="div-white-wrapper" class="container">
 	<h1>글 수정/삭제</h1>
 	
 	<div class="row">
@@ -72,6 +73,7 @@ $(document).ready(function() {
 			</form>
 		</div>
 	</div>
+</div>
 </div>
 </body>
 </html>

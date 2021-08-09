@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title></title>
+<title>문의하기</title>
 <script>
 var appRoot = "${appRoot}";
 var helpHno = "${help.hno}";
@@ -20,13 +20,16 @@ var userid = "${pinfo.member.userid}";
 
 </head>
 <body>
-<pj:navbar>문의하기</pj:navbar>
+<pj:navbar></pj:navbar>
 
-<div class="container">
-<div id="alert1" class="alert alert-primary fade" role="alert">
-  
-</div>
-	<h1>문의내용</h1>
+<div id="div-white" class="container mb-3">
+<div id="div-white-wrapper" class="container">
+<c:if test="${not empty messageBody}">
+	<div id="alert1" class="alert alert-primary fade" role="alert">
+	
+	</div>
+</c:if>
+	<h3>문의내용</h3>
 	
 	<div class="row">
 		<div class="col-12">
@@ -67,20 +70,24 @@ var userid = "${pinfo.member.userid}";
 		</div>
 	</div>
 </div>
+</div>
 
-<div class="container">
+<div id="div-white" class="container p-3">
 	<div class="row">
 		<div class="col-12">
-			<h3>댓글</h3>
+			<div class="row justify-content-between m-1">
+				<span style="font-size: 25px;">댓글</span>
+				<sec:authorize access="isAuthenticated()">
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reply-insert-modal">댓글 작성</button>
+				</sec:authorize>
+			</div>
+			<br>
 			
-			<sec:authorize access="isAuthenticated()">
-			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#reply-insert-modal">댓글 작성</button>				
-			</sec:authorize>
 			<ul class="list-unstyled" id="reply-list-container">
 			</ul>
-			</div>
 		</div>
 	</div>
+</div>
 
 <!-- 댓글 입력 모달  -->
 
