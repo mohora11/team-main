@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>webnovel list</title>
+<title>웹소설ㅣLeeBook</title>
 </head>
 <body>
 <pj:navbar />
@@ -54,10 +54,69 @@
 	</div>
 </div>
 
+<%-- 오늘 신작 --%>
+<div id="div-white" class="container mb-3">
+	<ul class="list-group list-group-horizontal">
+		<li class="list-group-item">오늘 신작 <span class="badge badge-primary">${webnovelTodayCnt}</span></li>
+	</ul>
+	<form class="form-inline">
+		<c:forEach items="${webnovelToday}" var="today">
+			<c:choose>
+				<c:when test="${today.product_category eq '1'}">
+					<c:url value="/product/webtoon/get" var="getUrl">
+						<c:param name="id">${today.id}</c:param>
+					</c:url>
+					<a href="${getUrl}">
+						<div id="product-list-div" class="card mx-2 my-2">
+							<img src="${imgRoot}webtoon/${today.id}/cover/${today.file_name}" class="card-img-top">
+							<div class="card-body">
+								<p class="card-text text-dark">${today.product_name}</p>
+							</div>
+						</div>
+					</a>
+				</c:when>
+				<c:when test="${today.product_category eq '2'}">
+					<c:url value="/product/webnovel/get" var="getUrl">
+						<c:param name="id">${today.id}</c:param>
+					</c:url>
+					<a href="${getUrl}">
+						<div id="product-list-div" class="card mx-2 my-2">
+							<img src="${imgRoot}webnovel/${today.id}/cover/${today.file_name}" class="card-img-top">
+							<div class="card-body">
+								<p class="card-text text-dark">${today.product_name}</p>
+							</div>
+						</div>
+					</a>
+				</c:when>
+				<c:when test="${today.product_category eq '3'}">
+					<c:url value="/product/book/get" var="getUrl">
+						<c:param name="id">${today.id}</c:param>
+					</c:url>
+					<a href="${getUrl}">
+						<div id="product-list-div" class="card mx-2 my-2">
+							<img src="${imgRoot}book/${today.id}/cover/${today.file_name}" class="card-img-top">
+							<div class="card-body">
+								<p class="card-text text-dark">${today.product_name}</p>
+							</div>
+						</div>
+					</a>
+				</c:when>
+			</c:choose>
+		</c:forEach>
+		<c:if test="${empty webnovelToday}">
+			<div class="container">
+				<ul class="list-group">
+					<li class="list-group-item"><h5>오늘 신작이 없습니다.</h5></li>
+				</ul>
+			</div>
+		</c:if>
+	</form>
+</div>
+
 <%-- webnovel list --%>
 <div id="div-white" class="container">
 	<ul class="list-group list-group-horizontal">
-		<li class="list-group-item">전체 웹소설 목록</li>
+		<li class="list-group-item">전체 웹소설 목록 <span class="badge badge-primary">${webnovelCnt}</span></li>
 	</ul>
 	<form class="form-inline">
 		<c:forEach items="${list}" var="webnovel">

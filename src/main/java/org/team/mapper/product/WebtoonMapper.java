@@ -23,4 +23,10 @@ public interface WebtoonMapper {
 	public void plusCnt(Long id);
 
 	public List<ProductVO> getRank();
+
+	public String getCnt();
+
+	public List<ProductVO> getToday();
+
+	public String getTodayCnt();
 }

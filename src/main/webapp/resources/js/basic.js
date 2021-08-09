@@ -1,5 +1,21 @@
 $(function() {
-
+	/*
+	// 마우스 우클릭, 드래그 차단
+	$(document).on("contextmenu dragstart selectstart", function(e){
+        return false;
+    });
+	*/
+	
+	// login.jsp 로그인 상태 유지 label에 마우스 enter, leave 일때 tooltip 
+	$('#remember-warning').on({
+		mouseenter: function() {
+			$('#remember-warning').tooltip('show');
+		},
+		mouseleave: function() {
+			$('#remember-warning').tooltip('hide');
+		}
+	});
+	
 	// navbar 검색창의 검색 아이콘 클릭해도 submit 시키기
 	$('#search-icon').click(function() {
 		$('#search-form').submit();
@@ -20,9 +36,26 @@ $(function() {
 	});
 	
 	// navbar 검색 TOP 5 항목에 마우스 올리거나 내리면 색상 변경, 선택한 keyword로 검색하기
-	$('#search-rank-list-keyword1, #search-rank-list-keyword2, #search-rank-list-keyword3, #search-rank-list-keyword4, #search-rank-list-keyword5').on({
+	$('#search-rank-list-keyword1, #search-rank-list-keyword2, #search-rank-list-keyword3, #search-rank-list-keyword4').on({
 		mouseenter: function() {
 			$(this).css('background-color', 'rgb(233, 236, 239)');
+		},
+		mouseleave: function() {
+			$(this).css('background-color', 'white');
+		},
+		mousedown: function(e) {
+			e.preventDefault();
+			var keyword = $(this).text();
+			$('#navbar-search-input').val(keyword);
+			$('#search-form').submit();
+		}
+	});
+	
+	// navbar 검색 TOP 5 항목에 마우스 올리거나 내리면 색상 변경, 선택한 keyword로 검색하기(제일 아래 키워드 mouseenter시 검색창 하단 형태가 변형되는 문제 때문에 따로 border-radius 적용)
+	$('#search-rank-list-keyword5').on({
+		mouseenter: function() {
+			$(this).css('background-color', 'rgb(233, 236, 239)');
+			$(this).css('border-radius', '0 0 15px 15px');
 		},
 		mouseleave: function() {
 			$(this).css('background-color', 'white');
@@ -65,9 +98,19 @@ $(function() {
 				$('#nav-board-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
-		case 'team/qna/list':
+		case 'team/help/main':
 			$(function() {
-				$('#nav-qna-underline').addClass('active').animate({width: '100%'}, 600);
+				$('#nav-help-underline').addClass('active').animate({width: '100%'}, 600);
+			});
+			break;
+		case 'team/help/list':
+			$(function() {
+				$('#nav-help-underline').addClass('active').animate({width: '100%'}, 600);
+			});
+			break;
+		case 'team/help/map':
+			$(function() {
+				$('#nav-help-underline').addClass('active').animate({width: '100%'}, 600);
 			});
 			break;
 	}
@@ -105,23 +148,33 @@ $(function() {
 	
 	// ADMIN 작품 등록
 	$('#product-register-btn').click(function(e) {
-		var category = $('#product-register-input1').val();
 		e.preventDefault();
 		
-		if (category == '1') {
-			$("#product-register-form")
-			.attr("action", getContextPath() + "/product/webtoon/register")
-			.submit();
-		} else if (category == '2') {
-			$("#product-register-form")
-			.attr("action", getContextPath() + "/product/webnovel/register")
-			.submit();
-		} else if (category == '3') {
-			$("#product-register-form")
-			.attr("action", getContextPath() + "/product/book/register")
-			.submit();
+		var category = $('#product-register-input1').val();
+		var genre = $('#product-register-input2').val();
+		var title = $('#product-register-input3').val();
+		var writer = $('#product-register-input4').val();
+		var cover = $('#product-register-input5').val();
+		var file = $('#product-register-input6').val();
+		
+		if ((genre != '') && (title != '') && (writer != '') && (cover != '') && (file != '')) {
+			if (category == '1') {
+				$("#product-register-form")
+				.attr("action", getContextPath() + "/product/webtoon/register")
+				.submit();
+			} else if (category == '2') {
+				$("#product-register-form")
+				.attr("action", getContextPath() + "/product/webnovel/register")
+				.submit();
+			} else if (category == '3') {
+				$("#product-register-form")
+				.attr("action", getContextPath() + "/product/book/register")
+				.submit();
+			} else {
+				alert('카테고리를 선택해주세요!');
+			}
 		} else {
-			alert('카테고리를 선택해주세요!');
+			alert('입력란을 작성해주세요!');
 		}
 	});
 	

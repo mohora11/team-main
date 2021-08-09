@@ -35,9 +35,13 @@ public class WebnovelController {
 		
 		List<ProductVO> list = service.getList();
 		List<ProductVO> rank = service.getRank();
+		List<ProductVO> today = service.getToday();
 		
 		model.addAttribute("list", list);
 		model.addAttribute("rank", rank);
+		model.addAttribute("webnovelCnt", service.getCnt());
+		model.addAttribute("webnovelToday", today);
+		model.addAttribute("webnovelTodayCnt", service.getTodayCnt());
 	}
 	
 	@GetMapping("/get")

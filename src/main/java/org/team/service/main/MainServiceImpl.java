@@ -40,5 +40,20 @@ public class MainServiceImpl implements MainService {
 	public List<ProductCriteria> getSearchRank() {
 		return mapper.getSearchRank();
 	}
+	
+	@Override
+	public String getCnt() {
+		return mapper.getCnt();
+	}
+	
+	@Override
+	public List<ProductVO> getToday() {
+		return mapper.getToday();
+	}
+	
+	@Override
+	public String getTodayCnt() {
+		return mapper.getTodayCnt();
+	}
 
 }

@@ -17,9 +17,10 @@ public class ProductVO {
 	
 	private String file_name;
 	
-	private int reply_cnt;
+	private Long reply_cnt;
 	
-	private int like_cnt;
+	private Long like_cnt;
 	
-	private int view_cnt;
+	private Long view_cnt;
+	
 }

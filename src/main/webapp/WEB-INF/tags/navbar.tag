@@ -13,31 +13,35 @@
 </c:url>
 
 <div id="team-header" class="d-flex flex-column sticky-top pt-3 mb-3">
-	<div id="team-header-above" class="mx-auto mb-2">
+	<div id="team-header-above" class="mx-auto">
 		<nav class="navbar navbar-light">
-			<a class="navbar-brand" href="${appRoot}/main">Project 로고 위치</a>
+			<a class="navbar-brand" href="${appRoot}/main"><img id="main-logo" src="${imgRoot}leebook-logo.png"></a>
 			<ul class="nav justify-content-end">
 				<li id="navbar-search" class="nav-item mr-3">
 					<form action="${listUrl}" method="get" id="search-form" class="form-inline">
 						<div class="input-group mr-sm-2">
 							<input type="text" id="navbar-search-input" name="keyword" class="form-control" value="${cri.keyword}" autocomplete="off" required>
 							<div id="search-rank" hidden="hidden">
-								<div id="search-rank-list"><strong class="nav-link">검색 TOP 5</strong></div>
+								<div id="search-rank-list"><strong class="nav-link">- 검색 TOP 5 -</strong></div>
 								<c:forEach items="${searchRank}" var="rank" varStatus="status">
-									<div id="search-rank-list"><a id="search-rank-list-keyword${status.count}" class="nav-link" href="">${rank.keyword}</a></div>
+									<div id="search-rank-list">
+										<a id="search-rank-list-keyword${status.count}" class="nav-link" href="">${rank.keyword}</a>
+									</div>
 								</c:forEach>
 							</div>
-						    <div class="input-group-prepend">
-								<div id="navbar-search-icon" class="input-group-text"><span id="search-icon"><i class="fas fa-search"></i></span></div>
-						    </div>
-					  	</div>
+							<div class="input-group-prepend">
+								<div id="navbar-search-icon" class="input-group-text">
+									<span id="search-icon"><i class="fas fa-search"></i></span>
+								</div>
+							</div>
+						</div>
 					</form>
 				</li>
 				<sec:authorize access="!isAuthenticated()">
 					<li id="charge-btn" class="nav-item">
 						<a href="${appRoot}/member/pay" id="charge-btn-link">캐시충전</a>
 					</li>
-					<li id="nav-divider" class="nav-item" onselectstart="return false">
+					<li id="nav-divider" class="nav-item">
 						<span><small>&nbsp;ㅣ&nbsp;</small></span>
 					</li>
 					<li id="login-btn" class="nav-item">
@@ -48,7 +52,7 @@
 					<li class="nav-item">
 						<div class="dropdown">
 							<span id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i id="dropdownMenuIcon" class="far fa-user"></i></span>
-							
+
 							<div id="dropdown-menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
 								<sec:authorize access="hasRole('ROLE_ADMIN')">
 									<a class="dropdown-item" href="${appRoot}/product/register">작품 등록</a>
@@ -85,16 +89,32 @@
 				<span id="nav-webnovel-underline" class=""></span>
 			</li>
 			<li class="nav-item">
-				<a id="nav-book" class="nav-link text-dark" href="${appRoot}/product/book/list">책</a>
+				<a id="nav-book" class="nav-link text-dark" href="${appRoot}/product/book/list">책</a> 
 				<span id="nav-book-underline" class=""></span>
 			</li>
 			<li class="nav-item">
-				<a id="nav-board" class="nav-link text-dark" href="${appRoot}/board/list">게시판</a>
+				<a id="nav-board" class="nav-link text-dark" href="${appRoot}/board/list">게시판</a> 
 				<span id="nav-board-underline" class=""></span>
 			</li>
+			<%--
 			<li class="nav-item">
-				<a id="nav-qna" class="nav-link text-dark" href="${appRoot}/help/main">고객센터</a>
-				<span id="nav-qna-underline" class=""></span>
+				<a id="nav-help" class="nav-link text-dark" href="${appRoot}/help/main">고객센터</a>
+				<span id="nav-help-underline" class=""></span>
+			</li>
+			--%>
+			<li class="nav-item">
+				<a id="dropdownMenuLink" class="nav-link text-dark" href="" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">고객센터</a>
+				<span id="nav-help-underline" class=""></span>
+				
+				<div id="dropdown-menu" class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
+					<a class="dropdown-item" href="${appRoot}/help/list">1:1 문의하기</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="${appRoot}/help/map">찾아오시는 길</a>
+					<sec:authorize access="hasRole('ROLE_ADMIN')">
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="${appRoot}/help/admin">1:1 문의관리</a>
+					</sec:authorize>
+				</div>
 			</li>
 		</ul>
 	</div>

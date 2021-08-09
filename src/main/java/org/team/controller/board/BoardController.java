@@ -1,5 +1,6 @@
 package org.team.controller.board;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.team.domain.board.BoardVO;
 import org.team.domain.board.BoardCriteria;
+import org.team.domain.board.BoardLikeVO;
+import org.team.domain.board.BoardVO;
 import org.team.domain.board.PageDTO;
+import org.team.service.board.BoardLikeService;
 import org.team.service.board.BoardService;
 
 import lombok.AllArgsConstructor;
@@ -27,6 +30,7 @@ import lombok.extern.log4j.Log4j;
 public class BoardController {
 	
 	private BoardService service;
+	private BoardLikeService likeService;
 	
 	@GetMapping("/list")
 	public void list(@ModelAttribute("cri") BoardCriteria cri, Model model) {
@@ -46,6 +50,8 @@ public class BoardController {
 	public String register(BoardVO board, 
 		@RequestParam("file") MultipartFile file, RedirectAttributes rttr) {	
 		
+		log.info("register get method");
+		
 		board.setFileName(file.getOriginalFilename());
 		
 		
@@ -63,12 +69,20 @@ public class BoardController {
 	@GetMapping({"/get", "/modify"})
 	public void get(@RequestParam("bno") Long bno, 
 			@ModelAttribute("cri") BoardCriteria cri, 
-			Model model) {
+			Model model, Principal principal) {
 		log.info("board/get method");
 		
 		BoardVO vo = service.get(bno);
 		
 		model.addAttribute("board", vo);
+		
+		// 해당 상품을 읽어올 때 현재 사용자가 해당 상품에 좋아요, 싫어요를 눌렀었는지 확인
+		if (principal != null) { // 로그인 상태가 아니면 아래의 principal.getName()에서 NullPointerException이 발생하므로 로그인 상태인 경우만
+			BoardLikeVO lvo = likeService.get(bno.toString(), principal.getName());
+			BoardLikeVO lvo1 = likeService.getDislike(bno.toString(), principal.getName());
+			model.addAttribute("like", lvo);
+			model.addAttribute("dislike", lvo1);
+		}
 		
 	}
 	

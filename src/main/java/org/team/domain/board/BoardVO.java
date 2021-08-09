@@ -21,4 +21,7 @@ public class BoardVO {
 	
 	private String fileName;
 //	private MultipartFile file;
+	
+	private int like_cnt;
+	private int dislike_cnt;
 }

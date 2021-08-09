@@ -36,9 +36,13 @@ public class BookController {
 		
 		List<ProductVO> list = service.getList();
 		List<ProductVO> rank = service.getRank();
+		List<ProductVO> today = service.getToday();
 		
 		model.addAttribute("list", list);
 		model.addAttribute("rank", rank);
+		model.addAttribute("bookCnt", service.getCnt());
+		model.addAttribute("bookToday", today);
+		model.addAttribute("bookTodayCnt", service.getTodayCnt());
 	}
 	
 	@GetMapping("/get")

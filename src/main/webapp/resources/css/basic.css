@@ -1,5 +1,10 @@
 @charset "UTF-8";
 
+/* all(font) */
+* {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+
 /* common */
 a:hover {
 	text-decoration: none
@@ -86,6 +91,11 @@ li.sel {
 	background-color: rgb(238, 238, 238);
 }
 
+span.badge-primary {
+	position: relative;
+	top: -5%;
+}
+
 #team-header {
 	border-bottom: 1px solid rgb(206, 212, 218);
 }
@@ -104,6 +114,10 @@ body, #team-footer {
 
 #dropdown-menu {
 	text-align: center;
+}
+
+#div-white-wrapper {
+	padding: 20px;
 }
 
 /* navbar.tag */
@@ -154,7 +168,7 @@ body, #team-footer {
 #nav-webnovel-underline.active,
 #nav-book-underline.active,
 #nav-board-underline.active,
-#nav-qna-underline.active {
+#nav-help-underline.active {
 	background-color: white;
 	border-bottom: 2px solid #007bff;
 	position: relative;
@@ -190,10 +204,15 @@ body, #team-footer {
 }
 
 #dropdownMenuIcon {
-	color: rgb(200, 200, 200);
+	color: rgb(100, 100, 100);
 	width: 30px;
 	height: 30px;
 	margin-top: 4px;
+}
+
+#main-logo {
+	width: 100px;
+	height: 60px;
 }
 
 /* navbar1.tag */
@@ -274,3 +293,63 @@ body, #team-footer {
 #detail-img {
 	width: 720px;
 }
+
+/* [member] login.jsp */
+#div-login {
+	width: 360px;
+	margin: 0 auto;
+}
+
+#login-input1, #login-input2 {
+	height: 50px;
+}
+
+.login-left {
+	margin-right: 107px !important;
+}
+
+.login-right-id {
+	padding: 0px;
+	width: 100px;
+}
+
+#login-divider {
+	position: relative;
+	top: -1px;
+	left: -18px;
+}
+
+.login-right-pw {
+	position: relative;
+	left: -20px;
+	padding: 0px;
+	width: 90px;
+}
+
+/* [member] info.jsp */
+#div-info {
+	width: 360px;
+	margin: 0 auto;
+}
+
+/* [member] signup.jsp */
+#div-signup {
+	width: 360px;
+	margin: 0 auto;
+}
+
+/* [member] findid.jsp */
+#div-findid {
+	width: 360px;
+	margin: 0 auto;
+}
+
+/* [member] findpw.jsp */
+#div-findpw {
+	width: 360px;
+	margin: 0 auto;
+}
+
+
+
+
