@@ -9,7 +9,7 @@
 
 <%@ include file="/WEB-INF/subModules/bootstrapHeader.jsp" %>
 
-<title>문의하기</title>
+<title>문의 내용ㅣLeeBook</title>
 <script>
 var appRoot = "${appRoot}";
 var helpHno = "${help.hno}";
@@ -23,53 +23,53 @@ var userid = "${pinfo.member.userid}";
 <pj:navbar></pj:navbar>
 
 <div id="div-white" class="container mb-3">
-<div id="div-white-wrapper" class="container">
-<c:if test="${not empty messageBody}">
-	<div id="alert1" class="alert alert-primary fade" role="alert">
-	
-	</div>
-</c:if>
-	<h3>문의내용</h3>
-	
-	<div class="row">
-		<div class="col-12">
-			<form>
-				<div class="form-group">
-					<label for="input1">제목</label>
-					<input readonly="readonly" id="input1" class="form-control" name="title" value="${help.title }">
-				</div>
-				<div class="form-group">     
-					<label for="textarea1">내용</label>
-					<textarea readonly="readonly" id="textarea1" class="form-control" 
-					name="content"><c:out value="${help.content }" /></textarea>
-				</div>
-				<c:if test="${not empty help.fileName }"> 
-					<div>
-						<img class="img-fluid" 
-						src="${imgRoot}help/${help.hno }/${help.fileName}">
+	<div id="div-white-wrapper" class="container">
+	<c:if test="${not empty messageBody}">
+		<div id="alert1" class="alert alert-primary fade" role="alert">
+		
+		</div>
+	</c:if>
+		<h4>문의 내용</h4>
+		
+		<div class="row">
+			<div class="col-12">
+				<form>
+					<div class="form-group">
+						<label for="input1">제목</label>
+						<input readonly="readonly" id="input1" class="form-control" name="title" value="${help.title }">
 					</div>
-				</c:if> 
-				<div class="form-group">
-					<label for="input2">작성자</label>
-					<input type="hidden" readonly="readonly" id="input2" class="form-control" name="writer" value="${help.writer }">
-					<input readonly="readonly" class="form-control" value="${help.writerName }">
-				</div>
-				
-				<c:url value="/help/modify" var="modifyUrl">
-					<c:param name="hno" value="${help.hno }"/>
-					<c:param name="pageNum" value="${cri.pageNum }"/>
-					<c:param name="amount" value="${cri.amount }"/>
-					<c:param name="type" value="${cri.type }" />
-					<c:param name="keyword" value="${cri.keyword }" /> 
-				</c:url>
-				
-				<c:if test="${pinfo.member.userid eq help.writer }" >
-				<a class="btn btn-secondary" href="${modifyUrl }">수정/삭제</a>	
-				</c:if>
-			</form>
+					<div class="form-group">     
+						<label for="textarea1">내용</label>
+						<textarea readonly="readonly" id="textarea1" class="form-control" 
+						name="content"><c:out value="${help.content }" /></textarea>
+					</div>
+					<c:if test="${not empty help.fileName }"> 
+						<div>
+							<img class="img-fluid" 
+							src="${imgRoot}help/${help.hno }/${help.fileName}">
+						</div>
+					</c:if> 
+					<div class="form-group">
+						<label for="input2">작성자</label>
+						<input type="hidden" readonly="readonly" id="input2" class="form-control" name="writer" value="${help.writer }">
+						<input readonly="readonly" class="form-control" value="${help.writerName }">
+					</div>
+					
+					<c:url value="/help/modify" var="modifyUrl">
+						<c:param name="hno" value="${help.hno }"/>
+						<c:param name="pageNum" value="${cri.pageNum }"/>
+						<c:param name="amount" value="${cri.amount }"/>
+						<c:param name="type" value="${cri.type }" />
+						<c:param name="keyword" value="${cri.keyword }" /> 
+					</c:url>
+					
+					<c:if test="${pinfo.member.userid eq help.writer }" >
+					<a class="btn btn-secondary" href="${modifyUrl }">수정/삭제</a>	
+					</c:if>
+				</form>
+			</div>
 		</div>
 	</div>
-</div>
 </div>
 
 <div id="div-white" class="container p-3">
@@ -157,6 +157,6 @@ var userid = "${pinfo.member.userid}";
     </div>
   </div>
 </div>
-
+<pj:footer />
 </body>
 </html>
