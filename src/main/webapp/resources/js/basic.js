@@ -115,6 +115,30 @@ $(function() {
 			break;
 	}
 	
+	// 찜 목록에서 카테고리 이동
+	$('#likes-webtoon-btn').click(function() {
+		$('#form-likes-list')
+		.attr('action', getContextPath() + "/member/likesWebtoon")
+		.submit();
+	});
+	$('#likes-webnovel-btn').click(function() {
+		$('#form-likes-list')
+		.attr('action', getContextPath() + "/member/likesWebnovel")
+		.submit();
+	});
+	$('#likes-book-btn').click(function() {
+		$('#form-likes-list')
+		.attr('action', getContextPath() + "/member/likesBook")
+		.submit();
+	});
+	
+	// navbar dropdown 구매 목록 버튼 실행
+	$('#dropdown-paid').click(function() {
+		$('#form-dropdown')
+		.attr('action', getContextPath() + "/member/paid")
+		.submit();
+	});
+	
 	// get.jsp에서 detail.jsp로 URL 조작하여 이동 방지(해당 상품 구매X, 정기권X 인 경우에도 URL만 수정하여 접근 가능한 부분이 있어서 접근 불가하게)
 	var checkUrl = splitUrl.split('?')[0];
 	var paidCheck = $('#check-paid').val(); // 해당 상품을 구매한 적이 있는지 체크

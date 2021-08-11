@@ -2,7 +2,6 @@ package org.team.controller.member;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -20,7 +19,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -257,33 +255,33 @@ public class MemberController {
 		}
 	}
 	
-	@GetMapping("/likes")
+	@PostMapping("/likes")
 	@PreAuthorize("isAuthenticated()")
-	public void likes(@RequestParam("userid") String userid, Model model) {
+	public void likes(String userid, Model model) {
 		List<ProductVO> list = service.getLikes(userid);
 		
 		model.addAttribute("list", list);
 	}
 	
-	@GetMapping("/likesWebtoon")
+	@PostMapping("/likesWebtoon")
 	@PreAuthorize("isAuthenticated()")
-	public void likesWebtoon(@RequestParam("userid") String userid, Model model) {
+	public void likesWebtoon(String userid, Model model) {
 		List<ProductVO> webtoon = service.getWebtoonLikes(userid);
 		
 		model.addAttribute("webtoon", webtoon);
 	}
 	
-	@GetMapping("/likesWebnovel")
+	@PostMapping("/likesWebnovel")
 	@PreAuthorize("isAuthenticated()")
-	public void likesWebnovel(@RequestParam("userid") String userid, Model model) {
+	public void likesWebnovel(String userid, Model model) {
 		List<ProductVO> webnovel = service.getWebnovelLikes(userid);
 		
 		model.addAttribute("webnovel", webnovel);
 	}
 	
-	@GetMapping("/likesBook")
+	@PostMapping("/likesBook")
 	@PreAuthorize("isAuthenticated()")
-	public void likesBook(@RequestParam("userid") String userid, Model model) {
+	public void likesBook(String userid, Model model) {
 		List<ProductVO> book = service.getBookLikes(userid);
 		
 		model.addAttribute("book", book);
