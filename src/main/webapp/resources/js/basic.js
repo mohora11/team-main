@@ -135,7 +135,24 @@ $(function() {
 	// navbar dropdown 구매 목록 버튼 실행
 	$('#dropdown-paid').click(function() {
 		$('#form-dropdown')
-		.attr('action', getContextPath() + "/member/paid")
+		.attr('action', getContextPath() + "/member/paidList")
+		.submit();
+	});
+	
+	// 구매 목록에서 카테고리 이동
+	$('#paid-webtoon-btn').click(function() {
+		$('#form-paid-list')
+		.attr('action', getContextPath() + "/member/paidListWebtoon")
+		.submit();
+	});
+	$('#paid-webnovel-btn').click(function() {
+		$('#form-paid-list')
+		.attr('action', getContextPath() + "/member/paidListWebnovel")
+		.submit();
+	});
+	$('#paid-book-btn').click(function() {
+		$('#form-paid-list')
+		.attr('action', getContextPath() + "/member/paidListBook")
 		.submit();
 	});
 	
