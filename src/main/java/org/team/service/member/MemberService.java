@@ -33,6 +33,15 @@ public interface MemberService {
 	
 	public List<ProductVO> getBookLikes(String userid);
 
+	public List<ProductVO> getPaidList(String userid);
+	
 	public void setPw(String pw, String userid);
+
+	public List<ProductVO> getPaidListWebtoon(String userid);
+
+	public List<ProductVO> getPaidListWebnovel(String userid);
+
+	public List<ProductVO> getPaidListBook(String userid);
+
 
 }

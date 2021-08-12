@@ -255,7 +255,7 @@ public class MemberController {
 		}
 	}
 	
-	@PostMapping("/likes")
+	@RequestMapping("/likes")
 	@PreAuthorize("isAuthenticated()")
 	public void likes(String userid, Model model) {
 		List<ProductVO> list = service.getLikes(userid);
@@ -263,7 +263,7 @@ public class MemberController {
 		model.addAttribute("list", list);
 	}
 	
-	@PostMapping("/likesWebtoon")
+	@RequestMapping("/likesWebtoon")
 	@PreAuthorize("isAuthenticated()")
 	public void likesWebtoon(String userid, Model model) {
 		List<ProductVO> webtoon = service.getWebtoonLikes(userid);
@@ -271,7 +271,7 @@ public class MemberController {
 		model.addAttribute("webtoon", webtoon);
 	}
 	
-	@PostMapping("/likesWebnovel")
+	@RequestMapping("/likesWebnovel")
 	@PreAuthorize("isAuthenticated()")
 	public void likesWebnovel(String userid, Model model) {
 		List<ProductVO> webnovel = service.getWebnovelLikes(userid);
@@ -279,10 +279,42 @@ public class MemberController {
 		model.addAttribute("webnovel", webnovel);
 	}
 	
-	@PostMapping("/likesBook")
+	@RequestMapping("/likesBook")
 	@PreAuthorize("isAuthenticated()")
 	public void likesBook(String userid, Model model) {
 		List<ProductVO> book = service.getBookLikes(userid);
+		
+		model.addAttribute("book", book);
+	}
+	
+	@RequestMapping("/paidList")
+	@PreAuthorize("isAuthenticated()")
+	public void paidList(String userid, Model model) {
+		List<ProductVO> list = service.getPaidList(userid);
+		
+		model.addAttribute("list", list);
+	}
+	
+	@RequestMapping("/paidListWebtoon")
+	@PreAuthorize("isAuthenticated()")
+	public void paidListWebtoon(String userid, Model model) {
+		List<ProductVO> webtoon = service.getPaidListWebtoon(userid);
+		
+		model.addAttribute("webtoon", webtoon);
+	}
+	
+	@RequestMapping("/paidListWebnovel")
+	@PreAuthorize("isAuthenticated()")
+	public void paidListWebnovel(String userid, Model model) {
+		List<ProductVO> webnovel = service.getPaidListWebnovel(userid);
+		
+		model.addAttribute("webnovel", webnovel);
+	}
+	
+	@RequestMapping("/paidListBook")
+	@PreAuthorize("isAuthenticated()")
+	public void paidListBook(String userid, Model model) {
+		List<ProductVO> book = service.getPaidListBook(userid);
 		
 		model.addAttribute("book", book);
 	}

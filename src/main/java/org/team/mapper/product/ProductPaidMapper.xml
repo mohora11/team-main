@@ -19,4 +19,72 @@
 		WHERE id = #{product_id}
 	</select>
 	
+	<select id="getPaidList" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		    
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+							JOIN tbl_product_paid d ON p.id = d.product_id
+		
+		WHERE d.user_id = #{userid}
+	</select>
+	
+	<select id="getPaidListWebtoon" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		    
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+							JOIN tbl_product_paid d ON p.id = d.product_id
+		
+		WHERE d.user_id = #{userid} AND p.product_category = 1
+	</select>
+	
+	<select id="getPaidListWebnovel" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		    
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+							JOIN tbl_product_paid d ON p.id = d.product_id
+		
+		WHERE d.user_id = #{userid} AND p.product_category = 2
+	</select>
+	
+	<select id="getPaidListBook" resultType="org.team.domain.product.ProductVO">
+		SELECT
+			p.id id,
+		    p.product_category product_category,
+		    p.product_genre product_genre,
+		    p.product_name product_name,
+		    p.writer_name writer_name,
+		    p.register_date register_date,
+		    p.update_date update_date,
+		    c.file_name file_name
+		    
+		FROM tbl_product p JOIN tbl_product_cover c ON p.id = c.product_id
+							JOIN tbl_product_paid d ON p.id = d.product_id
+		
+		WHERE d.user_id = #{userid} AND p.product_category = 3
+	</select>
+	
 </mapper>
